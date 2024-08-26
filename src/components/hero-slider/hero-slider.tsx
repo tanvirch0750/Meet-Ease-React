@@ -1,101 +1,104 @@
 import { useState, useEffect } from 'react';
 import './hero-slider.css';
 import { Button } from '../ui/button';
+import Header from '../header/header';
 
 const HeroSlider = () => {
-  const [items, setItems] = useState([
+  const [items] = useState([
     {
-      img: 'https://images.pexels.com/photos/1034008/pexels-photo-1034008.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      title: 'MAGIC SLIDER',
-      type: 'FLOWER',
+      img: 'https://images.pexels.com/photos/6476783/pexels-photo-6476783.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      title: 'Book Your Ideal Meeting Room with Ease.',
+      type: 'Presentation Room',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio. Possimus, sed recusandae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, aut.',
+        'Efficient, hassle-free room booking for all your meeting needs. A room equipped with a stage, projector, and seating arrangement, perfect for delivering presentations, pitches, or talks',
     },
     {
-      img: 'https://i.ibb.co/jrRb11q/img2.jpg',
-      title: 'MAGIC SLIDER',
-      type: 'NATURE',
+      img: 'https://images.pexels.com/photos/8423355/pexels-photo-8423355.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      title: 'Book Your Ideal Meeting Room with Ease.',
+      type: 'Workshop Room',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio. Possimus, sed recusandae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, aut.',
+        'Efficient, hassle-free room booking for all your meeting needs. A creative and versatile space, often with modular furniture, whiteboards, and other tools, suitable for hands-on workshops and collaborative projects.',
     },
     {
-      img: 'https://i.ibb.co/NSwVv8D/img3.jpg',
-      title: 'MAGIC SLIDER',
-      type: 'PLANT',
+      img: 'https://images.pexels.com/photos/6883810/pexels-photo-6883810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      title: 'Book Your Ideal Meeting Room with Ease.',
+      type: 'Interview Room',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio. Possimus, sed recusandae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, aut.',
+        'Efficient, hassle-free room booking for all your meeting needs. A quiet, private space designed specifically for conducting interviews, with a minimalistic setup that ensures a professional atmosphere.',
     },
     {
-      img: 'https://i.ibb.co/Bq4Q0M8/img4.jpg',
-      title: 'MAGIC SLIDER',
-      type: 'NATURE',
+      img: 'https://images.pexels.com/photos/3678057/pexels-photo-3678057.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      title: 'Book Your Ideal Meeting Room with Ease.',
+      type: 'Conference Room',
       description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti temporibus quis eum consequuntur voluptate quae doloribus distinctio. Possimus, sed recusandae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, aut.',
+        'Efficient, hassle-free room booking for all your meeting needs. A large room equipped with a long table, chairs, and audiovisual equipment, ideal for formal meetings, presentations, and conferences.',
     },
   ]);
 
-  const [direction, setDirection] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const moveSlider = (direction: string) => {
-    setDirection(direction);
+    if (isAnimating) return;
+
+    setIsAnimating(true);
+
     if (direction === 'next') {
-      setItems((prevItems) => [...prevItems.slice(1), prevItems[0]]);
+      setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
     } else if (direction === 'prev') {
-      setItems((prevItems) => [
-        prevItems[prevItems.length - 1],
-        ...prevItems.slice(0, -1),
-      ]);
+      setActiveIndex(
+        (prevIndex) => (prevIndex - 1 + items.length) % items.length
+      );
     }
   };
 
-  useEffect(() => {
-    if (direction) {
-      const timer = setTimeout(() => {
-        setDirection(null);
-      }, 500); // Match the animation duration
+  const moveToThumbnail = (index: number) => {
+    if (isAnimating || index === activeIndex) return;
 
-      return () => clearTimeout(timer);
-    }
-  }, [direction]);
+    setIsAnimating(true);
+    setActiveIndex(index);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsAnimating(false);
+    }, 500); // Match the animation duration
+
+    return () => clearTimeout(timer);
+  }, [activeIndex]);
 
   return (
     <div>
-      <header>
-        <nav>
-          <a href="#" className="active">
-            Home
-          </a>
-          <a href="#">About</a>
-          <a href="#">Portfolio</a>
-          <a href="#">Services</a>
-          <a href="#">Contact</a>
-        </nav>
-      </header>
+      <Header pageType="home" />
 
-      <div className={`slider ${direction}`}>
+      <div className={`slider ${isAnimating ? 'animating' : ''}`}>
         <div className="list">
-          {items.map((item, index) => (
-            <div
-              className="item"
-              key={index}
-              style={{ zIndex: index === 0 ? 1 : 0 }}
-            >
-              <img src={item.img} alt="" />
-              <div className="content">
-                <h1 className="title">{item.title}</h1>
-                <h2 className="type">{item.type}</h2>
-                <p className="description">{item.description}</p>
-                <div className=" mt-12">
-                  <Button className=" bg-emerald-600">Book Now</Button>
-                </div>
+          <div className="item" key={activeIndex} style={{ zIndex: 1 }}>
+            <img src={items[activeIndex].img} alt="" />
+            <div className="content">
+              <h1 className="title">{items[activeIndex].title}</h1>
+              <h2 className="type">{items[activeIndex].type}</h2>
+              <p className="description text-xl font-medium">
+                {items[activeIndex].description}
+              </p>
+              <div className="buttons mt-6">
+                <Button className=" bg-white text-black px-6 py-8 rounded-md text-2xl tracking-wider uppercase font-bold hover:bg-white/90">
+                  Book Now
+                </Button>
               </div>
             </div>
-          ))}
+          </div>
         </div>
 
         <div className="thumbnail">
           {items.map((item, index) => (
-            <div className="item" key={index}>
+            <div
+              className={`item ${
+                index === activeIndex ? 'active-thumbnail' : ''
+              }`}
+              key={index}
+              onClick={() => moveToThumbnail(index)}
+            >
               <img src={item.img} alt="" />
             </div>
           ))}
