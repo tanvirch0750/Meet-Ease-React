@@ -1,9 +1,11 @@
-import HeroSlider from './components/hero-slider/hero-slider';
+import Carousel from './components/hero-slider-two/HeroSliderTwo';
 
 function App() {
   return (
     <>
-      <HeroSlider />
+      {/* <HeroSlider /> */}
+      <Carousel />
+      hello
     </>
   );
 }
