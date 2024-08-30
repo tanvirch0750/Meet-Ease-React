@@ -39,7 +39,7 @@ export function FeaturedRooms() {
         headingSpanTwo="Handpicked Rooms for Every Occasion"
         description="Discover a selection of our most popular meeting rooms, each designed to cater to your specific needs. Whether you're hosting a large conference or an intimate huddle, you'll find the perfect space with the right amenities."
       />
-      <MaxWidthWrapper className=" pb-24 pt-0">
+      <MaxWidthWrapper className=" pb-12 pt-0">
         <Carousel setApi={setApi} className="w-full">
           <CarouselContent>
             {Array.from({ length: 5 }).map((_, index) => (
