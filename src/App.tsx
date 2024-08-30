@@ -1,11 +1,9 @@
-import Carousel from './components/hero-slider-two/HeroSliderTwo';
+import HomePage from './pages/home/HomePage';
 
 function App() {
   return (
     <>
-      {/* <HeroSlider /> */}
-      <Carousel />
-      hello
+      <HomePage />
     </>
   );
 }
