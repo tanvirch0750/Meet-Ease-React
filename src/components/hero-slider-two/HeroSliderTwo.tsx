@@ -19,14 +19,14 @@ const sliderItems = [
       'Efficient, hassle-free room booking for all your meeting needs. A quiet, private space designed specifically for conducting interviews, with a minimalistic setup that ensures a professional atmosphere.',
   },
   {
-    img: 'https://images.pexels.com/photos/6476783/pexels-photo-6476783.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    img: 'https://img.freepik.com/premium-photo/sleek-conference-room-with-sophisticated-technology_1169880-118800.jpg?size=626&ext=jpg&ga=GA1.1.911219905.1717681244&semt=ais_hybrid',
     title: 'Book Your Ideal Meeting Room with Ease.',
     type: 'Presentation Room',
     description:
       'Efficient, hassle-free room booking for all your meeting needs. A room equipped with a stage, projector, and seating arrangement, perfect for delivering presentations, pitches, or talks',
   },
   {
-    img: 'https://images.pexels.com/photos/8423355/pexels-photo-8423355.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    img: 'https://img.freepik.com/free-photo/concentrated-young-woman-drinking-coffee-working_171337-16851.jpg?size=626&ext=jpg&ga=GA1.1.911219905.1717681244&semt=ais_hybrid',
     title: 'Book Your Ideal Meeting Room with Ease.',
     type: 'Workshop Room',
     description:

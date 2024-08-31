@@ -13,7 +13,7 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
         <div>
           <a href="" className=" text-3xl font-bold">
             <span className=" uppercase">Meet</span>{' '}
-            <span className=" inline-block px-2 bg-emerald-600 rounded-md">
+            <span className=" inline-block px-2 bg-emerald-500 rounded-md">
               Ease
             </span>
           </a>
