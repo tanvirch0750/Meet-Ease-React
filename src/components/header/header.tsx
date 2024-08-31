@@ -1,4 +1,6 @@
 import MaxWidthWrapper from '../ui/max-width-wrapper';
+import PrimaryButton from '../ui/primary-button';
+import { MobileHeader } from './mobile-header';
 
 export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
   return (
@@ -16,7 +18,12 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
             </span>
           </a>
         </div>
-        <nav className=" flex items-center gap-4 text-xl font-medium">
+        <div className="md:hidden block">
+          {' '}
+          <MobileHeader />
+        </div>
+
+        <nav className="hidden md:flex items-center gap-4 text-xl font-medium">
           <a href="#" className="px-2 py-1 hover:bg-emerald-600 rounded-md">
             Home
           </a>
@@ -29,12 +36,13 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           <a href="#" className="px-2 py-1 hover:bg-emerald-600 rounded-md">
             Contact Us
           </a>
-          <a
+          <PrimaryButton text="Signin" />
+          {/* <a
             href="#"
             className="px-2 py-2 font-bold tracking-wide bg-emerald-600 rounded-md hover:bg-emerald-700"
           >
             Signin
-          </a>
+          </a> */}
         </nav>
       </MaxWidthWrapper>
     </header>

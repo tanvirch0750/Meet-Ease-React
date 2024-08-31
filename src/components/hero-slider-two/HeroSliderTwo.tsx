@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import './HeroSliderTwo.css'; // Import your CSS file here
-import Header from '../header/header';
+
 import { Button } from '../ui/button';
 
 const sliderItems = [
@@ -43,23 +43,6 @@ const Carousel: React.FC = () => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoNextTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  //   useEffect(() => {
-  //     if (thumbnailBorderRef.current) {
-  //       const thumbnailItemsDom =
-  //         thumbnailBorderRef.current.querySelectorAll<HTMLDivElement>('.item');
-  //       thumbnailBorderRef.current.appendChild(thumbnailItemsDom[0]);
-  //     }
-
-  //     autoNextTimeoutRef.current = setTimeout(() => {
-  //       showSlider('next');
-  //     }, timeAutoNext);
-
-  //     return () => {
-  //       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  //       if (autoNextTimeoutRef.current) clearTimeout(autoNextTimeoutRef.current);
-  //     };
-  //   }, []);
-
   const showSlider = (type: 'next' | 'prev') => {
     if (sliderRef.current && thumbnailBorderRef.current) {
       const sliderItemsDom =
@@ -94,7 +77,6 @@ const Carousel: React.FC = () => {
 
   return (
     <>
-      <Header pageType="home" />
       <div className="carousel">
         {/* List Items */}
         <div className="list" ref={sliderRef}>
@@ -102,11 +84,11 @@ const Carousel: React.FC = () => {
             <div className="item">
               <img src={sliderItem.img} alt="Slider 1" />
               <div className="content">
-                <span className="author">MEET EASE</span>
-                <h1 className="title text-7xl font-light w-[850px] mt-4">
+                <span className="author md:block hidden">MEET EASE</span>
+                <h1 className="title text-6xl md:text-7xl font-light max-w-[700px] md:w-[850px] md:max-w-[850px] mt-4">
                   {sliderItem.title}
                 </h1>
-                <h2 className="topic text-6xl text-emerald-500 my-8">
+                <h2 className="topic text-4xl md:text-6xl text-emerald-500 my-8">
                   {sliderItem.type}
                 </h2>
                 <p className="des text-xl font-medium">

@@ -14,7 +14,12 @@ export default function SectionHeader({
   description,
 }: TSectionHeaderProps) {
   return (
-    <header className={cn('max-w-2xl mx-auto my-12 text-center', className)}>
+    <header
+      className={cn(
+        'max-w-2xl mx-auto my-12 text-center px-4 md:px-0',
+        className
+      )}
+    >
       <h1 className="md:text-4xl text-2xl mb-4">
         <span className="block font-heading font-light text-gray-600 ">
           {headingSpanOne}

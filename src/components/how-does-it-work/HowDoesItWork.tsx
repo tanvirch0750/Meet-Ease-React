@@ -4,9 +4,9 @@ import HowDoesItWorkSvg from '../../assets/curved-dotted-line.svg';
 
 export default function HowDoesItWork() {
   return (
-    <MaxWidthWrapper className=" pb-44">
+    <MaxWidthWrapper className="pb-20 md:pb-44">
       <SectionHeader
-        className=" max-w-5xl pt-20"
+        className=" max-w-5xl pt-0 md:pt-20"
         headingSpanOne="How It Works"
         headingSpanTwo="Simple Steps to Book Your Meeting Room"
         description="Booking your ideal meeting room has never been easier. With just three simple steps, you can secure the perfect space for your needs. Select your room, choose your date and time, and confirm your booking—it's that straightforward!"

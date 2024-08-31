@@ -5,19 +5,19 @@ export default function WhyChooseUs() {
   return (
     <div className=" bg-gray-100">
       <SectionHeader
-        className=" max-w-5xl pt-32"
+        className=" max-w-5xl md:pt-32 pt-16"
         headingSpanOne="Why Choose Us?"
         headingSpanTwo="Your Trusted Partner in Meeting Room Booking"
         description="We pride ourselves on offering a seamless booking experience that’s as easy as it is efficient. With secure transactions, you can book with confidence, knowing your information is protected. "
       />
       <MaxWidthWrapper className="pb-16">
-        <div className="flex flex-col space-y-4 items-center justify-center py-12">
+        <div className="flex flex-col space-y-4 items-center justify-center py-0 md:py-12">
           <div className=" py-7 px-5">
             <div className="grid grid-cols-6 gap-3">
-              <div className="col-span-1">
+              <div className="col-span-1 hidden md:block">
                 <img src="https://cdn-icons-png.flaticon.com/128/7069/7069350.png" />
               </div>
-              <div className="col-span-5">
+              <div className="col-span-6 md:col-span-5">
                 <h2 className="bg-gradient-to-r from-rose-500 to-sky-500 bg-clip-text text-transparent font-body text-4xl font-bold">
                   Secure Transactions
                 </h2>
@@ -32,7 +32,7 @@ export default function WhyChooseUs() {
           </div>
           <div className="py-7 px-5">
             <div className="grid grid-cols-6 gap-12">
-              <div className="col-span-5 text-right">
+              <div className="col-span-6 md:col-span-5 text-right">
                 <h2 className="bg-gradient-to-r from-blue-700 to-sky-500 bg-clip-text text-transparent font-body text-4xl font-bold">
                   Friendly Location
                 </h2>
@@ -43,17 +43,17 @@ export default function WhyChooseUs() {
                   transport hubs, we have the perfect spot for your needs.
                 </p>
               </div>
-              <div className="col-span-1">
+              <div className="col-span-1 hidden md:block">
                 <img src="https://cdn-icons-png.flaticon.com/512/854/854894.png" />
               </div>
             </div>
           </div>
           <div className="py-7 px-5">
             <div className="grid grid-cols-6 gap-3">
-              <div className="col-span-1">
+              <div className="col-span-1 hidden md:block">
                 <img src="https://cdn-icons-png.flaticon.com/128/2651/2651001.png" />
               </div>
-              <div className="col-span-5">
+              <div className="col-span-6 md:col-span-5">
                 <h2 className="bg-gradient-to-r from-orange-500 to-amber-200 bg-clip-text text-transparent font-body text-4xl font-bold">
                   Seamless Booking Experience
                 </h2>
@@ -68,7 +68,7 @@ export default function WhyChooseUs() {
           </div>
           <div className="py-7 px-5">
             <div className="grid grid-cols-6 gap-12">
-              <div className="col-span-5 text-right">
+              <div className="col-span-6 md:col-span-5 text-right">
                 <h2 className="bg-gradient-to-r from-emerald-600 to-green-400 bg-clip-text text-transparent font-body text-4xl font-bold">
                   Reliable Customer Support
                 </h2>
@@ -79,7 +79,7 @@ export default function WhyChooseUs() {
                   it.
                 </p>
               </div>
-              <div className="col-span-1">
+              <div className="col-span-1 hidden md:block">
                 <img src="https://cdn-icons-png.flaticon.com/512/854/854470.png" />
               </div>
             </div>
