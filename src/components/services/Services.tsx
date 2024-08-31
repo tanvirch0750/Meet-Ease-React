@@ -10,7 +10,7 @@ import IconCarma from '../../assets/icon-karma.svg';
 const ServiceSection: React.FC = () => {
   return (
     <div className=" bg-gray-100">
-      <MaxWidthWrapper className=" pt-10 pb-24">
+      <MaxWidthWrapper className=" pt-20 pb-32">
         {/* Header Section */}
         <SectionHeader
           className=" max-w-5xl"

@@ -57,7 +57,7 @@ export function FeaturedRooms() {
                     <div className="grid grid-cols-12">
                       <div className="col-span-12 lg:col-span-7 lg:col-start-6 xl:col-span-6 xl:col-start-7 text-center lg:text-start">
                         <div className="bg-white/70 backdrop-blur-md rounded-xl border border-white/20 shadow-lg p-12">
-                          <h2 className="text-2xl leading-snug md:text-[40px] mb-6">
+                          <h2 className="text-2xl font-body text-gray-800 leading-snug md:text-[40px] mb-6">
                             Conference Room
                           </h2>
                           <div className="pb-6 flex items-center gap-8">

@@ -1,11 +1,12 @@
 import SectionHeader from '../section-header/SectionHeader';
 import MaxWidthWrapper from '../ui/max-width-wrapper';
+import HowDoesItWorkSvg from '../../assets/curved-dotted-line.svg';
 
 export default function HowDoesItWork() {
   return (
-    <MaxWidthWrapper className="pb-16">
+    <MaxWidthWrapper className=" pb-44">
       <SectionHeader
-        className=" max-w-5xl pt-14"
+        className=" max-w-5xl pt-20"
         headingSpanOne="How It Works"
         headingSpanTwo="Simple Steps to Book Your Meeting Room"
         description="Booking your ideal meeting room has never been easier. With just three simple steps, you can secure the perfect space for your needs. Select your room, choose your date and time, and confirm your booking—it's that straightforward!"
@@ -23,7 +24,7 @@ export default function HowDoesItWork() {
                 data-nimg="1"
                 className="w-full"
                 // style="color:transparent"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/steps/2/curved-dotted-line.svg"
+                src={HowDoesItWorkSvg}
               />
             </div>
             <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
@@ -36,7 +37,7 @@ export default function HowDoesItWork() {
                 <h3 className="mt-6 text-3xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-body font-bold leading-tight md:mt-10">
                   Select a Room
                 </h3>
-                <p className="mt-4 text-base text-gray-800 md:text-xl bg-emerald-50 p-3 rounded-lg">
+                <p className="mt-4 text-base text-gray-800 md:text-xl bg-gray-50 p-3 rounded-lg">
                   Browse through our diverse selection of meeting rooms and find
                   the perfect space that suits your needs.
                 </p>
@@ -50,7 +51,7 @@ export default function HowDoesItWork() {
                 <h3 className="mt-6 text-3xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-body font-bold leading-tight md:mt-10">
                   Choose Date & Time
                 </h3>
-                <p className="mt-4 text-base text-gray-800 md:text-xl bg-emerald-50 p-3 rounded-lg">
+                <p className="mt-4 text-base text-gray-800 md:text-xl bg-gray-50 p-3 rounded-lg">
                   Pick the date and time that works best for you, with real-time
                   availability to ensure your slot is secure.
                 </p>
@@ -64,7 +65,7 @@ export default function HowDoesItWork() {
                 <h3 className="mt-6 text-3xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-body font-bold leading-tight md:mt-10">
                   Confirm Booking
                 </h3>
-                <p className="mt-4 text-base text-gray-800 md:text-xl bg-emerald-50 p-3 rounded-lg">
+                <p className="mt-4 text-base text-gray-800 md:text-xl bg-gray-50 p-3 rounded-lg">
                   Review your selection and confirm your booking instantly.
                   You’re all set for a productive meeting!
                 </p>

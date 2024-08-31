@@ -5,12 +5,12 @@ export default function WhyChooseUs() {
   return (
     <div className=" bg-gray-100">
       <SectionHeader
-        className=" max-w-5xl pt-14"
+        className=" max-w-5xl pt-32"
         headingSpanOne="Why Choose Us?"
         headingSpanTwo="Your Trusted Partner in Meeting Room Booking"
         description="We pride ourselves on offering a seamless booking experience that’s as easy as it is efficient. With secure transactions, you can book with confidence, knowing your information is protected. "
       />
-      <MaxWidthWrapper className="py-16">
+      <MaxWidthWrapper className="pb-16">
         <div className="flex flex-col space-y-4 items-center justify-center py-12">
           <div className=" py-7 px-5">
             <div className="grid grid-cols-6 gap-3">
