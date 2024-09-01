@@ -33,8 +33,8 @@ export function Faq() {
             <AccordionTrigger>
               Can I cancel or reschedule my booking?
             </AccordionTrigger>
-            <AccordionContent>
-              es, you can easily cancel or reschedule your booking through the
+            <AccordionContent className=" text-lg">
+              Yes, you can easily cancel or reschedule your booking through the
               "My Bookings" page. Please note that cancellation policies may
               vary depending on the room or booking time.
             </AccordionContent>
@@ -43,7 +43,7 @@ export function Faq() {
             <AccordionTrigger>
               What payment methods are accepted?
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="text-lg">
               We accept a variety of payment methods, including credit/debit
               cards and online payment services like Amar Pay. All transactions
               are secure and encrypted for your protection.
@@ -53,7 +53,7 @@ export function Faq() {
             <AccordionTrigger>
               How do I know if a room is available?
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className=" text-lg">
               Our platform offers real-time availability updates. Simply select
               the room you’re interested in, and you’ll see all available dates
               and time slots instantly.
@@ -63,7 +63,7 @@ export function Faq() {
             <AccordionTrigger>
               Is there customer support available if I need help?
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className=" text-lg">
               Absolutely! Our customer support team is available 24/7 to assist
               you with any questions or issues. You can contact us via email,
               phone, or through the live chat on our website.
