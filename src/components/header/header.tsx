@@ -6,7 +6,7 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
   return (
     <header
       className={`h-[100px] z-50 relative text-white flex items-center ${
-        pageType === 'home' ? '' : ' bg-gray-900 text-white'
+        pageType === 'home' ? '' : ' bg-[#011611] text-white'
       }`}
     >
       <MaxWidthWrapper className=" flex justify-between items-center max-w-full">

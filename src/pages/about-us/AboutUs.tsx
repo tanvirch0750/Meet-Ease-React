@@ -1,5 +1,5 @@
 import AboutHero from '@/components/about-hero/AboutHero';
-import AboutUs from '@/components/about-us/AboutUs';
+import AboutUsBanner from '@/components/about-us-banner/AboutUsBanner';
 import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
 import OurMission from '@/components/our-mission/OurMission';
@@ -12,7 +12,7 @@ export default function AboutUsPage() {
       <main>
         <AboutHero />
 
-        <AboutUs />
+        <AboutUsBanner />
 
         <OurMission />
         <OurTeam />
