@@ -50,10 +50,10 @@ const TestimonialsSection: React.FC = () => {
       id="testimonials"
     >
       <div className="px-8 lg:px-24 py-12 lg:py-24">
-        <span className=" text-xl uppercase tracking-widest font-bold text-gray-700">
+        <span className=" text-lg uppercase tracking-widest font-bold text-gray-700">
           Testimonials
         </span>
-        <h2 className="text-3xl mt-2 font-body lg:text-6xl font-bold mb-12 bg-gradient-to-r from-sky-600 via-emerald-500 to-indigo-400 text-transparent bg-clip-text">
+        <h2 className="text-2xl mt-2 font-body lg:text-5xl font-bold mb-12 bg-gradient-to-r from-sky-600 via-emerald-500 to-indigo-400 text-transparent bg-clip-text">
           Once you try it, you can't go back
         </h2>
 
@@ -68,7 +68,7 @@ const TestimonialsSection: React.FC = () => {
                 alt={`photo of customer ${testimonial.name}`}
                 className="w-16 h-16 rounded-full mb-4 mx-auto md:mx-0"
               />
-              <blockquote className="text-xl text-gray-800 leading-relaxed mb-4">
+              <blockquote className="text-[16px] text-gray-800 leading-relaxed mb-2">
                 {testimonial.text}
               </blockquote>
               <p className="text-lg text-emerald-500 font-semibold">

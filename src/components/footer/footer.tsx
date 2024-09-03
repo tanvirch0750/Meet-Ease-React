@@ -4,7 +4,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="py-32 border-t border-gray-200 bg-[#011611] text-white">
+    <footer className="py-16 border-t border-gray-200 bg-[#011611] text-white">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16">
         {/* Logo and Social Links */}
         <div className="flex flex-col">
@@ -41,8 +41,8 @@ const Footer = () => {
 
         {/* Contact Section */}
         <div>
-          <p className="text-xl font-medium mb-8">Contact Us</p>
-          <address className="not-italic mb-8">
+          <p className="text-lg font-medium mb-8">Contact Us</p>
+          <address className="not-italic mb-8 text-sm">
             <p className="mb-6 text-gray-400">
               623 Harrison St., 2nd Floor, San Francisco, CA 94107
             </p>
@@ -65,8 +65,8 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <div>
-          <p className="text-xl font-medium mb-8">Account</p>
-          <ul className="flex flex-col gap-6">
+          <p className="text-lg font-medium mb-8">Account</p>
+          <ul className="flex flex-col gap-4 text-sm">
             <li>
               <a className="text-gray-400 hover:text-gray-200" href="#">
                 Create account
@@ -91,8 +91,8 @@ const Footer = () => {
         </div>
 
         <div>
-          <p className="text-xl font-medium mb-8">Company</p>
-          <ul className="flex flex-col gap-6">
+          <p className="text-lg font-medium mb-8">Company</p>
+          <ul className="flex flex-col gap-4 text-sm">
             <li>
               <a className="text-gray-400 hover:text-gray-200" href="#">
                 About Meeet Ease
@@ -117,8 +117,8 @@ const Footer = () => {
         </div>
 
         <div>
-          <p className="text-xl font-medium mb-8">Resources</p>
-          <ul className="flex flex-col gap-6">
+          <p className="text-lg font-medium mb-8">Resources</p>
+          <ul className="flex flex-col gap-4 text-sm">
             <li>
               <a className="text-gray-400 hover:text-gray-200" href="#">
                 Room directory

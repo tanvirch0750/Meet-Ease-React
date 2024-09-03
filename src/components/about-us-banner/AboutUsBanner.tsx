@@ -16,10 +16,10 @@ export default function AboutUsBanner() {
                 <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                   <TrophyIcon />
                 </div>
-                <h6 className="text-2xl font-bold font-body">
+                <h6 className="text-2xl font-bold font-body text-gray-800">
                   Driven by Innovation
                 </h6>
-                <p className="mt-2 mb-4 text-gray-800 text-lg">
+                <p className="mt-2 mb-4 text-gray-800 text-base">
                   At the core of our success is a relentless drive to innovate.
                   Trusted by thousands of businesses worldwide, we are committed
                   to pushing the boundaries of what’s possible in meeting room
@@ -37,10 +37,10 @@ export default function AboutUsBanner() {
                 <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
                   <AlbumIcon />
                 </div>
-                <h6 className="text-2xl font-bold font-body">
+                <h6 className="text-2xl font-bold font-body text-gray-800">
                   Your Partner in Productivity
                 </h6>
-                <p className="mt-2 mb-4 text-gray-800 text-lg">
+                <p className="mt-2 mb-4 text-gray-800 text-base">
                   We believe that the right environment can unlock your team’s
                   full potential. As your partner in productivity, we’ve
                   designed our platform to provide not just convenience, but
@@ -58,10 +58,10 @@ export default function AboutUsBanner() {
                 <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                   <BadgeCheckIcon />
                 </div>
-                <h6 className="text-2xl font-bold font-body">
+                <h6 className="text-2xl font-bold font-body text-gray-800">
                   Award-Winning Excellence
                 </h6>
-                <p className="mt-6 mb-4 text-gray-800 text-lg">
+                <p className="mt-6 mb-4 text-gray-800 text-base">
                   With a reputation for excellence and a commitment to
                   innovation, our award-winning platform has transformed the way
                   businesses book meeting spaces. Recognized for our
@@ -79,17 +79,17 @@ export default function AboutUsBanner() {
             <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
               <HandshakeIcon size={60} className=" text-emerald-500" />
             </div>
-            <h3 className="text-4xl font-body mb-2 font-bold leading-normal">
+            <h3 className="text-4xl font-body mb-2 font-bold leading-normal text-gray-800">
               Working with us is a pleasure
             </h3>
-            <p className="text-xl font-light leading-relaxed mt-4 mb-4 text-gray-800">
+            <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-800">
               From the moment you start working with us, you’ll notice the
               difference. We’ve designed our platform to be intuitive and
               hassle-free, ensuring that booking a meeting room is quick and
               easy. Our team is always ready to assist, making every interaction
               smooth and enjoyable, so you can focus on your priorities.
             </p>
-            <p className="text-xl font-light leading-relaxed mt-0 mb-4 text-gray-800">
+            <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-800">
               Beyond functionality, we’re committed to building lasting
               relationships. Whether you’re a new user or a returning client, we
               treat every interaction as an opportunity to provide exceptional

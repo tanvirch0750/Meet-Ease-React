@@ -11,7 +11,7 @@ export default function RoomListPage() {
     <>
       <Header pageType="normal" />
       <div className="flex flex-col min-h-screen">
-        <header className="flex items-center justify-between px-4 py-4 border-b">
+        <header className="flex items-center justify-between px-4 py-4 border-b border-b-gray-100">
           <div>
             <h2 className=" text-3xl text-gray-800">Our Room Collections</h2>
           </div>
@@ -19,106 +19,65 @@ export default function RoomListPage() {
             <Input
               type="search"
               placeholder="Search Rooms"
-              className=" w-96 placeholder:text-gray-800 text-lg py-6"
+              className=" text-gray-800 w-96 placeholder:text-gray-800 text-lg py-4 bg-gray-100 border-gray-300 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 "
             />
-            <Button variant="outline" className="py-6">
-              <SearchIcon className="h-4 w-4" />
+            <Button
+              variant="outline"
+              className="py-4 bg-gray-100 border-gray-300"
+            >
+              <SearchIcon className="h-4 w-4 text-gray-800" />
               <span className="sr-only">Search</span>
             </Button>
           </form>
         </header>
         <main className="flex flex-col lg:flex-row gap-4 lg:gap-6 p-4 md:p-6">
           <aside className="w-full lg:w-64">
-            <h2 className="text-xl font-bold mb-4">Filters</h2>
+            <h2 className="text-xl font-bold mb-4 text-gray-800">Filters</h2>
             <div className="space-y-4">
               <div className=" mb-8">
-                <h3 className="font-semibold text-xl mb-2">Categories</h3>
-                <div className="space-y-1 mt-2 flex flex-col gap-3">
+                <h3 className="font-semibold text-lg mb-4 text-gray-800">
+                  Categories
+                </h3>
+                <div className="space-y-1 mt-2 flex flex-col gap-3 text-gray-800">
                   <div className="flex items-center space-x-2">
                     <Checkbox id="terms" />
                     <label
                       htmlFor="terms"
-                      className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="text-[16px] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                       Under 1000 bdt
-                    </label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Under 2000 bdt
-                    </label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Under 3000 bdt
                     </label>
                   </div>
                 </div>
               </div>
               <div className="mb-8">
-                <h3 className="font-semibold text-xl">Price Range</h3>
+                <h3 className="font-semibold text-lg text-gray-800 mb-4">
+                  Price Range
+                </h3>
                 <div className="space-y-1 mt-2 flex flex-col gap-3">
                   <div className="flex items-center space-x-2">
                     <Checkbox id="terms" />
                     <label
                       htmlFor="terms"
-                      className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="text-[16px] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-gray-800"
                     >
                       Under 1000 bdt
-                    </label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Under 2000 bdt
-                    </label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Under 3000 bdt
                     </label>
                   </div>
                 </div>
               </div>
               <div className="">
-                <h3 className="font-semibold text-xl mt-8">Sort By</h3>
+                <h3 className="font-semibold text-lg mt-8 text-gray-800">
+                  Sort By
+                </h3>
                 <div className="space-y-1 mt-2">
                   <RadioGroup defaultValue="featured">
                     <Label
                       htmlFor="featured"
-                      className="flex items-center gap-2 font-medium text-lg"
+                      className="flex items-center gap-2 font-medium text-[16px] text-gray-800"
                     >
                       <RadioGroupItem id="featured" value="featured" />
                       Featured
-                    </Label>
-                    <Label
-                      htmlFor="low-to-high"
-                      className="flex items-center gap-2 font-medium text-lg"
-                    >
-                      <RadioGroupItem id="low-to-high" value="low-to-high" />
-                      Price: Low to High
-                    </Label>
-                    <Label
-                      htmlFor="high-to-low"
-                      className="flex items-center gap-2 font-medium text-lg"
-                    >
-                      <RadioGroupItem id="high-to-low" value="high-to-low" />
-                      Price: High to Low
                     </Label>
                   </RadioGroup>
                 </div>

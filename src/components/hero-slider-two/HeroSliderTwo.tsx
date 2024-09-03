@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import './HeroSliderTwo.css'; // Import your CSS file here
 
-import { Button } from '../ui/button';
+import PrimaryButton from '../ui/primary-button';
 
 const sliderItems = [
   {
@@ -84,20 +84,20 @@ const Carousel: React.FC = () => {
             <div className="item">
               <img src={sliderItem.img} alt="Slider 1" />
               <div className="content">
-                <span className="author md:block hidden">MEET EASE</span>
-                <h1 className="title text-6xl md:text-7xl font-light max-w-[700px] md:w-[850px] md:max-w-[850px] mt-4">
+                <h1 className="title text-4xl md:text-6xl font-light max-w-[700px] md:w-[850px] md:max-w-[750px] mt-4">
                   {sliderItem.title}
                 </h1>
-                <h2 className="topic text-4xl md:text-6xl text-emerald-500 my-8">
+                <h2 className="topic text-2xl md:text-4xl text-emerald-500 my-8">
                   {sliderItem.type}
                 </h2>
-                <p className="des text-xl font-medium">
+                <p className="des text-base text-white font-medium max-w-[500px]">
                   {sliderItem.description}
                 </p>
                 <div className="buttons">
-                  <Button className=" bg-white text-black px-6 py-8 rounded-md text-2xl tracking-wider uppercase font-medium hover:bg-white/90">
+                  {/* <Button className=" bg-white text-black px-6 py-8 rounded-md text-2xl tracking-wider uppercase font-medium hover:bg-white/90">
                     Book Now
-                  </Button>
+                  </Button> */}
+                  <PrimaryButton text="Book Now" />
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@ const Carousel: React.FC = () => {
             <div className="item">
               <img src={sliderItem?.img} alt="Thumbnail 1" />
               <div className="content">
-                <div className="title text-white rounded-lg font-bold">
+                <div className="title text-white rounded-lg font-bold text-sm">
                   {sliderItem.type}
                 </div>
               </div>

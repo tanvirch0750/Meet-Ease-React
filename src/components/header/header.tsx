@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import MaxWidthWrapper from '../ui/max-width-wrapper';
 import PrimaryButton from '../ui/primary-button';
 import { MobileHeader } from './mobile-header';
@@ -5,13 +6,13 @@ import { MobileHeader } from './mobile-header';
 export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
   return (
     <header
-      className={`h-[100px] z-50 relative text-white flex items-center ${
+      className={`h-[70px] z-50 relative text-white flex items-center ${
         pageType === 'home' ? '' : ' bg-[#011611] text-white'
       }`}
     >
       <MaxWidthWrapper className=" flex justify-between items-center max-w-full">
         <div>
-          <a href="" className=" text-3xl font-bold">
+          <a href="" className=" text-xl font-bold">
             <span className=" uppercase">Meet</span>{' '}
             <span className=" inline-block px-2 bg-emerald-500 rounded-md">
               Ease
@@ -23,19 +24,31 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           <MobileHeader />
         </div>
 
-        <nav className="hidden md:flex items-center gap-4 text-xl font-medium">
-          <a href="#" className="px-2 py-1 hover:bg-emerald-600 rounded-md">
+        <nav className="hidden md:flex items-center gap-4 text-[16px] font-medium">
+          <NavLink
+            to="/"
+            className="px-2 py-1 hover:text-emerald-500 active:text-emerald-500"
+          >
             Home
-          </a>
-          <a href="#" className="px-2 py-1 hover:bg-emerald-600 rounded-md">
-            Metting Rooms
-          </a>
-          <a href="#" className="px-2 py-1 hover:bg-emerald-600 rounded-md">
+          </NavLink>
+          <NavLink
+            to="/about-us"
+            className="px-2 py-1 hover:text-emerald-500 active:text-emerald-500"
+          >
             About Us
-          </a>
-          <a href="#" className="px-2 py-1 hover:bg-emerald-600 rounded-md">
+          </NavLink>
+          <NavLink
+            to="/rooms"
+            className="px-2 py-1 hover:text-emerald-500 active:text-emerald-500"
+          >
+            Rooms
+          </NavLink>
+          <NavLink
+            to="/contact-us"
+            className="px-2 py-1 hover:text-emerald-500 active:text-emerald-500"
+          >
             Contact Us
-          </a>
+          </NavLink>
           <PrimaryButton text="Signin" />
           {/* <a
             href="#"

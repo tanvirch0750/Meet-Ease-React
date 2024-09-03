@@ -38,7 +38,7 @@ export default function SeeMoreButton({ text }: SeeMoreButtonProps) {
           ></path>
         </svg>
       </span>
-      <span className="relative text-xl w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">
+      <span className="relative text-lg w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">
         {text}
       </span>
     </button>

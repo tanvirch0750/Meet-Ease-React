@@ -32,14 +32,14 @@ export function FeaturedRooms() {
   }, [api]);
 
   return (
-    <>
+    <div className="">
       <SectionHeader
-        className="pt-10 md:pt-16 pb-0 max-w-5xl"
+        className=" pb-0 max-w-5xl"
         headingSpanOne="Explore Our Top Meeting Spaces"
         headingSpanTwo="Handpicked Rooms for Every Occasion"
         description="Discover a selection of our most popular meeting rooms, each designed to cater to your specific needs. Whether you're hosting a large conference or an intimate huddle, you'll find the perfect space with the right amenities."
       />
-      <MaxWidthWrapper className="pb-10 md:pb-12 pt-0">
+      <MaxWidthWrapper className="pb-10 md:pb-0 pt-0 max-w-6xl">
         <Carousel setApi={setApi} className="w-full">
           <CarouselContent>
             {Array.from({ length: 5 }).map((_, index) => (
@@ -57,20 +57,20 @@ export function FeaturedRooms() {
                     <div className="grid grid-cols-12 bg-emerald-100 md:bg-transparent">
                       <div className="col-span-12 lg:col-span-7 lg:col-start-6 xl:col-span-6 xl:col-start-7 text-center lg:text-start">
                         <div className="bg-white/70 backdrop-blur-md rounded-xl border border-white/20 shadow-lg p-12">
-                          <h2 className="text-2xl font-body text-gray-800 leading-snug md:text-[40px] mb-6">
+                          <h2 className="text-xl font-body text-gray-800 leading-snug md:text-[28px] mb-6">
                             Conference Room
                           </h2>
                           <div className="pb-6 flex flex-col md:flex-row items-center gap-8">
-                            <p className=" text-xl font-semibold text-gray-800 flex items-center gap-3">
+                            <p className=" text-lg font-semibold text-gray-800 flex items-center gap-3">
                               <span>Capacity:</span>
                               <span>30</span>
                             </p>
-                            <p className=" text-xl font-semibold text-gray-800 flex items-center gap-3">
+                            <p className=" text-lg font-semibold text-gray-800 flex items-center gap-3">
                               <span>Price Per Slot:</span>
                               <span>30</span>
                             </p>
                           </div>
-                          <p className="text-lg leading-normal opacity-80">
+                          <p className="text-[16px] leading-normal opacity-80">
                             It{'’'}s easier to reach your savings goals when you
                             have the right savings account. Take a look and find
                             the right one for you!
@@ -89,7 +89,7 @@ export function FeaturedRooms() {
           <CarouselPrevious className="hidden md:flex ml-[-20px]" />
           <CarouselNext className="hidden md:flex" />
         </Carousel>
-        <div className="py-8 text-center text-xl text-muted-foreground">
+        <div className="py-8 text-center text-lg text-gray-800">
           <span>
             Featured Room {current} of {count}
           </span>
@@ -98,7 +98,7 @@ export function FeaturedRooms() {
           </div>
         </div>
       </MaxWidthWrapper>
-    </>
+    </div>
   );
 }
 

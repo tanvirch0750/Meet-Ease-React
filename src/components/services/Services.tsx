@@ -10,7 +10,7 @@ import IconCarma from '../../assets/icon-karma.svg';
 const ServiceSection: React.FC = () => {
   return (
     <div className=" bg-gray-100">
-      <MaxWidthWrapper className="pt-10 md:pt-20 pb-24 md:pb-32">
+      <MaxWidthWrapper className="pt-4 md:pt-8 pb-24 md:pb-32">
         {/* Header Section */}
         <SectionHeader
           className=" max-w-5xl"
@@ -22,40 +22,40 @@ const ServiceSection: React.FC = () => {
         {/* Container Section */}
         <section className="service">
           <div className="box box-cyan">
-            <h2 className=" font-semibold font-body text-gray-800 mb-4 text-2xl">
+            <h2 className=" font-semibold font-body text-gray-800 mb-4 text-xl">
               Instant Booking Confirmation
             </h2>
-            <p className=" mb-8">
+            <p className=" mb-8 text-gray-800">
               Get immediate confirmation of your booking, so you can plan with
               confidence and avoid the hassle of waiting.
             </p>
             <img src={IconSupervisor} alt="Supervisor" className="svg" />
           </div>
           <div className="box box-red">
-            <h2 className=" font-body font-semibold text-gray-800 mb-4 text-2xl">
+            <h2 className=" font-body font-semibold text-gray-800 mb-4 text-xl">
               Flexible Scheduling
             </h2>
-            <p className=" mb-8">
+            <p className=" mb-8 text-gray-800">
               Choose the time that suits you best with our adaptable scheduling
               options, designed to fit your unique needs
             </p>
             <img src={IconTeamBuilder} alt="Team Builder" className="svg" />
           </div>
           <div className="box box-blue">
-            <h2 className=" font-body font-semibold text-gray-800 mb-4 text-2xl">
+            <h2 className=" font-body font-semibold text-gray-800 mb-4 text-xl">
               Real-Time Availability
             </h2>
-            <p className=" mb-8">
+            <p className=" mb-8 text-gray-800">
               Real-Time Availability, Instant Booking Confirmation, Flexible
               Scheduling, 24/7 Support
             </p>
             <img src={IconCalculator} alt="Calculator" className="svg" />
           </div>
           <div className="box box-orange">
-            <h2 className=" font-body font-semibold text-gray-800 mb-4 text-2xl">
+            <h2 className=" font-body font-semibold text-gray-800 mb-4 text-xl">
               24/7 Support
             </h2>
-            <p className=" mb-8">
+            <p className=" mb-8 text-gray-800">
               Our dedicated support team is available around the clock, ready to
               assist you whenever you need help or have questions.
             </p>

@@ -20,15 +20,15 @@ export default function SectionHeader({
         className
       )}
     >
-      <h1 className="md:text-4xl text-2xl mb-4">
+      <h1 className="md:text-3xl text-xl mb-4">
         <span className="block font-heading font-light text-gray-600 ">
           {headingSpanOne}
         </span>
-        <span className="block text-3xl md:text-5xl font-body font-bold bg-gradient-to-r from-sky-600 via-emerald-500 to-indigo-400 text-transparent bg-clip-text mt-3">
+        <span className="block text-4xl md:text-5xl font-body font-bold bg-gradient-to-r from-sky-600 via-emerald-500 to-indigo-400 text-transparent bg-clip-text mt-3">
           {headingSpanTwo}
         </span>
       </h1>
-      <p className="text-gray-800 mt-3 md:text-lg text-md max-w-4xl mx-auto">
+      <p className="text-gray-800 mt-3 text-[16px] max-w-4xl mx-auto">
         {description}
       </p>
     </header>

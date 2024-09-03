@@ -7,6 +7,7 @@ import ImgTwo from '../../assets/video-conference.png';
 import ImgThree from '../../assets/workspace.png';
 import ImgFour from '../../assets/growth_14194581.png';
 import SectionHeader from '../section-header/SectionHeader';
+import MaxWidthWrapper from '../ui/max-width-wrapper';
 
 const OurMission = () => {
   const [activeTab, setActiveTab] = useState<any>(0);
@@ -54,7 +55,7 @@ const OurMission = () => {
   };
 
   return (
-    <section className="relative pt-20 pb-40">
+    <section className="relative pt-10 pb-40">
       <div
         className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
         style={{ height: '80px' }}
@@ -82,12 +83,12 @@ const OurMission = () => {
         description="At the heart of our mission is a commitment to creating spaces where ideas flourish and connections are made. We believe in empowering individuals and teams by providing the tools and environments they need to succeed. Our goal is to make the process of finding and booking meeting rooms as seamless and stress-free as possible, so you can focus on what truly matters—achieving your goals."
       />
 
-      <div className="container mx-auto px-4">
+      <MaxWidthWrapper className="mx-auto px-4 max-w-7xl">
         <section className="">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:hidden">
             {tabs.map((tab) => (
               <div key={tab.id} className="p-6 bg-gray-200">
-                <h2 className="text-xl font-body text-gray-900 font-semibold mb-4">
+                <h2 className="text-lg font-body text-gray-900 font-semibold mb-4">
                   {tab.title}
                 </h2>
                 <p className="text-md text-gray-800">{tab.content}</p>
@@ -100,7 +101,7 @@ const OurMission = () => {
               {tabs.map((tab, index) => (
                 <motion.button
                   key={tab.id}
-                  className="relative w-72 h-[55px] hover:bg-transparent transition-colors duration-300 text-xl text-black font-medium"
+                  className="relative w-72 px-4 h-[55px] hover:bg-transparent transition-colors duration-300 text-[18px] text-gray-800 font-medium"
                   onHoverStart={() => handleTabHover(index)}
                 >
                   {activeTab === index && (
@@ -133,15 +134,15 @@ const OurMission = () => {
                   >
                     <div className="p-12">
                       <div className="overflow-hidden flex flex-col gap-8">
-                        <h2 className="text-4xl text-gray-800 font-semibold font-body">
+                        <h2 className="text-3xl text-gray-800 font-semibold font-body">
                           {tabs[activeTab].title}
                         </h2>
                         <div className="flex flex-col xl:flex-row gap-8 items-start">
                           <img
                             src={tabs[activeTab].img}
-                            className="hidden xl:block w-[300px]"
+                            className="hidden xl:block w-[230px]"
                           />
-                          <p className="text-lg text-gray-700 mt-3">
+                          <p className="text-base text-gray-800 mt-3">
                             {tabs[activeTab].content}
                           </p>
                         </div>
@@ -153,7 +154,7 @@ const OurMission = () => {
             </div>
           </div>
         </section>
-      </div>
+      </MaxWidthWrapper>
     </section>
   );
 };

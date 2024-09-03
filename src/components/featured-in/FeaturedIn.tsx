@@ -6,7 +6,7 @@ import UsaTodayImg from '../../assets/usa-today.png';
 
 export default function FeaturedIn() {
   return (
-    <section id="feature" className="pt-16 md:pt-20 pb-16 md:pb-28">
+    <section id="feature" className="pt-16 md:pt-20 pb-16 md:pb-28 bg-white">
       <div className="container mx-auto">
         <h2 className="text-lg font-body text-emerald-600 font-bold uppercase tracking-wider f text-center mb-10">
           As featured in
