@@ -57,7 +57,7 @@ const invoices = [
   },
 ];
 
-export function MyBookingsPage() {
+export default function MyBookingsPage() {
   return (
     <>
       <Header pageType="normal" />
