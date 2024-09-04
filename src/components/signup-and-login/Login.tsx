@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Login() {
   return (
     <div className="z-100 font-body max-w-4xl flex items-center mx-auto md:h-screen p-4">
@@ -40,8 +42,8 @@ export default function Login() {
                 />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="#bbb"
-                  stroke="#bbb"
+                  fill="#6c6b6b"
+                  stroke="#6c6b6b"
                   className="w-4 h-4 absolute right-4"
                   viewBox="0 0 682.667 682.667"
                 >
@@ -84,8 +86,8 @@ export default function Login() {
                 />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="#bbb"
-                  stroke="#bbb"
+                  fill="#6c6b6b"
+                  stroke="#6c6b6b"
                   className="w-4 h-4 absolute right-4 cursor-pointer"
                   viewBox="0 0 128 128"
                 >
@@ -108,12 +110,12 @@ export default function Login() {
           </div>
           <p className="text-gray-800 text-base mt-6 text-center">
             Don't an account?{' '}
-            <a
-              href="javascript:void(0);"
+            <Link
+              to="/sign-up"
               className="text-emerald-500 font-semibold hover:underline ml-1"
             >
               Register here
-            </a>
+            </Link>
           </p>
         </form>
       </div>

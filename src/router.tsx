@@ -15,6 +15,9 @@ import Rooms from './pages/admin/rooms';
 import Settings from './pages/admin/settings';
 import SettingsProfile from './pages/admin/settings/profile';
 import SettingsAccount from './pages/admin/settings/account';
+import PublicRoute from './components/ui/publicRoute';
+import PrivateRoute from './components/ui/private-route';
+import PrivateRouteAdmin from './components/ui/private-route-admin';
 
 const router = createBrowserRouter([
   // Auth routes
@@ -24,11 +27,20 @@ const router = createBrowserRouter([
   },
   {
     path: '/sign-up',
-    element: <SignupPage />,
+    element: (
+      <PublicRoute>
+        <SignupPage />
+      </PublicRoute>
+    ),
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: (
+      <PublicRoute>
+        {' '}
+        <LoginPage />
+      </PublicRoute>
+    ),
   },
   {
     path: '/about-us',
@@ -42,7 +54,11 @@ const router = createBrowserRouter([
 
   {
     path: '/rooms/:id',
-    element: <RoomDetailPage />,
+    element: (
+      <PrivateRoute>
+        <RoomDetailPage />
+      </PrivateRoute>
+    ),
   },
 
   {
@@ -52,17 +68,29 @@ const router = createBrowserRouter([
 
   {
     path: '/checkout',
-    element: <CheckoutPage />,
+    element: (
+      <PrivateRoute>
+        <CheckoutPage />
+      </PrivateRoute>
+    ),
   },
 
   {
     path: '/booking',
-    element: <BookingPage />,
+    element: (
+      <PrivateRoute>
+        <BookingPage />
+      </PrivateRoute>
+    ),
   },
 
   {
     path: '/',
-    element: <AppShell />,
+    element: (
+      <PrivateRouteAdmin>
+        <AppShell />
+      </PrivateRouteAdmin>
+    ),
     children: [
       {
         path: '/admin/dashboard',

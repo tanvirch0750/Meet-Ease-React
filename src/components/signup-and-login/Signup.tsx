@@ -1,22 +1,22 @@
 export default function Signup() {
   return (
-    <div className="z-100 font-body max-w-5xl flex items-center mx-auto md:h-screen p-4">
+    <div className="z-100 font-body max-w-4xl flex items-center mx-auto md:h-screen p-4">
       <div className="grid md:grid-cols-3 bg-white items-center shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-xl overflow-hidden">
         <div className="max-md:order-1 flex flex-col justify-center space-y-16 max-md:mt-16 min-h-full bg-gradient-to-r from-emerald-700 to-emerald-600 lg:px-8 px-4 py-4">
           <div>
-            <h4 className="text-white text-2xl font-semibold">
+            <h4 className="text-white text-xl font-semibold">
               Create Your Account
             </h4>
-            <p className=" text-gray-300 mt-3 leading-relaxed text-base">
+            <p className=" text-gray-300 mt-3 leading-relaxed text-sm">
               Welcome to our registration page! Get started by creating your
               account.
             </p>
           </div>
           <div>
-            <h4 className="text-white text-2xl font-semibold">
+            <h4 className="text-white text-xl font-semibold">
               Simple & Secure Registration
             </h4>
-            <p className="text-base text-gray-300 mt-3 leading-relaxed">
+            <p className="text-sm text-gray-300 mt-3 leading-relaxed">
               Our registration process is designed to be straightforward and
               secure. We prioritize your privacy and data security.
             </p>
@@ -24,21 +24,21 @@ export default function Signup() {
         </div>
 
         <form className="md:col-span-2 w-full py-6 px-6 sm:px-16">
-          <div className="mb-6">
-            <h3 className="text-gray-800 text-4xl font-bold">
+          <div className="mb-4">
+            <h3 className="text-gray-800 text-2xl font-bold">
               Create an account
             </h3>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <label className="text-gray-800 text-lg mb-2 block">Name</label>
+              <label className="text-gray-800 text-base mb-1 block">Name</label>
               <div className="relative flex items-center">
                 <input
                   name="name"
                   type="text"
                   required
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-3 rounded-md outline-emerald-500"
+                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
                   placeholder="Enter name"
                 />
                 <svg
@@ -58,7 +58,7 @@ export default function Signup() {
             </div>
 
             <div>
-              <label className="text-gray-800 text-lg mb-2 block">
+              <label className="text-gray-800 text-base mb-1 block">
                 Email Id
               </label>
               <div className="relative flex items-center">
@@ -66,7 +66,7 @@ export default function Signup() {
                   name="email"
                   type="email"
                   required
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-3 rounded-md outline-emerald-500"
+                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
                   placeholder="Enter email"
                 />
                 <svg
@@ -102,7 +102,7 @@ export default function Signup() {
             </div>
 
             <div>
-              <label className="text-gray-800 text-lg mb-2 block">
+              <label className="text-gray-800 text-base mb-1 block">
                 Password
               </label>
               <div className="relative flex items-center">
@@ -110,7 +110,7 @@ export default function Signup() {
                   name="password"
                   type="password"
                   required
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-3 rounded-md outline-emerald-500"
+                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
                   placeholder="Enter password"
                 />
                 <svg
@@ -150,10 +150,10 @@ export default function Signup() {
             </div>
           </div>
 
-          <div className="!mt-12">
+          <div className="!mt-6">
             <button
               type="button"
-              className="w-full py-3 px-4 tracking-wider text-lg font-bold rounded-md text-white bg-emerald-500 hover:bg-emerald-700 focus:outline-none"
+              className="w-full py-2 px-4 tracking-wider text-lg font-bold rounded-md text-white bg-emerald-500 hover:bg-emerald-700 focus:outline-none"
             >
               Create an account
             </button>

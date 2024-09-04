@@ -1,9 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import MaxWidthWrapper from '../ui/max-width-wrapper';
 import PrimaryButton from '../ui/primary-button';
 import { MobileHeader } from './mobile-header';
 
 export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
+  const navigate = useNavigate();
+
   return (
     <header
       className={`h-[70px] z-50 relative text-white flex items-center ${
@@ -49,7 +51,10 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           >
             Contact Us
           </NavLink>
-          <PrimaryButton text="Signin" />
+          <PrimaryButton
+            text="Signin"
+            handleOnClick={() => navigate('/login')}
+          />
           {/* <a
             href="#"
             className="px-2 py-2 font-bold tracking-wide bg-emerald-600 rounded-md hover:bg-emerald-700"
