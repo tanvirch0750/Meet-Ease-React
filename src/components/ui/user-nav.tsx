@@ -7,51 +7,80 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from './button';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useNavigate } from 'react-router-dom';
+import { userLoggedOut } from '@/redux/features/auth/authSlice';
+import { api } from '@/redux/api/apiSlice';
 
 export function UserNav() {
+  const auth = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(userLoggedOut());
+    localStorage.clear();
+    dispatch(api.util.resetApiState());
+    navigate('/login');
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-            <AvatarFallback>SN</AvatarFallback>
+        <Button className="relative h-8 w-8 rounded-full bg-white">
+          <Avatar className="h-8 w-8 bg-white">
+            <AvatarImage
+              src={
+                auth.image ||
+                'https://img.freepik.com/premium-vector/market-researcher-vector-flat-style-illustration_1033579-70181.jpg?size=626&ext=jpg&uid=R15161155&ga=GA1.1.911219905.1717681244&semt=ais_hybrid'
+              }
+              alt="@shadcn"
+            />
+            <AvatarFallback className=" bg-white">A</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent
+        className="w-56 bg-white border-0 shadow-lg text-gray-900"
+        align="end"
+        forceMount
+      >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">satnaing</p>
-            <p className="text-xs leading-none text-muted-foreground">
-              satnaingdev@gmail.com
-            </p>
+            <p className="text-sm font-medium leading-none">{auth.name}</p>
+            <p className="text-xs leading-none text-gray-700">{auth.email}</p>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="bg-gray-300" />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem className=" hover:!bg-emerald-500 hover:!text-white cursor-pointer">
             Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>New Team</DropdownMenuItem>
+
+          {auth.role === 'user' && (
+            <DropdownMenuItem className=" hover:!bg-emerald-500 hover:!text-white cursor-pointer">
+              My Bookings
+            </DropdownMenuItem>
+          )}
+
+          {auth.role === 'admin' && (
+            <DropdownMenuItem
+              className=" hover:!bg-emerald-500 hover:!text-white cursor-pointer"
+              onClick={() => navigate('/admin/dashboard')}
+            >
+              Dashboard
+            </DropdownMenuItem>
+          )}
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuSeparator className="bg-gray-300" />
+        <DropdownMenuItem
+          className=" flex justify-center hover:!bg-emerald-500 hover:!text-white font-semibold cursor-pointer"
+          onClick={logout}
+        >
           Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -1,6 +1,106 @@
+import { useToast } from '@/hooks/use-toast';
+import { useSignupMutation } from '@/redux/features/auth/authApi';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
 export default function Signup() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    address: '',
+  });
+
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    password: '',
+    address: '',
+  });
+
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const [signup, { data, isLoading, error }] = useSignupMutation();
+
+  const { toast } = useToast();
+
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
+  };
+
+  const validate = () => {
+    const newErrors = {
+      name: '',
+      email: '',
+      phone: '',
+      password: '',
+      address: '',
+    };
+
+    if (!formData.name) newErrors.name = 'Name is required';
+    if (!formData.email) newErrors.email = 'Email is required';
+    if (!formData.phone) newErrors.phone = 'Phone is required';
+    if (!formData.password) newErrors.password = 'Password is required';
+    if (!formData.address) newErrors.address = 'Address is required';
+
+    setErrors(newErrors);
+
+    return !Object.values(newErrors).some((error) => error);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (validate()) {
+      // Proceed with form submission (e.g., send data to the server)
+      console.log('Form Data:', formData);
+
+      setErrorMsg('');
+
+      signup(formData);
+    }
+  };
+
+  useEffect(() => {
+    console.log(error);
+
+    if (error) {
+      if (typeof error === 'object' && error !== null && 'data' in error) {
+        const errorData = (error as { data?: { message?: string } }).data;
+        if (errorData && typeof errorData.message === 'string') {
+          setErrorMsg(errorData.message);
+        } else {
+          setErrorMsg('Something went wrong! Try again');
+        }
+      } else {
+        setErrorMsg('Something went wrong! Try again');
+      }
+    }
+
+    console.log(data);
+
+    if (data?.success) {
+      toast({
+        variant: 'default',
+        title: 'Successful',
+        description: 'Your registration is successfull. Please login.',
+      });
+      navigate('/login');
+    }
+  }, [data, error, navigate]);
+
+  console.log(errorMsg);
+
   return (
-    <div className="z-100 font-body max-w-4xl flex items-center mx-auto md:h-screen p-4">
+    <div className="z-100 font-body max-w-5xl flex items-center mx-auto md:h-screen p-4">
       <div className="grid md:grid-cols-3 bg-white items-center shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-xl overflow-hidden">
         <div className="max-md:order-1 flex flex-col justify-center space-y-16 max-md:mt-16 min-h-full bg-gradient-to-r from-emerald-700 to-emerald-600 lg:px-8 px-4 py-4">
           <div>
@@ -23,7 +123,10 @@ export default function Signup() {
           </div>
         </div>
 
-        <form className="md:col-span-2 w-full py-6 px-6 sm:px-16">
+        <form
+          onSubmit={handleSubmit}
+          className="md:col-span-2 w-full py-6 px-6 sm:px-16"
+        >
           <div className="mb-4">
             <h3 className="text-gray-800 text-2xl font-bold">
               Create an account
@@ -31,74 +134,63 @@ export default function Signup() {
           </div>
 
           <div className="space-y-3">
-            <div>
-              <label className="text-gray-800 text-base mb-1 block">Name</label>
-              <div className="relative flex items-center">
-                <input
-                  name="name"
-                  type="text"
-                  required
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                  placeholder="Enter name"
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="#bbb"
-                  stroke="#bbb"
-                  className="w-4 h-4 absolute right-4"
-                  viewBox="0 0 24 24"
-                >
-                  <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
-                  <path
-                    d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                    data-original="#000000"
-                  ></path>
-                </svg>
+            <div className="md:flex gap-3">
+              <div className="mb-2 md:mb-0">
+                <label className="text-gray-800 text-base mb-1 block">
+                  Name
+                </label>
+                <div className="relative flex items-center">
+                  <input
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                    placeholder="Enter name"
+                  />
+                </div>
+                {errors.name && (
+                  <p className="text-red-600 text-sm">{errors.name}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="text-gray-800 text-base mb-1 block">
+                  Email Id
+                </label>
+                <div className="relative flex items-center">
+                  <input
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                    placeholder="Enter email"
+                  />
+                </div>
+                {errors.email && (
+                  <p className="text-red-600 text-sm">{errors.email}</p>
+                )}
               </div>
             </div>
 
             <div>
               <label className="text-gray-800 text-base mb-1 block">
-                Email Id
+                Phone
               </label>
               <div className="relative flex items-center">
                 <input
-                  name="email"
-                  type="email"
-                  required
+                  name="phone"
+                  type="text"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                  placeholder="Enter email"
+                  placeholder="Enter phone number"
                 />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="#bbb"
-                  stroke="#bbb"
-                  className="w-4 h-4 absolute right-4"
-                  viewBox="0 0 682.667 682.667"
-                >
-                  <defs>
-                    <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                      <path d="M0 512h512V0H0Z" data-original="#000000"></path>
-                    </clipPath>
-                  </defs>
-                  <g
-                    clip-path="url(#a)"
-                    transform="matrix(1.33 0 0 -1.33 0 682.667)"
-                  >
-                    <path
-                      fill="none"
-                      stroke-miterlimit="10"
-                      stroke-width="40"
-                      d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
-                      data-original="#000000"
-                    ></path>
-                    <path
-                      d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
-                      data-original="#000000"
-                    ></path>
-                  </g>
-                </svg>
               </div>
+              {errors.phone && (
+                <p className="text-red-600 text-sm">{errors.phone}</p>
+              )}
             </div>
 
             <div>
@@ -109,63 +201,56 @@ export default function Signup() {
                 <input
                   name="password"
                   type="password"
-                  required
+                  value={formData.password}
+                  onChange={handleChange}
                   className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
                   placeholder="Enter password"
                 />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="#bbb"
-                  stroke="#bbb"
-                  className="w-4 h-4 absolute right-4 cursor-pointer"
-                  viewBox="0 0 128 128"
-                >
-                  <path
-                    d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
-                    data-original="#000000"
-                  ></path>
-                </svg>
               </div>
+              {errors.password && (
+                <p className="text-red-600 text-sm">{errors.password}</p>
+              )}
             </div>
 
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 shrink-0 text-emerald-500 focus:ring-emerald-500 border-gray-300 rounded"
-              />
-              <label
-                htmlFor="remember-me"
-                className="ml-3 block text-sm text-gray-800"
-              >
-                I accept the{' '}
-                <a
-                  href="javascript:void(0);"
-                  className="text-blue-600 font-semibold hover:underline ml-1"
-                >
-                  Terms and Conditions
-                </a>
+            <div>
+              <label className="text-gray-800 text-base mb-1 block">
+                Address
               </label>
+              <div className="relative flex items-center">
+                <input
+                  name="address"
+                  type="text"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                  placeholder="Enter address"
+                />
+              </div>
+              {errors.address && (
+                <p className="text-red-600 text-sm">{errors.address}</p>
+              )}
             </div>
           </div>
 
+          {errorMsg && <div className="mt-2 text-red-600">{errorMsg}</div>}
+
           <div className="!mt-6">
             <button
-              type="button"
+              type="submit"
               className="w-full py-2 px-4 tracking-wider text-lg font-bold rounded-md text-white bg-emerald-500 hover:bg-emerald-700 focus:outline-none"
+              disabled={isLoading}
             >
               Create an account
             </button>
           </div>
           <p className="text-gray-800 text-base mt-6 text-center">
             Already have an account?{' '}
-            <a
-              href="javascript:void(0);"
+            <Link
+              to="/login"
               className="text-emerald-500 font-semibold hover:underline ml-1"
             >
               Login here
-            </a>
+            </Link>
           </p>
         </form>
       </div>

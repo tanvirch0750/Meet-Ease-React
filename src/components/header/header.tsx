@@ -2,8 +2,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import MaxWidthWrapper from '../ui/max-width-wrapper';
 import PrimaryButton from '../ui/primary-button';
 import { MobileHeader } from './mobile-header';
+import { useAppSelector } from '@/redux/hooks';
+import { UserNav } from '../ui/user-nav';
 
 export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
+  const auth = useAppSelector((state) => state.auth);
+
   const navigate = useNavigate();
 
   return (
@@ -14,12 +18,12 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
     >
       <MaxWidthWrapper className=" flex justify-between items-center max-w-full">
         <div>
-          <a href="" className=" text-xl font-bold">
+          <NavLink to="/" className=" text-xl font-bold">
             <span className=" uppercase">Meet</span>{' '}
             <span className=" inline-block px-2 bg-emerald-500 rounded-md">
               Ease
             </span>
-          </a>
+          </NavLink>
         </div>
         <div className="md:hidden block">
           {' '}
@@ -51,46 +55,19 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           >
             Contact Us
           </NavLink>
-          <PrimaryButton
-            text="Signin"
-            handleOnClick={() => navigate('/login')}
-          />
-          {/* <a
-            href="#"
-            className="px-2 py-2 font-bold tracking-wide bg-emerald-600 rounded-md hover:bg-emerald-700"
-          >
-            Signin
-          </a> */}
+
+          {auth.accessToken && auth.email ? (
+            <>
+              <UserNav />
+            </>
+          ) : (
+            <PrimaryButton
+              text="Signin"
+              handleOnClick={() => navigate('/login')}
+            />
+          )}
         </nav>
       </MaxWidthWrapper>
     </header>
   );
 }
-
-// header {
-//     width: 1140px;
-//     max-width: 80%;
-//     margin: auto;
-//     height: 50px;
-//     display: flex;
-//     align-items: center;
-//     position: relative;
-//     z-index: 100;
-//   }
-
-//   header a {
-//     color: #eee;
-//     margin-right: 5px;
-//     padding: 5px 10px;
-//     transition: 0.2s;
-//   }
-
-//   a.active {
-//     background: #14ff72cb;
-//     border-radius: 2px;
-//   }
-
-//   header a:hover {
-//     background: #14ff72cb;
-//     border-radius: 2px;
-//   }

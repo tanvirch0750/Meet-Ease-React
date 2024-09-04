@@ -20,6 +20,8 @@ const useAuthCheck = () => {
             accessToken: auth?.accessToken,
             email: auth?.email,
             role: auth?.role,
+            name: auth?.name,
+            image: auth?.image,
           })
         );
       }

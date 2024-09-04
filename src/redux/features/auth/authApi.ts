@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { IAuthLogin, IAuthSignup } from '@/types/authType';
+import { IAuthLogin } from '@/types/authType';
 import { api } from '../../api/apiSlice';
 import { userLoggedIn } from './authSlice';
 
@@ -9,8 +9,8 @@ export const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
     // register endpoint
     signup: builder.mutation({
-      query: (data: IAuthSignup) => ({
-        url: '/user/signup',
+      query: (data: any) => ({
+        url: '/auth/signup',
         method: 'POST',
         body: data,
       }),
@@ -18,7 +18,7 @@ export const authApi = api.injectEndpoints({
     // login endpoint
     signin: builder.mutation({
       query: (data: IAuthLogin) => ({
-        url: '/user/login',
+        url: '/auth/login',
         method: 'POST',
         body: data,
       }),
@@ -31,16 +31,20 @@ export const authApi = api.injectEndpoints({
           localStorage.setItem(
             'auth',
             JSON.stringify({
-              accessToken: result.data.data.accessToken,
+              accessToken: result.data.token,
               email: result.data.data.email,
               role: result.data.data.role,
+              name: result.data.data.name,
+              image: result.data.data.image,
             })
           );
           dispatch(
             userLoggedIn({
-              accessToken: result.data.data.accessToken,
+              accessToken: result.data.token,
               email: result.data.data.email,
               role: result.data.data.role,
+              name: result.data.data.name,
+              image: result.data.data.image,
             })
           );
         } catch (error) {
