@@ -2,14 +2,22 @@ import { Layout } from '@/components/ui/admin/layout';
 
 import { DataTable } from './components/data-table';
 import { columns } from './components/columns';
-import { tasks } from './data/tasks';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ThemeSwitch from '@/components/ui/admin/theme-switch';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { AdminNav } from '@/components/ui/admin/admin-nav';
+import CategoryForm from './components/room-form';
+import MaxWidthWrapper from '@/components/ui/max-width-wrapper';
+import Loader from '@/components/ui/loader';
+import { useGetRoomsQuery } from '@/redux/features/room/roomApi';
 
 export default function Rooms() {
+  const { data: rooms, isLoading } = useGetRoomsQuery({
+    page: 1,
+    limit: 100,
+  });
+
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
@@ -26,40 +34,50 @@ export default function Rooms() {
       </Layout.Header>
 
       <Layout.Body>
-        <Tabs orientation="vertical" defaultValue="rooms" className="space-y-4">
-          <TabsContent value="rooms" className="space-y-4">
-            <div className="mb-6 flex items-center justify-between space-y-2">
-              <div>
-                <h2 className="text-2xl font-bold tracking-tight">
-                  Room Lists
-                </h2>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Tabs
+            orientation="vertical"
+            defaultValue="rooms"
+            className="space-y-4"
+          >
+            <TabsContent value="rooms" className="space-y-4">
+              <div className="mb-6 flex items-center justify-between space-y-2">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight">
+                    Rooms Lists
+                  </h2>
+                </div>
+                <TabsList>
+                  <TabsTrigger value="rooms">Rooms List</TabsTrigger>
+                  <TabsTrigger value="create">Create Room</TabsTrigger>
+                </TabsList>
               </div>
-              <TabsList>
-                <TabsTrigger value="rooms">Room List</TabsTrigger>
-                <TabsTrigger value="create">Create Room</TabsTrigger>
-              </TabsList>
-            </div>
-            <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-              <DataTable data={tasks} columns={columns} />
-            </div>
-          </TabsContent>
-          <TabsContent value="create" className="space-y-4">
-            <div className="mb-2 flex items-center justify-between space-y-2">
-              <div>
-                <h2 className="text-2xl font-bold tracking-tight">
-                  Create Room
-                </h2>
+              <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
+                <DataTable data={rooms?.data} columns={columns} />
               </div>
-              <TabsList>
-                <TabsTrigger value="rooms">Room List</TabsTrigger>
-                <TabsTrigger value="create">Create Room</TabsTrigger>
-              </TabsList>
-            </div>
-            <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-              create room
-            </div>
-          </TabsContent>
-        </Tabs>
+            </TabsContent>
+            <TabsContent value="create" className="space-y-4">
+              <div className="mb-2 flex items-center justify-between space-y-2">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight">
+                    Create Room
+                  </h2>
+                </div>
+                <TabsList>
+                  <TabsTrigger value="rooms">Rooms List</TabsTrigger>
+                  <TabsTrigger value="create">Create Room</TabsTrigger>
+                </TabsList>
+              </div>
+              <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
+                <MaxWidthWrapper className="">
+                  <CategoryForm />
+                </MaxWidthWrapper>
+              </div>
+            </TabsContent>
+          </Tabs>
+        )}
       </Layout.Body>
     </Layout>
   );

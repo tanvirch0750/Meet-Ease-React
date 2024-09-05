@@ -1,23 +1,12 @@
-import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Row } from '@tanstack/react-table';
+import Swal from 'sweetalert2';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-
-import { labels } from '../data/data';
-import { taskSchema } from '../data/schema';
 import { Button } from '@/components/ui/button';
+
+import { useDeleteCategoryMutation } from '@/redux/features/category/categoryApi';
+import { useEffect } from 'react';
+import { Trash2Icon } from 'lucide-react';
+import { EditRoom } from './edit-room';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -26,44 +15,67 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = taskSchema.parse(row.original);
+  const [deleteCategory, { isLoading, isError, isSuccess }] =
+    useDeleteCategoryMutation();
+
+  const room = row.original;
+
+  const handleDeleteCategory = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#16a34a',
+      cancelButtonColor: '#dc2626',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCategory(room?._id);
+
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Your file has been deleted.',
+          icon: 'success',
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'Your file has been deleted.',
+        icon: 'success',
+      });
+    }
+    if (isError) {
+      Swal.fire({
+        title: 'Unsuccessful',
+        text: 'Your file has not been deleted.',
+        icon: 'error',
+      });
+    }
+    if (isLoading) {
+      Swal.fire({
+        title: 'Loading',
+        text: 'Please wait a moment',
+        icon: 'info',
+      });
+    }
+  }, [isSuccess, isError, isLoading]);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
-        >
-          <DotsHorizontalIcon className="h-4 w-4" />
-          <span className="sr-only">Open menu</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={() => console.log(task.id)}>
-          Edit
-        </DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.label}>
-              {labels.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                  {label.label}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="flex items-center w-[100px] gap-2">
+      <EditRoom room={room} />
+      <Button
+        className="px-2 dark:bg-black/70 dark:text-white/50"
+        size="icon"
+        onClick={handleDeleteCategory}
+      >
+        <Trash2Icon size={20} />
+      </Button>
+    </div>
   );
 }
