@@ -57,8 +57,8 @@ const RoomListFilter = () => {
         {/* Category */}
 
         {/* Capacity */}
-        <div className="mb-8">
-          <h3 className="font-semibold text-lg text-gray-800 mb-4">Capacity</h3>
+        <div className="mb-4">
+          <h3 className="font-semibold text-lg text-gray-800 mb-2">Capacity</h3>
           <div className="space-y-1 mt-2 flex flex-col gap-1">
             <div className="flex items-center space-x-2">
               <input
@@ -101,7 +101,7 @@ const RoomListFilter = () => {
 
         {/* Price */}
         <div className="mb-8">
-          <h3 className="font-semibold text-lg text-gray-800 mb-4">Price</h3>
+          <h3 className="font-semibold text-lg text-gray-800 mb-2">Price</h3>
           <div className="space-y-1 mt-2 flex flex-col gap-1">
             <div className="flex items-center space-x-2">
               <input
@@ -144,7 +144,7 @@ const RoomListFilter = () => {
 
         {/* Sort By */}
         <div className="mb-8">
-          <h3 className="font-semibold text-lg text-gray-800 mb-4">Sort By</h3>
+          <h3 className="font-semibold text-lg text-gray-800 mb-2">Sort By</h3>
           <div className="space-y-1 mt-2">
             <div className="flex items-center space-x-2">
               <input

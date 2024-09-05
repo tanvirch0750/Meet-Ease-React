@@ -18,6 +18,7 @@ import SettingsAccount from './pages/admin/settings/account';
 import PublicRoute from './components/ui/publicRoute';
 import PrivateRoute from './components/ui/private-route';
 import PrivateRouteAdmin from './components/ui/private-route-admin';
+import Catgories from './pages/admin/category';
 
 const router = createBrowserRouter([
   // Auth routes
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/dashboard',
         element: <Dashboard />,
+      },
+      {
+        path: '/admin/dashboard/category',
+        element: <Catgories />,
       },
       {
         path: '/admin/dashboard/rooms',

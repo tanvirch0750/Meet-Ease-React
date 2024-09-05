@@ -7,51 +7,79 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '../button';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useNavigate } from 'react-router-dom';
+import { userLoggedOut } from '@/redux/features/auth/authSlice';
+import { api } from '@/redux/api/apiSlice';
 
-export function UserNav() {
+export function AdminNav() {
+  const auth = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(userLoggedOut());
+    localStorage.clear();
+    dispatch(api.util.resetApiState());
+    navigate('/login');
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-            <AvatarFallback>SN</AvatarFallback>
+        <Button className="relative h-8 w-8 rounded-full ">
+          <Avatar className="h-8 w-8 ">
+            <AvatarImage
+              src={
+                auth.image ||
+                'https://img.freepik.com/premium-vector/market-researcher-vector-flat-style-illustration_1033579-70181.jpg?size=626&ext=jpg&uid=R15161155&ga=GA1.1.911219905.1717681244&semt=ais_hybrid'
+              }
+              alt="@shadcn"
+            />
+            <AvatarFallback>A</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">satnaing</p>
+            <p className="text-sm font-medium leading-none">{auth.name}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              satnaingdev@gmail.com
+              {auth.email}
             </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
             Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>New Team</DropdownMenuItem>
+
+          {auth.role === 'user' && (
+            <DropdownMenuItem className=" cursor-pointer">
+              My Bookings
+            </DropdownMenuItem>
+          )}
+
+          {auth.role === 'admin' && (
+            <DropdownMenuItem
+              className=" cursor-pointer"
+              onClick={() => navigate('/admin/dashboard')}
+            >
+              Dashboard
+            </DropdownMenuItem>
+          )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          className=" flex justify-center cursor-pointer bg-primary hover:bg-primary/90 text-gray-900 font-semibold"
+          onClick={logout}
+        >
           Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

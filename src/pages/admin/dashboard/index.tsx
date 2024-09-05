@@ -11,16 +11,22 @@ import { Overview } from './components/overview';
 import { Layout } from '@/components/ui/admin/layout';
 import { Button } from '@/components/ui/button';
 import ThemeSwitch from '@/components/ui/admin/theme-switch';
-import { UserNav } from '@/components/ui/user-nav';
+import { AdminNav } from '@/components/ui/admin/admin-nav';
+import { Link } from 'react-router-dom';
 
 export default function Dashboard() {
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
       <Layout.Header className=" border-b">
-        <div className="ml-auto flex items-center space-x-4">
-          <ThemeSwitch />
-          <UserNav />
+        <div className=" justify-between w-full flex items-center space-x-4">
+          <Link to="/" className="flex items-center space-x-2">
+            <Button>Main Website</Button>
+          </Link>
+          <div className=" flex gap-3 items-center">
+            <ThemeSwitch />
+            <AdminNav />
+          </div>
         </div>
       </Layout.Header>
 
@@ -28,9 +34,12 @@ export default function Dashboard() {
       <Layout.Body>
         <div className="mb-6 flex items-center justify-between space-y-2">
           <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-          <div className="flex items-center space-x-2">
-            <Button>Create Room</Button>
-          </div>
+          <Link
+            to="/admin/dashboard/rooms"
+            className="flex items-center space-x-2"
+          >
+            <Button>All Rooms</Button>
+          </Link>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
