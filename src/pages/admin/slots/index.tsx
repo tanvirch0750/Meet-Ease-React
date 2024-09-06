@@ -1,111 +1,125 @@
-import { Layout } from '@/components/custom/layout'
-import ThemeSwitch from '@/components/theme-switch'
-import { UserNav } from '@/components/user-nav'
-import { DataTable } from './components/data-table'
-import { columns } from './components/columns'
-import { tasks } from './data/tasks'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Layout } from '@/components/ui/admin/layout';
+
+import { DataTable } from './components/data-table';
+import { columns } from './components/columns';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import ThemeSwitch from '@/components/ui/admin/theme-switch';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { AdminNav } from '@/components/ui/admin/admin-nav';
+import MaxWidthWrapper from '@/components/ui/max-width-wrapper';
+import Loader from '@/components/ui/loader';
+import {
+  useGetAvailableSlotsQuery,
+  useGetSlotsQuery,
+} from '@/redux/features/slots/slotsApi';
+import SlotForm from './components/slot-form';
+import ErrorPage from '@/pages/error/ErrorPage';
 
 export default function Slots() {
+  const { data: slots, isLoading } = useGetSlotsQuery({
+    page: 1,
+    limit: 100000,
+  });
+
+  const {
+    data: availableSlots,
+    isError,
+    error,
+  } = useGetAvailableSlotsQuery({});
+
+  if (isError) {
+    return <ErrorPage />;
+  }
+
+  console.log(error);
+
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
-      <Layout.Header sticky className=' border-b'>
-        <div className='ml-auto flex items-center space-x-4'>
-          <ThemeSwitch />
-          <UserNav />
+      <Layout.Header className=" border-b">
+        <div className=" justify-between w-full flex items-center space-x-4">
+          <Link to="/" className="flex items-center space-x-2">
+            <Button>Main Website</Button>
+          </Link>
+          <div className=" flex gap-3 items-center">
+            <ThemeSwitch />
+            <AdminNav />
+          </div>
         </div>
       </Layout.Header>
 
       <Layout.Body>
-        <Tabs
-          orientation='vertical'
-          defaultValue='all-slots'
-          className='space-y-4'
-        >
-          <TabsContent value='all-slots' className='space-y-4'>
-            <div className='mb-6 flex items-center justify-between space-y-2'>
-              <div>
-                <h2 className='text-2xl font-bold tracking-tight'>
-                  Slot Lists
-                </h2>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Tabs
+            orientation="vertical"
+            defaultValue="slots"
+            className="space-y-4"
+          >
+            <TabsContent value="slots" className="space-y-4">
+              <div className="mb-6 flex items-center justify-between space-y-2">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight">
+                    Slot Lists
+                  </h2>
+                </div>
+                <TabsList>
+                  <TabsTrigger value="slots">Slots List</TabsTrigger>
+                  <TabsTrigger value="available-slots">
+                    Available Slots
+                  </TabsTrigger>
+                  <TabsTrigger value="create">Create Slot</TabsTrigger>
+                </TabsList>
               </div>
-              <TabsList>
-                <TabsTrigger value='all-slots'>All Slots</TabsTrigger>
-                <TabsTrigger value='available-slots'>
-                  Available Slots
-                </TabsTrigger>
-                <TabsTrigger value='create'>Create Slot</TabsTrigger>
-                <TabsTrigger value='edit'>Edit Slot</TabsTrigger>
-              </TabsList>
-            </div>
-            <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-              <DataTable data={tasks} columns={columns} />
-            </div>
-          </TabsContent>
-          <TabsContent value='available-slots' className='space-y-4'>
-            <div className='mb-6 flex items-center justify-between space-y-2'>
-              <div>
-                <h2 className='text-2xl font-bold tracking-tight'>
-                  Available Slot Lists
-                </h2>
+              <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
+                <DataTable data={slots?.data} columns={columns} />
               </div>
-              <TabsList>
-                <TabsTrigger value='all-slots'>All Slots</TabsTrigger>
-                <TabsTrigger value='available-slots'>
-                  Available Slots
-                </TabsTrigger>
-                <TabsTrigger value='create'>Create Slot</TabsTrigger>
-                <TabsTrigger value='edit'>Edit Slot</TabsTrigger>
-              </TabsList>
-            </div>
-            <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-              <DataTable data={tasks} columns={columns} />
-            </div>
-          </TabsContent>
-          <TabsContent value='create' className='space-y-4'>
-            <div className='mb-2 flex items-center justify-between space-y-2'>
-              <div>
-                <h2 className='text-2xl font-bold tracking-tight'>
-                  Create Room
-                </h2>
-                <p className='text-muted-foreground'>
-                  Here&apos;s a list of all the rooms
-                </p>
+            </TabsContent>
+            <TabsContent value="available-slots" className="space-y-4">
+              <div className="mb-6 flex items-center justify-between space-y-2">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight">
+                    Available Slot Lists
+                  </h2>
+                </div>
+                <TabsList>
+                  <TabsTrigger value="slots">Slots List</TabsTrigger>
+                  <TabsTrigger value="available-slots">
+                    Available Slots
+                  </TabsTrigger>
+                  <TabsTrigger value="create">Create Slot</TabsTrigger>
+                </TabsList>
               </div>
-              <TabsList>
-                <TabsTrigger value='all-slots'>All Slots</TabsTrigger>
-                <TabsTrigger value='available-slots'>
-                  Available Slots
-                </TabsTrigger>
-                <TabsTrigger value='create'>Create Slot</TabsTrigger>
-                <TabsTrigger value='edit'>Edit Slot</TabsTrigger>
-              </TabsList>
-            </div>
-            <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-              create room
-            </div>
-          </TabsContent>
-          <TabsContent value='edit' className='space-y-4'>
-            <div className='mb-2 flex items-center justify-between space-y-2'>
-              <div>
-                <h2 className='text-2xl font-bold tracking-tight'>Edit Room</h2>
+              <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
+                <DataTable data={availableSlots?.data} columns={columns} />
               </div>
-              <TabsList>
-                <TabsTrigger value='all-slots'>All Slots</TabsTrigger>
-                <TabsTrigger value='available-slots'>
-                  Available Slots
-                </TabsTrigger>
-                <TabsTrigger value='create'>Create Slot</TabsTrigger>
-                <TabsTrigger value='edit'>Edit Slot</TabsTrigger>
-              </TabsList>
-            </div>
-            <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-              Edit room
-            </div>
-          </TabsContent>
-        </Tabs>
+            </TabsContent>
+            <TabsContent value="create" className="space-y-4">
+              <div className="mb-2 flex items-center justify-between space-y-2">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight">
+                    Create Slot
+                  </h2>
+                </div>
+                <TabsList>
+                  <TabsTrigger value="slots">Slots List</TabsTrigger>
+                  <TabsTrigger value="available-slots">
+                    Available Slots
+                  </TabsTrigger>
+                  <TabsTrigger value="create">Create Slot</TabsTrigger>
+                </TabsList>
+              </div>
+              <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
+                <MaxWidthWrapper className="">
+                  <SlotForm />
+                </MaxWidthWrapper>
+              </div>
+            </TabsContent>
+          </Tabs>
+        )}
       </Layout.Body>
     </Layout>
-  )
+  );
 }

@@ -4,12 +4,12 @@ export const selectFilters = (state: RootState) => state.filters;
 
 export const selectFilteredAndSortedRooms =
   (rooms: any[]) => (state: RootState) => {
-    const filters = selectFilters(state);
+    const filters: any = selectFilters(state);
 
     return rooms
       .filter((room: any) => {
-        if (!filters.searchQuery) return true;
-        const searchLower = filters.searchQuery.toLowerCase();
+        if (!filters?.searchQuery) return true;
+        const searchLower = filters?.searchQuery?.toLowerCase();
         return (
           room.name.toLowerCase().includes(searchLower) ||
           room.amenities.some((amenity: string) =>
@@ -18,11 +18,11 @@ export const selectFilteredAndSortedRooms =
         );
       })
       .filter((room: { category: any }) => {
-        if (!filters.category) return true;
-        return room.category === filters.category;
+        if (!filters?.category) return true;
+        return room.category === filters?.category;
       })
       .filter((room: { capacity: number }) => {
-        const capacityFilters = filters.capacity;
+        const capacityFilters = filters?.capacity;
         if (capacityFilters.small && room.capacity <= 10) return true;
         if (capacityFilters.medium && room.capacity > 10 && room.capacity <= 20)
           return true;

@@ -173,7 +173,7 @@ export default function RoomForm({
             name="floorNo"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Room Number</FormLabel>
+                <FormLabel>Floor Number</FormLabel>
                 <FormControl>
                   <Input placeholder="Floor Number" {...field} />
                 </FormControl>

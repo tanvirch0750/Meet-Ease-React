@@ -1,121 +1,128 @@
-import { ColumnDef } from '@tanstack/react-table'
+import { ColumnDef } from '@tanstack/react-table';
 
-import { Badge } from '@/components/ui/badge'
-import { Checkbox } from '@/components/ui/checkbox'
-import { DataTableColumnHeader } from './data-table-column-header'
-import { DataTableRowActions } from './data-table-row-actions'
+import { DataTableColumnHeader } from './data-table-column-header';
+import { DataTableRowActions } from './data-table-row-actions';
 
-import { labels, priorities, statuses } from '../data/data'
-import { Task } from '../data/schema'
-
-export const columns: ColumnDef<Task>[] = [
+export const columns: ColumnDef<any>[] = [
   {
-    id: 'select',
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label='Select all'
-        className='translate-y-[2px]'
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label='Select row'
-        className='translate-y-[2px]'
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: 'id',
+    accessorKey: 'roomName',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Task' />
-    ),
-    cell: ({ row }) => <div className='w-[80px]'>{row.getValue('id')}</div>,
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: 'title',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Title' />
+      <DataTableColumnHeader column={column} title="Room Name" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label)
-
       return (
-        <div className='flex space-x-2'>
-          {label && <Badge variant='outline'>{label.label}</Badge>}
-          <span className='max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]'>
-            {row.getValue('title')}
+        <div className="flex space-x-2">
+          <span className="max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]">
+            {/* @ts-ignore */}
+            {row.getValue('roomName')}
           </span>
         </div>
-      )
+      );
+    },
+  },
+
+  {
+    accessorKey: 'room',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Room No" />
+    ),
+    cell: ({ row }) => {
+      // console.log(row.getValue('room'));
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]">
+            {/* @ts-ignore */}
+            {row.getValue('room')?.roomNo}
+          </span>
+        </div>
+      );
+    },
+  },
+
+  {
+    accessorKey: 'room',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Price" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]">
+            {/* @ts-ignore */}
+            {row.getValue('room')?.pricePerSlot}
+          </span>
+        </div>
+      );
+    },
+  },
+
+  {
+    accessorKey: 'date',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]">
+            {row.getValue('date')}
+          </span>
+        </div>
+      );
+    },
+  },
+
+  {
+    accessorKey: 'startTime',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Start Time" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex space-x-2">
+          <span className="max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]">
+            {row.getValue('startTime')}
+          </span>
+        </div>
+      );
     },
   },
   {
-    accessorKey: 'status',
+    accessorKey: 'endTime',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Status' />
+      <DataTableColumnHeader column={column} title="End Time" />
     ),
     cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue('status')
-      )
-
-      if (!status) {
-        return null
-      }
-
       return (
-        <div className='flex w-[100px] items-center'>
-          {status.icon && (
-            <status.icon className='mr-2 h-4 w-4 text-muted-foreground' />
-          )}
-          <span>{status.label}</span>
+        <div className="flex space-x-2">
+          <span className="max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]">
+            {row.getValue('endTime')}
+          </span>
         </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+      );
     },
   },
   {
-    accessorKey: 'priority',
+    accessorKey: 'isBooked',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Priority' />
+      <DataTableColumnHeader column={column} title="Booked" />
     ),
     cell: ({ row }) => {
-      const priority = priorities.find(
-        (priority) => priority.value === row.getValue('priority')
-      )
-
-      if (!priority) {
-        return null
-      }
-
       return (
-        <div className='flex items-center'>
-          {priority.icon && (
-            <priority.icon className='mr-2 h-4 w-4 text-muted-foreground' />
-          )}
-          <span>{priority.label}</span>
+        <div className="flex space-x-2">
+          <span className="max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]">
+            {row.getValue('isBooked') ? 'Yes' : 'No'}
+          </span>
         </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+      );
     },
   },
+
   {
     id: 'actions',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Actions" />
+    ),
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
-]
+];

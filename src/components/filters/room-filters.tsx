@@ -1,10 +1,10 @@
-import { selectFilters } from '@/redux/features/rooms/roomsSelector';
+import { selectFilters } from '@/redux/features/room/roomsSelector';
 import {
   resetFilters,
   setCapacity,
   setPrice,
   setSortBy,
-} from '@/redux/features/rooms/roomsSlice';
+} from '@/redux/features/room/roomsSlice';
 
 import { useSelector, useDispatch } from 'react-redux';
 

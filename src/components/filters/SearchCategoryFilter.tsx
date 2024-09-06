@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { selectFilters } from '@/redux/features/rooms/roomsSelector';
-import { setCategory, setSearchQuery } from '@/redux/features/rooms/roomsSlice';
+import { selectFilters } from '@/redux/features/room/roomsSelector';
+import { setCategory, setSearchQuery } from '@/redux/features/room/roomsSlice';
 import { SearchIcon } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 

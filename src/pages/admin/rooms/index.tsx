@@ -7,10 +7,10 @@ import ThemeSwitch from '@/components/ui/admin/theme-switch';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { AdminNav } from '@/components/ui/admin/admin-nav';
-import CategoryForm from './components/room-form';
 import MaxWidthWrapper from '@/components/ui/max-width-wrapper';
 import Loader from '@/components/ui/loader';
 import { useGetRoomsQuery } from '@/redux/features/room/roomApi';
+import RoomForm from './components/room-form';
 
 export default function Rooms() {
   const { data: rooms, isLoading } = useGetRoomsQuery({
@@ -72,7 +72,7 @@ export default function Rooms() {
               </div>
               <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
                 <MaxWidthWrapper className="">
-                  <CategoryForm />
+                  <RoomForm />
                 </MaxWidthWrapper>
               </div>
             </TabsContent>

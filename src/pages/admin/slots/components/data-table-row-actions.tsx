@@ -1,69 +1,90 @@
-import { DotsHorizontalIcon } from '@radix-ui/react-icons'
-import { Row } from '@tanstack/react-table'
-
-import { Button } from '@/components/custom/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-
-import { labels } from '../data/data'
-import { taskSchema } from '../data/schema'
+import { Row } from '@tanstack/react-table';
+import Swal from 'sweetalert2';
+import { Button } from '@/components/ui/button';
+import { useEffect } from 'react';
+import { PencilIcon, Trash2Icon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useDeleteSlotMutation } from '@/redux/features/slots/slotsApi';
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData>;
 }
 
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = taskSchema.parse(row.original)
+  const [deleteSlot, { isLoading, isError, isSuccess }] =
+    useDeleteSlotMutation();
+
+  const navigate = useNavigate();
+
+  const slot = row.original;
+
+  const handleDeleteCategory = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#16a34a',
+      cancelButtonColor: '#dc2626',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // @ts-ignore
+        deleteSlot(slot?._id);
+
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Your file has been deleted.',
+          icon: 'success',
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'Your file has been deleted.',
+        icon: 'success',
+      });
+    }
+    if (isError) {
+      Swal.fire({
+        title: 'Unsuccessful',
+        text: 'Your file has not been deleted.',
+        icon: 'error',
+      });
+    }
+    if (isLoading) {
+      Swal.fire({
+        title: 'Loading',
+        text: 'Please wait a moment',
+        icon: 'info',
+      });
+    }
+  }, [isSuccess, isError, isLoading]);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant='ghost'
-          className='flex h-8 w-8 p-0 data-[state=open]:bg-muted'
-        >
-          <DotsHorizontalIcon className='h-4 w-4' />
-          <span className='sr-only'>Open menu</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' className='w-[160px]'>
-        <DropdownMenuItem onClick={() => console.log(task.id)}>
-          Edit
-        </DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.label}>
-              {labels.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                  {label.label}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
+    <div className="flex items-center w-[100px] gap-2">
+      {/* <EditRoom room={room} /> */}
+      <Button
+        className="px-2 dark:bg-black/70 dark:text-white/50"
+        size="icon"
+        // @ts-ignore
+        onClick={() => navigate(`/admin/dashboard/slots/edit/${slot?._id}`)}
+      >
+        <PencilIcon size={18} />
+      </Button>
+      <Button
+        className="px-2 dark:bg-black/70 dark:text-white/50"
+        size="icon"
+        onClick={handleDeleteCategory}
+      >
+        <Trash2Icon size={20} />
+      </Button>
+    </div>
+  );
 }
