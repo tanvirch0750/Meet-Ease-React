@@ -1,12 +1,10 @@
 import { Row } from '@tanstack/react-table';
 import Swal from 'sweetalert2';
-
 import { Button } from '@/components/ui/button';
-
-import { useDeleteCategoryMutation } from '@/redux/features/category/categoryApi';
 import { useEffect } from 'react';
-import { Trash2Icon } from 'lucide-react';
-import { EditRoom } from './edit-room';
+import { PencilIcon, Trash2Icon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useDeleteRoomMutation } from '@/redux/features/room/roomApi';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -15,8 +13,10 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const [deleteCategory, { isLoading, isError, isSuccess }] =
-    useDeleteCategoryMutation();
+  const [deleteRoom, { isLoading, isError, isSuccess }] =
+    useDeleteRoomMutation();
+
+  const navigate = useNavigate();
 
   const room = row.original;
 
@@ -31,7 +31,8 @@ export function DataTableRowActions<TData>({
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteCategory(room?._id);
+        // @ts-ignore
+        deleteRoom(room?._id);
 
         Swal.fire({
           title: 'Deleted!',
@@ -68,7 +69,15 @@ export function DataTableRowActions<TData>({
 
   return (
     <div className="flex items-center w-[100px] gap-2">
-      <EditRoom room={room} />
+      {/* <EditRoom room={room} /> */}
+      <Button
+        className="px-2 dark:bg-black/70 dark:text-white/50"
+        size="icon"
+        // @ts-ignore
+        onClick={() => navigate(`/admin/dashboard/rooms/edit/${room?._id}`)}
+      >
+        <PencilIcon size={18} />
+      </Button>
       <Button
         className="px-2 dark:bg-black/70 dark:text-white/50"
         size="icon"

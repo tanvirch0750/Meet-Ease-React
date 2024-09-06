@@ -3,7 +3,7 @@ import PrimaryButton from '@/components/ui/primary-button';
 const ErrorPage = () => {
   return (
     <>
-      <section className="relative z-10 bg-primary py-[120px] min-h-screen flex justify-center items-center">
+      <section className="relative z-10 bg-primary py-[120px] min-h-screen flex justify-center items-center bg-zinc-950">
         <div className="container mx-auto">
           <div className="-mx-4 flex">
             <div className="w-full px-4">

@@ -19,6 +19,7 @@ import PublicRoute from './components/ui/publicRoute';
 import PrivateRoute from './components/ui/private-route';
 import PrivateRouteAdmin from './components/ui/private-route-admin';
 import Catgories from './pages/admin/category';
+import EditRoom from './pages/admin/rooms/components/edit-room';
 
 const router = createBrowserRouter([
   // Auth routes
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/dashboard/rooms',
         element: <Rooms />,
+      },
+      {
+        path: '/admin/dashboard/rooms/edit/:id',
+        element: <EditRoom />,
       },
       {
         path: '/admin/dashboard/settings',

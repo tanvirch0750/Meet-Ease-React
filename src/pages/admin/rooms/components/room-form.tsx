@@ -26,6 +26,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Textarea } from '@/components/ui/textarea';
 import { useAddRoomMutation } from '@/redux/features/room/roomApi';
+import { useGetCaegoriesQuery } from '@/redux/features/category/categoryApi';
 
 const roomFormSchema = z.object({
   name: z.string({ message: 'Room name is required' }),
@@ -54,6 +55,11 @@ export default function RoomForm({
 }: {
   defaultValues?: Partial<RoomFormValues>;
 }) {
+  const { data: categories } = useGetCaegoriesQuery({
+    page: 1,
+    limit: 100,
+  });
+
   const form = useForm<RoomFormValues>({
     resolver: zodResolver(roomFormSchema),
     defaultValues,
@@ -222,11 +228,11 @@ export default function RoomForm({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="66d9ae4534c6b2313287d657">
-                      m@example.com
-                    </SelectItem>
-                    <SelectItem value="dfdf">m@google.com</SelectItem>
-                    <SelectItem value="fdf">m@support.com</SelectItem>
+                    {categories?.data?.map((category: any) => (
+                      <SelectItem value={category?._id} key={category?._id}>
+                        {category?.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
 

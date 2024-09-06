@@ -25,7 +25,8 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { Textarea } from '@/components/ui/textarea';
-import { useAddRoomMutation } from '@/redux/features/room/roomApi';
+import { useEditRoomMutation } from '@/redux/features/room/roomApi';
+import { useGetCaegoriesQuery } from '@/redux/features/category/categoryApi';
 
 const roomFormSchema = z.object({
   name: z.string({ message: 'Room name is required' }),
@@ -49,25 +50,26 @@ const roomFormSchema = z.object({
 
 type RoomFormValues = z.infer<typeof roomFormSchema>;
 
-export default function EditRoomForm({
-  room,
-}: {
-  room: Partial<RoomFormValues>;
-}) {
-  console.log(room);
+export default function EditRoomForm({ room }: { room: any }) {
+  const { data: categories } = useGetCaegoriesQuery({
+    page: 1,
+    limit: 100,
+  });
+
   const form = useForm<RoomFormValues>({
     resolver: zodResolver(roomFormSchema),
     defaultValues: {
       name: room?.name,
-      roomNo: room?.roomNo,
-      floorNo: room?.floorNo,
-      capacity: room?.capacity,
-      pricePerSlot: room?.pricePerSlot,
+      roomNo: room?.roomNo.toString(),
+      floorNo: room?.floorNo.toString(),
+      capacity: room?.capacity.toString(),
+      pricePerSlot: room?.pricePerSlot.toString(),
       description: room?.description,
       // @ts-ignore
       amenities: room?.amenities?.map((item) => ({ value: item })),
       // @ts-ignore
       images: room?.images?.map((item) => ({ value: item })),
+      category: room?.category?._id,
     },
     mode: 'onChange',
   });
@@ -82,8 +84,8 @@ export default function EditRoomForm({
     control: form.control,
   });
 
-  const [addRoom, { isLoading, isError, isSuccess, error }] =
-    useAddRoomMutation();
+  const [editRoom, { isLoading, isError, isSuccess, error }] =
+    useEditRoomMutation();
 
   function onSubmit(data: RoomFormValues) {
     const convertedData = {
@@ -98,9 +100,9 @@ export default function EditRoomForm({
       category: data.category,
     };
 
-    console.log(convertedData);
+    console.log(data);
 
-    addRoom(convertedData);
+    editRoom({ id: room._id, data: convertedData });
   }
 
   useEffect(() => {
@@ -108,35 +110,22 @@ export default function EditRoomForm({
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Room Created Successfully',
+        title: 'Room Updated Successfully',
         showConfirmButton: false,
 
         timer: 3000,
       });
-
-      form.reset({
-        name: '',
-        description: '',
-        roomNo: '',
-        floorNo: '',
-        capacity: '',
-        pricePerSlot: '',
-        amenities: [],
-        images: [],
-        category: '',
-      });
     }
     if (isError) {
       Swal.fire({
-        title: 'Room Createion Failed',
+        title: 'Room Update Failed',
         // @ts-ignore
         text: `Reason: ${error?.data?.message!}`,
         icon: 'error',
+        showConfirmButton: true,
       });
     }
   }, [isSuccess, isError]);
-
-  console.log(error);
 
   return (
     <Form {...form}>
@@ -165,7 +154,7 @@ export default function EditRoomForm({
               <FormItem>
                 <FormLabel>Room Number</FormLabel>
                 <FormControl>
-                  <Input placeholder="Room Number" {...field} type="number" />
+                  <Input placeholder="Room Number" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -179,7 +168,7 @@ export default function EditRoomForm({
             name="floorNo"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Room Number</FormLabel>
+                <FormLabel>Floor Number</FormLabel>
                 <FormControl>
                   <Input placeholder="Floor Number" {...field} />
                 </FormControl>
@@ -222,7 +211,7 @@ export default function EditRoomForm({
             control={form.control}
             name="category"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="">
                 <FormLabel>Select Category</FormLabel>
                 <Select
                   onValueChange={field.onChange}
@@ -233,12 +222,12 @@ export default function EditRoomForm({
                       <SelectValue placeholder="Select a Category" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="66d9ae4534c6b2313287d657">
-                      m@example.com
-                    </SelectItem>
-                    <SelectItem value="dfdf">m@google.com</SelectItem>
-                    <SelectItem value="fdf">m@support.com</SelectItem>
+                  <SelectContent className="">
+                    {categories?.data?.map((category: any) => (
+                      <SelectItem value={category?._id} key={category?._id}>
+                        {category?.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
 
@@ -336,7 +325,7 @@ export default function EditRoomForm({
         />
 
         <Button disabled={isLoading} type="submit" className=" font-semibold">
-          {isLoading ? 'Loading...' : 'Create Room'}
+          {isLoading ? 'Loading...' : 'Update Room'}
         </Button>
       </form>
     </Form>

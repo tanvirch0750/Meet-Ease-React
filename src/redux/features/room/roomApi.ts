@@ -34,7 +34,7 @@ const roomApi = api.injectEndpoints({
       providesTags: ['rooms'],
     }),
     getRoom: builder.query({
-      query: (id: string) => `/room/${id}`,
+      query: (id: string) => `/rooms/${id}`,
       // @ts-ignore
       providesTags: (result, error, arg) => [{ type: 'room', id: arg }],
     }),
@@ -48,7 +48,7 @@ const roomApi = api.injectEndpoints({
     }),
     editRoom: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/room/${id}`,
+        url: `/rooms/${id}`,
         method: 'PUT',
         body: data,
       }),
@@ -60,7 +60,7 @@ const roomApi = api.injectEndpoints({
     }),
     deleteRoom: builder.mutation({
       query: (id) => ({
-        url: `/room/${id}`,
+        url: `/rooms/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['rooms'],

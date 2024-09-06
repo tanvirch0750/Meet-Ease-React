@@ -1,38 +1,61 @@
+import { Layout } from '@/components/ui/admin/layout';
+
+import ThemeSwitch from '@/components/ui/admin/theme-switch';
+import { Link, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-
-import { PencilIcon } from 'lucide-react';
+import { AdminNav } from '@/components/ui/admin/admin-nav';
+import { useGetRoomQuery } from '@/redux/features/room/roomApi';
 import EditRoomForm from './edit-room-form';
+import Loader from '@/components/ui/loader';
+import ErrorPage from '@/pages/error/ErrorPage';
 
-export function EditRoom({ room }: { room: any }) {
+export default function EditRoom() {
+  const { id } = useParams();
+
+  const { data: room, isLoading, isError } = useGetRoomQuery(id!);
+
+  console.log(room);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <ErrorPage />;
+  }
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          className="px-2 dark:bg-black/70 dark:text-white/50"
-          size="icon"
-        >
-          <PencilIcon size={18} />
-        </Button>
-      </DialogTrigger>
+    <Layout>
+      {/* ===== Top Heading ===== */}
+      <Layout.Header className=" border-b">
+        <div className=" justify-between w-full flex items-center space-x-4">
+          <Link to="/" className="flex items-center space-x-2">
+            <Button>Main Website</Button>
+          </Link>
+          <div className=" flex gap-3 items-center">
+            <ThemeSwitch />
+            <AdminNav />
+          </div>
+        </div>
+      </Layout.Header>
 
-      <DialogContent className=" max-w-7xl h-screen z-[10000] overflow-y-scroll">
-        <DialogHeader>
-          <DialogTitle>Edit Room</DialogTitle>
-          <DialogDescription className="">
-            Make changes to Room here.
-          </DialogDescription>
-        </DialogHeader>
-
-        <EditRoomForm room={room} />
-      </DialogContent>
-    </Dialog>
+      <Layout.Body>
+        <div className="mb-2 flex items-center justify-between space-y-2">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Edit <span className=" text-primary">{room?.data?.name}</span>{' '}
+              Room
+            </h2>
+          </div>
+          <Link
+            to="/admin/dashboard/rooms"
+            className="flex items-center space-x-2"
+          >
+            <Button>Rooms List</Button>
+          </Link>
+        </div>
+        <EditRoomForm room={room?.data} />
+      </Layout.Body>
+    </Layout>
   );
 }
