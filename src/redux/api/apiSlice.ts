@@ -31,6 +31,17 @@ export const api = createApi({
 
     return result;
   },
-  tagTypes: ['categories', 'category', 'rooms', 'room', 'slots', 'slot'],
+  tagTypes: [
+    'categories',
+    'category',
+    'rooms',
+    'room',
+    'slots',
+    'slot',
+    'users',
+    'user',
+    'bookings',
+    'booking',
+  ],
   endpoints: () => ({}),
 });

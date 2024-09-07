@@ -11,6 +11,7 @@ import Loader from '@/components/ui/loader';
 import { useParams } from 'react-router-dom';
 import { useGetRoomQuery } from '@/redux/features/room/roomApi';
 import CheckoutPage from '../checkout/CheckoutPage';
+import { useGetProfileDataQuery } from '@/redux/features/user/userApi';
 
 export default function BookingPage() {
   const [date, setDate] = useState<Date>();
@@ -18,6 +19,9 @@ export default function BookingPage() {
   const [selectedSlots, setSelectedSlots] = useState<any[]>([]);
   const { id } = useParams();
   const { data: room } = useGetRoomQuery(id!);
+  const { data: user } = useGetProfileDataQuery('');
+
+  console.log(user);
 
   const updatedDate = formatDateToYYYYMMDD(date);
 
@@ -41,8 +45,6 @@ export default function BookingPage() {
     }
   };
 
-  console.log(selectedSlots);
-
   const isSlotSelected = (slot: any) => selectedSlots.includes(slot);
 
   return (
@@ -53,7 +55,12 @@ export default function BookingPage() {
       ) : (
         <>
           {isProccedToCheckout ? (
-            <CheckoutPage />
+            <CheckoutPage
+              selectedSlots={selectedSlots}
+              user={user.data}
+              setIsProccedToCheckout={setIsProccedToCheckout}
+              date={updatedDate}
+            />
           ) : (
             <MaxWidthWrapper className="py-24">
               <div className=" grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
@@ -122,21 +129,21 @@ export default function BookingPage() {
                         <div className="flex flex-col space-y-1.5 mt-8">
                           <Input
                             id="name"
-                            placeholder="Mohammad Tanvir Chowdhury"
+                            placeholder={user?.data?.name}
                             className="py-2 placeholder:text-base bg-white border-gray-300 font-semibold placeholder:text-gray-950"
                           />
                         </div>
                         <div className="flex flex-col space-y-1.5">
                           <Input
                             id="email"
-                            placeholder="tanvirch7575@gmail.com"
+                            placeholder={user?.data?.email}
                             className="py-2 placeholder:text-base font-semibold placeholder:text-gray-950 bg-white border-gray-300"
                           />
                         </div>
                         <div className="flex flex-col space-y-1.5">
                           <Input
                             id="phone"
-                            placeholder="+8801302047933"
+                            placeholder={user?.data?.phone}
                             className="py-2 placeholder:text-base bg-white border-gray-300 font-semibold placeholder:text-gray-950"
                           />
                         </div>
