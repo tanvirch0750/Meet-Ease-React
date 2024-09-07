@@ -6,9 +6,6 @@ export const selectFilteredAndSortedRooms =
   (rooms: any[]) => (state: RootState) => {
     const filters: any = selectFilters(state);
 
-    console.log('rooms', rooms);
-    console.log('filters', filters);
-
     return rooms
       ?.filter((room: any) => {
         if (!filters?.searchQuery) return true;

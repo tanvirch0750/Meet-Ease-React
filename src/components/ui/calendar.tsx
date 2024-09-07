@@ -31,16 +31,17 @@ function Calendar({
         nav_button_next: 'absolute right-1',
         table: 'w-full border-collapse space-y-1',
         head_row: 'flex justify-between py-4',
-        head_cell: 'text-muted-foreground rounded-md w-9 font-bold text-[1rem]',
+        head_cell:
+          'text-muted-foreground rounded-md w-9 font-bold text-[1rem] ',
         row: 'flex w-full mt-6 justify-between',
-        cell: 'h-9 w-9 text-center text-lg p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
+        cell: 'h-9 w-9 text-center text-lg p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-white first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
         day: cn(
           buttonVariants({ variant: 'ghost' }),
           'h-9 w-9 p-0 font-normal aria-selected:opacity-100 text-lg font-semibold text-gray-600'
         ),
         day_range_end: 'day-range-end',
         day_selected:
-          'bg-[#10b981] text-primary-foreground hover:bg-[#10b981] hover:text-primary-foreground focus:bg-[#10b981] focus:text-primary-foreground',
+          'bg-[#10b981] text-white hover:bg-[#10b981] hover:text-primary-foreground focus:bg-[#10b981] focus:text-white',
         day_today: 'bg-[#10b981] text-white text-lg font-bold',
         day_outside:
           'day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30',

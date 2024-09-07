@@ -35,9 +35,16 @@ const slotsApi = api.injectEndpoints({
     }),
     getAvailableSlots: builder.query({
       query: (options: any) => {
+        console.log(options);
         let queryString = '/slots/availability';
 
-        if (options.page || options.limit || options.searchTerm) {
+        if (
+          options.page ||
+          options.limit ||
+          options.searchTerm ||
+          options.date ||
+          options.roomId
+        ) {
           queryString += '?';
 
           if (options.page) {
@@ -52,8 +59,18 @@ const slotsApi = api.injectEndpoints({
             queryString += `searchTerm=${options.searchTerm}&`;
           }
 
+          if (options.roomId) {
+            queryString += `roomId=${options.roomId}&`;
+          }
+
+          if (options.date) {
+            queryString += `date=${options.date}&`;
+          }
+
           queryString = queryString.slice(0, -1);
         }
+
+        console.log(queryString);
 
         return queryString;
       },

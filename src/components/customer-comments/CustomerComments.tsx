@@ -1,10 +1,13 @@
 import UserImg from '../../assets/customer-4.jpg';
+import MaxWidthWrapper from '../ui/max-width-wrapper';
 
 export default function CustomerComments() {
   return (
-    <section className="bg-gray-100 border-t py-14">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-12">Customer Comments</h2>
+    <section className="bg-gray-100 border-t border-gray-300 py-14">
+      <MaxWidthWrapper className=" max-w-5xl">
+        <h2 className="text-2xl font-bold mb-12 text-gray-900">
+          Customer Comments
+        </h2>
 
         <div className="space-y-4">
           <div className="bg-white p-4 rounded-lg shadow">
@@ -111,7 +114,7 @@ export default function CustomerComments() {
             Post Comment
           </button>
         </form>
-      </div>
+      </MaxWidthWrapper>
     </section>
   );
 }

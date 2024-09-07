@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-const ImageGallery = () => {
-  const images = [
-    'https://pagedone.io/asset/uploads/1700471851.png',
-    'https://pagedone.io/asset/uploads/1711514857.png',
-    'https://pagedone.io/asset/uploads/1711514875.png',
-    'https://pagedone.io/asset/uploads/1711514892.png',
-  ];
+const ImageGallery = ({ images }: { images: any }) => {
+  // const images = [
+  //   'https://pagedone.io/asset/uploads/1700471851.png',
+  //   'https://pagedone.io/asset/uploads/1711514857.png',
+  //   'https://pagedone.io/asset/uploads/1711514875.png',
+  //   'https://pagedone.io/asset/uploads/1711514892.png',
+  // ];
 
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [isFading, setIsFading] = useState(false); // State to handle animation
@@ -36,11 +36,11 @@ const ImageGallery = () => {
 
       {/* Thumbnail Section */}
       <div className="grid grid-cols-4 gap-3">
-        {images.map((image, index) => (
+        {images.map((image: any, index: any) => (
           <div
             key={index}
             className={`cursor-pointer border-2 rounded-lg overflow-hidden ${
-              selectedImage === image ? 'border-indigo-500' : 'border-gray-200'
+              selectedImage === image ? 'border-emerald-500' : 'border-gray-200'
             }`}
             onClick={() => handleThumbnailClick(image)} // Change the main image on click
           >

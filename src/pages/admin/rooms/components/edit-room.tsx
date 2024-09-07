@@ -14,8 +14,6 @@ export default function EditRoom() {
 
   const { data: room, isLoading, isError } = useGetRoomQuery(id!);
 
-  console.log(room);
-
   if (isLoading) {
     return <Loader />;
   }

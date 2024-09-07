@@ -80,7 +80,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/booking',
+    path: '/booking/:id',
     element: (
       <PrivateRoute>
         <BookingPage />

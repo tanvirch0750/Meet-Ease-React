@@ -32,7 +32,7 @@ export default function Slots() {
     return <ErrorPage />;
   }
 
-  console.log(error);
+  console.log(slots, availableSlots);
 
   return (
     <Layout>
