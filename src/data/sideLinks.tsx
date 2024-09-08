@@ -6,6 +6,7 @@ import {
   IconSettings,
   IconUsers,
 } from '@tabler/icons-react';
+import { Ticket } from 'lucide-react';
 
 export interface NavLink {
   title: string;
@@ -42,6 +43,13 @@ export const sidelinks: SideLink[] = [
     label: '',
     href: '/admin/dashboard/slots',
     icon: <IconApps size={18} />,
+  },
+
+  {
+    title: 'Bookings',
+    label: '',
+    href: '/admin/dashboard/bookings',
+    icon: <Ticket size={18} />,
   },
 
   {

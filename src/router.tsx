@@ -23,6 +23,7 @@ import Slots from './pages/admin/slots';
 import EditSlot from './pages/admin/slots/components/edit-slot';
 import BookingCancelPage from './pages/booking-cancel/BookingCancelPage';
 import MyBookingsPage from './pages/my-bookings/MyBookingsPage';
+import Bookings from './pages/admin/bookings';
 
 const router = createBrowserRouter([
   // Auth routes
@@ -138,6 +139,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/dashboard/slots/edit/:id',
         element: <EditSlot />,
+      },
+      {
+        path: '/admin/dashboard/bookings',
+        element: <Bookings />,
       },
       {
         path: '/admin/dashboard/settings',

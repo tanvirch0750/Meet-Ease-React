@@ -31,7 +31,7 @@ const mybookingsApi = api.injectEndpoints({
         return queryString;
       },
 
-      providesTags: ['slots'],
+      providesTags: ['bookings', 'myBookings'],
     }),
   }),
 });
