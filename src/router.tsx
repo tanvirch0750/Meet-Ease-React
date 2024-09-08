@@ -22,6 +22,7 @@ import EditRoom from './pages/admin/rooms/components/edit-room';
 import Slots from './pages/admin/slots';
 import EditSlot from './pages/admin/slots/components/edit-slot';
 import BookingCancelPage from './pages/booking-cancel/BookingCancelPage';
+import MyBookingsPage from './pages/my-bookings/MyBookingsPage';
 
 const router = createBrowserRouter([
   // Auth routes
@@ -93,6 +94,15 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <BookingCancelPage />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: '/my-bookings',
+    element: (
+      <PrivateRoute>
+        <MyBookingsPage />
       </PrivateRoute>
     ),
   },

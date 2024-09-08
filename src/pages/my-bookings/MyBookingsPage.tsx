@@ -1,97 +1,110 @@
 import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
+import Loader from '@/components/ui/loader';
 import MaxWidthWrapper from '@/components/ui/max-width-wrapper';
 import {
   Table,
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-
-const invoices = [
-  {
-    invoice: 'INV001',
-    paymentStatus: 'Paid',
-    totalAmount: '$250.00',
-    paymentMethod: 'Credit Card',
-  },
-  {
-    invoice: 'INV002',
-    paymentStatus: 'Pending',
-    totalAmount: '$150.00',
-    paymentMethod: 'PayPal',
-  },
-  {
-    invoice: 'INV003',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$350.00',
-    paymentMethod: 'Bank Transfer',
-  },
-  {
-    invoice: 'INV004',
-    paymentStatus: 'Paid',
-    totalAmount: '$450.00',
-    paymentMethod: 'Credit Card',
-  },
-  {
-    invoice: 'INV005',
-    paymentStatus: 'Paid',
-    totalAmount: '$550.00',
-    paymentMethod: 'PayPal',
-  },
-  {
-    invoice: 'INV006',
-    paymentStatus: 'Pending',
-    totalAmount: '$200.00',
-    paymentMethod: 'Bank Transfer',
-  },
-  {
-    invoice: 'INV007',
-    paymentStatus: 'Unpaid',
-    totalAmount: '$300.00',
-    paymentMethod: 'Credit Card',
-  },
-];
+import { useGetMyBookingsQuery } from '@/redux/features/bookings/myBookingsApi';
 
 export default function MyBookingsPage() {
+  const {
+    data: bookings,
+    isLoading,
+    isError,
+  } = useGetMyBookingsQuery({
+    page: 1,
+    limit: 10000,
+  });
+
+  console.log(bookings?.data);
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <Header pageType="normal" />
-      <MaxWidthWrapper className=" pb-24 pt-20">
+      <MaxWidthWrapper className=" pb-24 pt-10 text-gray-900">
         <h2 className=" mb-12 text-center font-bold text-3xl">My Bookings</h2>
-        <Table className=" text-lg">
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoices.map((invoice) => (
-              <TableRow key={invoice.invoice}>
-                <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                <TableCell>{invoice.paymentStatus}</TableCell>
-                <TableCell>{invoice.paymentMethod}</TableCell>
-                <TableCell className="text-right">
-                  {invoice.totalAmount}
-                </TableCell>
+        {isError || bookings?.data?.length < 0 ? (
+          <div>
+            <h2 className="text-center text-xl text-gray-900 mt-4">
+              You did not confirmed any booking yet.
+            </h2>
+          </div>
+        ) : (
+          <Table className=" text-base border border-gray-300">
+            <TableCaption className="text-gray-800">
+              A list of your bookings.
+            </TableCaption>
+            <TableHeader>
+              <TableRow className=" border-gray-300 bg-gray-200  hover:bg-gray-200">
+                <TableHead className=" text-gray-800 font-semibold">
+                  Room Name
+                </TableHead>
+                <TableHead className="text-gray-800 font-semibold">
+                  Room Number
+                </TableHead>
+                <TableHead className="text-gray-800 font-semibold">
+                  Date
+                </TableHead>
+                <TableHead className="text-gray-800 font-semibold">
+                  Slot Time
+                </TableHead>
+                <TableHead className="text-gray-800 font-semibold">
+                  Total
+                </TableHead>
+                <TableHead className="text-gray-800 font-semibold">
+                  Trx Id
+                </TableHead>
+                <TableHead className="text-right text-gray-800 font-semibold">
+                  Status
+                </TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableCell colSpan={3}>Total</TableCell>
-              <TableCell className="text-right">$2,500.00</TableCell>
-            </TableRow>
-          </TableFooter>
-        </Table>
+            </TableHeader>
+
+            <TableBody>
+              {bookings?.data?.map((booking: any) => (
+                <TableRow
+                  key={booking?._id}
+                  className=" border-gray-300 hover:bg-gray-200"
+                >
+                  <TableCell className="font-medium">
+                    {booking?.room?.name}
+                  </TableCell>
+                  <TableCell>{booking?.room?.roomNo}</TableCell>
+                  <TableCell>{booking?.date}</TableCell>
+
+                  <TableCell>
+                    {booking?.slots
+                      ?.map((sl: any) => `${sl?.startTime} - ${sl?.endTime}`)
+                      .join(', ')}
+                  </TableCell>
+                  <TableCell>{booking?.totalAmount}</TableCell>
+                  <TableCell>{booking?.trxId}</TableCell>
+                  <TableCell className="text-right">
+                    <span
+                      className={
+                        booking?.isConfirmed === 'confirmed'
+                          ? 'bg-green-200 text-green-950 font-semibold px-2 py-1 rounded-lg'
+                          : 'bg-red-200 text-red-950 font-semibold px-2 py-1 rounded-lg'
+                      }
+                    >
+                      {booking?.isConfirmed}
+                    </span>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
       </MaxWidthWrapper>
       <Footer />
     </>

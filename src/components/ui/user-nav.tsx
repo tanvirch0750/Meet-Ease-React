@@ -61,7 +61,10 @@ export function UserNav() {
           </DropdownMenuItem>
 
           {auth.role === 'user' && (
-            <DropdownMenuItem className=" hover:!bg-emerald-500 hover:!text-white cursor-pointer">
+            <DropdownMenuItem
+              onClick={() => navigate('/my-bookings')}
+              className=" hover:!bg-emerald-500 hover:!text-white cursor-pointer"
+            >
               My Bookings
             </DropdownMenuItem>
           )}
