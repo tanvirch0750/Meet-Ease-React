@@ -149,7 +149,7 @@ const RoomDetailPage = () => {
                   </div>
                 </div>
 
-                <div className=" mt-auto">
+                <div className="">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     <div className="flex items-center justify-center w-full">
                       <Link

@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
 import MaxWidthWrapper from '@/components/ui/max-width-wrapper';
 import { useAddBookingMutation } from '@/redux/features/bookings/bookingsApi';
+import ErrorPage from '../error/ErrorPage';
 
 export default function CheckoutPage({
   selectedSlots,
@@ -41,6 +42,10 @@ export default function CheckoutPage({
 
   if (isSuccess) {
     window.location.href = data?.data?.paymentSession?.payment_url;
+  }
+
+  if (isError) {
+    return <ErrorPage />;
   }
 
   return (

@@ -5,7 +5,6 @@ import AboutUsPage from './pages/about-us/AboutUs';
 import RoomListPage from './pages/room-list/RoomListPage';
 import RoomDetailPage from './pages/room-details/RoomDetails';
 import ContactUsPage from './pages/contact-us/ContactUs';
-import CheckoutPage from './pages/checkout/CheckoutPage';
 import BookingPage from './pages/booking/BookingPage';
 import SignupPage from './pages/signup/SignupPage';
 import LoginPage from './pages/login/LoginPage';
@@ -22,6 +21,7 @@ import Catgories from './pages/admin/category';
 import EditRoom from './pages/admin/rooms/components/edit-room';
 import Slots from './pages/admin/slots';
 import EditSlot from './pages/admin/slots/components/edit-slot';
+import BookingCancelPage from './pages/booking-cancel/BookingCancelPage';
 
 const router = createBrowserRouter([
   // Auth routes
@@ -70,20 +70,29 @@ const router = createBrowserRouter([
     element: <ContactUsPage />,
   },
 
-  {
-    path: '/checkout',
-    element: (
-      <PrivateRoute>
-        <CheckoutPage />
-      </PrivateRoute>
-    ),
-  },
+  // {
+  //   path: '/checkout',
+  //   element: (
+  //     <PrivateRoute>
+  //       <CheckoutPage />
+  //     </PrivateRoute>
+  //   ),
+  // },
 
   {
     path: '/booking/:id',
     element: (
       <PrivateRoute>
         <BookingPage />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: '/booking/cancel/:transactionId',
+    element: (
+      <PrivateRoute>
+        <BookingCancelPage />
       </PrivateRoute>
     ),
   },

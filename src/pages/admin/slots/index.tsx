@@ -14,25 +14,17 @@ import {
   useGetSlotsQuery,
 } from '@/redux/features/slots/slotsApi';
 import SlotForm from './components/slot-form';
-import ErrorPage from '@/pages/error/ErrorPage';
 
 export default function Slots() {
   const { data: slots, isLoading } = useGetSlotsQuery({
     page: 1,
-    limit: 100000,
+    limit: 1000000,
   });
 
-  const {
-    data: availableSlots,
-    isError,
-    error,
-  } = useGetAvailableSlotsQuery({});
-
-  if (isError) {
-    return <ErrorPage />;
-  }
-
-  console.log(slots, availableSlots);
+  const { data: availableSlots, isError } = useGetAvailableSlotsQuery({
+    page: 1,
+    limit: 1000000,
+  });
 
   return (
     <Layout>
@@ -74,7 +66,11 @@ export default function Slots() {
                 </TabsList>
               </div>
               <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-                <DataTable data={slots?.data} columns={columns} />
+                {isError ? (
+                  <div>Not slots found</div>
+                ) : (
+                  <DataTable data={slots?.data} columns={columns} />
+                )}
               </div>
             </TabsContent>
             <TabsContent value="available-slots" className="space-y-4">
@@ -93,7 +89,11 @@ export default function Slots() {
                 </TabsList>
               </div>
               <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-                <DataTable data={availableSlots?.data} columns={columns} />
+                {isError ? (
+                  <div>Not slots found</div>
+                ) : (
+                  <DataTable data={availableSlots?.data} columns={columns} />
+                )}
               </div>
             </TabsContent>
             <TabsContent value="create" className="space-y-4">

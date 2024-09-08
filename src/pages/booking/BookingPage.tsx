@@ -30,9 +30,13 @@ export default function BookingPage() {
     isLoading,
     isError,
   } = useGetAvailableSlotsQuery({
+    page: 1,
+    limit: 1000000,
     date: updatedDate ? updatedDate : '2024-01-01',
     roomId: id,
   });
+
+  console.log('available slots', availableSlots);
 
   // Handle slot selection
   const handleSlotClick = (slot: any) => {
