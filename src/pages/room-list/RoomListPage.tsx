@@ -26,15 +26,28 @@ export default function RoomListPage() {
         <main className="flex flex-col lg:flex-row gap-4 lg:gap-0 ">
           <RoomListFilter />
 
-          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 p-4 lg:p-6 ">
-            {filteredRooms?.map((room: any) => (
-              <RoomCard key={room?._id} room={room} />
-            ))}
-
-            {/* <RoomCard />
-            <RoomCard />
-            <RoomCard /> */}
-          </div>
+          {filteredRooms?.length > 0 ? (
+            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 p-4 lg:p-6 ">
+              {filteredRooms?.map((room: any) => (
+                <RoomCard key={room?._id} room={room} />
+              ))}
+            </div>
+          ) : (
+            <div className=" w-full h-screen flex items-center justify-center">
+              <div className="mt-[-100px]">
+                <div className="px-2 flex flex-col items-center justify-center max-w-[500px] mx-auto">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                    No Meeting Rooms Available
+                  </h2>
+                  <p className="text-gray-600 text-center">
+                    It looks like there are no rooms available with your query
+                    at the moment. Please check back later or contact support
+                    for more information.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </>
