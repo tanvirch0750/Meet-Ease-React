@@ -1,4 +1,5 @@
 import PrimaryButton from '@/components/ui/primary-button';
+import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
   return (
@@ -17,7 +18,9 @@ const ErrorPage = () => {
                 <p className="mb-8 text-lg text-white">
                   The page you are looking for it maybe deleted
                 </p>
-                <PrimaryButton text="Go To Home" />
+                <Link to="/">
+                  <PrimaryButton text="Go To Home" />
+                </Link>
               </div>
             </div>
           </div>

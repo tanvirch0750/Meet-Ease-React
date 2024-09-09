@@ -6,6 +6,7 @@ import { useGetRoomsQuery } from '@/redux/features/room/roomApi';
 import Loader from '@/components/ui/loader';
 import { useSelector } from 'react-redux';
 import { selectFilteredAndSortedRooms } from '@/redux/features/room/roomsSelector';
+import Footer from '@/components/footer/footer';
 
 export default function RoomListPage() {
   const { data: rooms, isLoading } = useGetRoomsQuery({
@@ -50,6 +51,7 @@ export default function RoomListPage() {
           )}
         </main>
       </div>
+      <Footer />
     </>
   );
 }
