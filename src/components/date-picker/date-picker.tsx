@@ -8,7 +8,6 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
-import { PopoverClose } from '@radix-ui/react-popover';
 
 export function DatePicker({
   date,
@@ -42,15 +41,13 @@ export function DatePicker({
         className="w-auto md:w-[550px] p-0 bg-white text-gray-900 border shadow-xl border-gray-300"
         align="center"
       >
-        <PopoverClose>
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={setDate}
-            initialFocus
-            className="w-auto  md:w-[550px]"
-          />
-        </PopoverClose>
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          initialFocus
+          className="w-auto  md:w-[550px]"
+        />
       </PopoverContent>
     </Popover>
   );
