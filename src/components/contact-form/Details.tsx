@@ -2,11 +2,11 @@ function Details() {
   const data = [
     {
       heading: 'Address',
-      list: ['Dahaka 1200', 'Mirpur - 12'],
+      list: ['Chandpur Sadar, Chandpur', 'Shaheb Bazar'],
     },
     {
       heading: 'Support',
-      list: ['+1 236 862 1467', 'support@meetease.com'],
+      list: ['+8801302047933', 'support@meetease.com'],
     },
     // {
     //   heading: "Social",
@@ -28,16 +28,16 @@ function Details() {
     },
   ];
   return (
-    <div className=" flex flex-col w-full mt-4 md:mt-0 px-[50px] sm:px-[35px] md:px-[40px] lg:px-[50px] font-tertiary">
-      <div className="flex gap-32">
+    <div className=" flex flex-col w-full mt-4 md:mt-0 px-5px lg:px-[10px] font-tertiary">
+      <div className="flex gap-10">
         {data.map((item) => {
           return (
             <div className="mb-10 flex flex-col">
-              <h2 className=" text-xl mb-5 text-gray-800">{item.heading}</h2>
+              <h2 className=" text-lg mb-3 text-gray-800">{item.heading}</h2>
               <ul>
                 {item.list.map((list) => {
                   return (
-                    <li className=" text-gray-800 text-lg">
+                    <li className=" text-gray-800 text-base">
                       <p>{list}</p>
                     </li>
                   );
@@ -48,11 +48,11 @@ function Details() {
         })}
       </div>
       <div className="flex flex-col">
-        <h2 className="text-xl mb-5 text-gray-800">Socials</h2>
+        <h2 className="text-lg mb-3 text-gray-800">Socials</h2>
         <ul>
           {socials.map((list) => {
             return (
-              <li className="text-gray-800 text-lg mb-1">
+              <li className="text-gray-800 text-base mb-1">
                 <a
                   target="_blank"
                   href={list.href}

@@ -43,6 +43,8 @@ export const api = createApi({
     'bookings',
     'booking',
     'myBookings',
+    'cqs',
+    'cq',
   ],
   endpoints: () => ({}),
 });

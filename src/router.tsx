@@ -24,6 +24,7 @@ import EditSlot from './pages/admin/slots/components/edit-slot';
 import BookingCancelPage from './pages/booking-cancel/BookingCancelPage';
 import MyBookingsPage from './pages/my-bookings/MyBookingsPage';
 import Bookings from './pages/admin/bookings';
+import ProfilePage from './pages/profile/ProfilePage';
 
 const router = createBrowserRouter([
   // Auth routes
@@ -104,6 +105,15 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <MyBookingsPage />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: '/my-profile',
+    element: (
+      <PrivateRoute>
+        <ProfilePage />
       </PrivateRoute>
     ),
   },

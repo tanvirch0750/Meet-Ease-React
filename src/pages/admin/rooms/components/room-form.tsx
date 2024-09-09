@@ -92,8 +92,6 @@ export default function RoomForm({
       category: data.category,
     };
 
-    console.log(convertedData);
-
     addRoom(convertedData);
   }
 
@@ -129,8 +127,6 @@ export default function RoomForm({
       });
     }
   }, [isSuccess, isError]);
-
-  console.log(error);
 
   return (
     <Form {...form}>

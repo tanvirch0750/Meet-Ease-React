@@ -19,10 +19,14 @@ export function Faq() {
         />
       </MaxWidthWrapper>
       <MaxWidthWrapper className=" max-w-3xl pb-24">
-        <Accordion type="single" collapsible className="w-full text-xl">
+        <Accordion
+          type="single"
+          collapsible
+          className="w-full text-base text-gray-900"
+        >
           <AccordionItem value="item-1">
             <AccordionTrigger>How do I book a meeting room?</AccordionTrigger>
-            <AccordionContent className=" text-lg">
+            <AccordionContent className=" text-base">
               Booking a meeting room is simple! Just navigate to the "Meeting
               Rooms" page, select your preferred room, choose your date and
               time, and confirm your booking. You'll receive instant
@@ -33,7 +37,7 @@ export function Faq() {
             <AccordionTrigger>
               Can I cancel or reschedule my booking?
             </AccordionTrigger>
-            <AccordionContent className=" text-lg">
+            <AccordionContent className=" text-base">
               Yes, you can easily cancel or reschedule your booking through the
               "My Bookings" page. Please note that cancellation policies may
               vary depending on the room or booking time.
@@ -43,7 +47,7 @@ export function Faq() {
             <AccordionTrigger>
               What payment methods are accepted?
             </AccordionTrigger>
-            <AccordionContent className="text-lg">
+            <AccordionContent className="text-base">
               We accept a variety of payment methods, including credit/debit
               cards and online payment services like Amar Pay. All transactions
               are secure and encrypted for your protection.
@@ -53,7 +57,7 @@ export function Faq() {
             <AccordionTrigger>
               How do I know if a room is available?
             </AccordionTrigger>
-            <AccordionContent className=" text-lg">
+            <AccordionContent className=" text-base">
               Our platform offers real-time availability updates. Simply select
               the room you’re interested in, and you’ll see all available dates
               and time slots instantly.
@@ -63,7 +67,7 @@ export function Faq() {
             <AccordionTrigger>
               Is there customer support available if I need help?
             </AccordionTrigger>
-            <AccordionContent className=" text-lg">
+            <AccordionContent className=" text-base">
               Absolutely! Our customer support team is available 24/7 to assist
               you with any questions or issues. You can contact us via email,
               phone, or through the live chat on our website.

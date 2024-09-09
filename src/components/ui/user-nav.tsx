@@ -56,7 +56,10 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-gray-300" />
         <DropdownMenuGroup>
-          <DropdownMenuItem className=" hover:!bg-emerald-500 hover:!text-white cursor-pointer">
+          <DropdownMenuItem
+            onClick={() => navigate('/my-profile')}
+            className=" hover:!bg-emerald-500 hover:!text-white cursor-pointer"
+          >
             Profile
           </DropdownMenuItem>
 
