@@ -124,7 +124,7 @@ const RoomListFilter = () => {
                 className="h-4 w-4 text-blue-600 border-gray-300 rounded"
               />
               <label htmlFor="between1000And5000" className="text-gray-800">
-                1000-5000 BDT
+                1000-3000 BDT
               </label>
             </div>
             <div className="flex items-center space-x-2">
@@ -136,7 +136,7 @@ const RoomListFilter = () => {
                 className="h-4 w-4 text-blue-600 border-gray-300 rounded"
               />
               <label htmlFor="over5000" className="text-gray-800">
-                Over 5000 BDT
+                Over 3000 BDT
               </label>
             </div>
           </div>

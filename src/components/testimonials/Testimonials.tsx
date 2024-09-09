@@ -1,30 +1,34 @@
 import React from 'react';
-import CustomerImg from '../../assets/customer-4.jpg';
+
+import BenImg from '../../assets/ben.jpg';
+import DaveImg from '../../assets/dave.jpg';
+import SteveImg from '../../assets/steve.jpg';
+import HannahImg from '../../assets/hannah.jpg';
 
 const TestimonialsSection: React.FC = () => {
   const testimonials = [
     {
-      imgSrc: CustomerImg,
+      imgSrc: DaveImg,
       altText: 'photo of customer Dave Bryson',
-      text: 'Inexpensive, healthy and great-tasting meals, without even having to order manually! It feels truly magical.',
+      text: "The Boardroom Alpha is perfect for our client meetings. The spacious table and comfortable chairs make it easy to focus. The projector and whiteboard are top-notch, and the natural light adds to the room's appeal.",
       name: 'Dave Bryson',
     },
     {
-      imgSrc: CustomerImg,
+      imgSrc: BenImg,
       altText: 'photo of customer Ben Hadley',
-      text: "The AI algorithm is crazy good, it chooses the right meals for me every time. It's amazing not to worry about food anymore!",
+      text: 'The Developer Den has everything a programmer could ask for. The dual monitors, standing desks, and fiber internet made coding a breeze. The bright, focused lighting kept us productive throughout the day.',
       name: 'Ben Hadley',
     },
     {
-      imgSrc: CustomerImg,
+      imgSrc: SteveImg,
       altText: 'photo of customer Steve Miller',
-      text: "Omnifood is a life saver! I just started a company, so there's no time for cooking. I couldn't live without my daily meals now!",
+      text: 'I’ve been in many brainstorming rooms, but the Idea Loft stands out. The open layout and props around the room made it easy to collaborate. It’s a bright, positive space that encourages out-of-the-box thinking.',
       name: 'Steve Miller',
     },
     {
-      imgSrc: CustomerImg,
+      imgSrc: HannahImg,
       altText: 'photo of customer Hannah Smith',
-      text: 'I got Omnifood for the whole family, and it frees up so much time! Plus, everything is organic and vegan and without plastic.',
+      text: 'We hosted a large corporate event in Conference Hall Alpha, and everything was perfect. The stage, lighting, and large screen made presentations seamless, and the modern decor set the tone for a professional gathering.',
       name: 'Hannah Smith',
     },
   ];
@@ -49,7 +53,7 @@ const TestimonialsSection: React.FC = () => {
       className=" bg-gray-100 py-[40px] grid grid-cols-1 lg:grid-cols-[55fr_45fr] items-center"
       id="testimonials"
     >
-      <div className="px-8 lg:px-24 py-12 lg:py-24">
+      <div className="px-8 lg:px-12 py-12 lg:py-24">
         <span className=" text-lg uppercase tracking-widest font-bold text-gray-700">
           Testimonials
         </span>
@@ -57,7 +61,7 @@ const TestimonialsSection: React.FC = () => {
           Once you try it, you can't go back
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {testimonials.map((testimonial) => (
             <figure
               key={testimonial.altText}
@@ -85,7 +89,7 @@ const TestimonialsSection: React.FC = () => {
             <img
               src={image}
               alt="beautifully arranged food"
-              className="block w-full transition-transform duration-300 transform hover:scale-110 hover:brightness-90 h-[190px]"
+              className="block w-full transition-transform duration-300 transform hover:scale-110 hover:brightness-90 h-[160px]"
             />
           </figure>
         ))}

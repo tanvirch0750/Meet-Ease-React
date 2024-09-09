@@ -13,15 +13,18 @@ export default function RoomCard({ room }: { room: any }) {
           alt="product image"
         />
         <span className="absolute top-0 left-0 m-2 rounded-full bg-emerald-950 px-3 py-1 text-center text-sm font-bold text-white hidden group-hover:block transition-all duration-300">
-          <span>Capacity:</span> <span>{room?.capacity}</span>
+          <span></span> <span>{room?.category?.name}</span>
         </span>
       </NavLink>
       <div className="mt-4 px-5 pb-5">
-        <a href="#">
+        <div className=" flex justify-between gap-2">
           <h5 className="text-lg tracking-tight text-gray-800 font-semibold">
             {room?.name}
           </h5>
-        </a>
+          <span className=" text-gray-800 font-medium">
+            Capacity: {room?.capacity}
+          </span>
+        </div>
         <div className="mt-4 mb-5 flex items-center justify-between">
           <p>
             <span className="text-2xl font-bold text-gray-800">

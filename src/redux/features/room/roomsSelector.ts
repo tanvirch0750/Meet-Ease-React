@@ -52,13 +52,13 @@ export const selectFilteredAndSortedRooms =
         if (
           priceFilters.between1000And5000 &&
           room.pricePerSlot >= 1000 &&
-          room.pricePerSlot <= 5000
+          room.pricePerSlot <= 3000
         ) {
           console.log('yes');
           return true;
         }
 
-        if (priceFilters.over5000 && room.pricePerSlot > 5000) return true;
+        if (priceFilters.over5000 && room.pricePerSlot > 3000) return true;
         return false;
       })
       ?.sort((a: { pricePerSlot: number }, b: { pricePerSlot: number }) => {
