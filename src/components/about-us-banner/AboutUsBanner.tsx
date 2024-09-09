@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import {
   AlbumIcon,
   BadgeCheckIcon,
@@ -10,7 +11,12 @@ export default function AboutUsBanner() {
     <section className="pb-20 bg-gray-100 -mt-24">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap">
-          <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+          <motion.div
+            className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="px-4 py-5 flex-auto">
                 <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
@@ -29,9 +35,14 @@ export default function AboutUsBanner() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="w-full md:w-4/12 px-4 text-center">
+          <motion.div
+            className="w-full md:w-4/12 px-4 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+          >
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="px-4 py-5 flex-auto">
                 <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
@@ -50,9 +61,14 @@ export default function AboutUsBanner() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="pt-6 w-full md:w-4/12 px-4 text-center">
+          <motion.div
+            className="pt-6 w-full md:w-4/12 px-4 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
+          >
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="px-4 py-5 flex-auto">
                 <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
@@ -71,10 +87,15 @@ export default function AboutUsBanner() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="flex flex-wrap items-center mt-32">
+        <motion.div
+          className="flex flex-wrap items-center mt-32"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
           <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
             <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
               <HandshakeIcon size={60} className=" text-emerald-500" />
@@ -98,7 +119,12 @@ export default function AboutUsBanner() {
             </p>
           </div>
 
-          <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
+          <motion.div
+            className="w-full md:w-4/12 px-4 mr-auto ml-auto"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+          >
             <div className="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-emerald-600">
               <img
                 alt="..."
@@ -132,8 +158,8 @@ export default function AboutUsBanner() {
                 </p>
               </blockquote>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
