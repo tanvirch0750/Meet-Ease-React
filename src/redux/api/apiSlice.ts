@@ -8,7 +8,7 @@ import { userLoggedOut } from '../features/auth/authSlice';
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:5000/api',
+  baseUrl: 'https://room-booking-node.vercel.app/api',
   prepareHeaders: async (headers, { getState }) => {
     const token: string | undefined = (getState() as RootState).auth
       .accessToken;
