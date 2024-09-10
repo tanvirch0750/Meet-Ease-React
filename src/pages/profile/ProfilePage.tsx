@@ -1,27 +1,19 @@
 import { motion } from 'framer-motion';
-import UserImage from '../../assets/ben.jpg';
 import { useNavigate } from 'react-router-dom';
 import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
-
-interface IUser {
-  name: string;
-  email: string;
-  image: string;
-  phone: string;
-  address: string;
-}
+import { useGetProfileDataQuery } from '@/redux/features/user/userApi';
+import Loader from '@/components/ui/loader';
 
 const ProfilePage = () => {
-  const user: IUser = {
-    name: 'Mohammad Tanvir Chowdhury',
-    email: 'tanvir@gmail.com',
-    image: UserImage,
-    phone: '01302047933',
-    address: 'Shaheb Bazar, Chandpur',
-  };
-
+  const { data, isLoading } = useGetProfileDataQuery({});
   const navigate = useNavigate();
+
+  const user = data?.data;
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   const handleBookingsClick = () => {
     navigate('/my-bookings');
@@ -40,10 +32,10 @@ const ProfilePage = () => {
           <div className="flex flex-col items-center text-center">
             <motion.img
               src={
-                user.image ||
+                user?.image ||
                 'https://img.freepik.com/premium-vector/man-professional-business-casual-young-avatar-icon-illustration_1277826-628.jpg?size=626&ext=jpg&uid=R15161155&ga=GA1.1.911219905.1717681244&semt=ais_hybrid'
               }
-              alt={user.name}
+              alt={user?.name}
               className="w-32 h-32 rounded-full object-cover shadow-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -55,7 +47,7 @@ const ProfilePage = () => {
               animate={{ scale: 1 }}
               transition={{ delay: 0.4 }}
             >
-              {user.name}
+              {user?.name}
             </motion.h2>
             <motion.p
               className="text-gray-500 mt-2"
@@ -63,10 +55,10 @@ const ProfilePage = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              {user.email}
+              {user?.email}
             </motion.p>
           </div>
-          <div className="mt-6 space-y-4">
+          <div className="mt-2 space-y-0">
             <motion.div
               className="flex items-center justify-between bg-gray-50 p-4 rounded-lg"
               initial={{ x: -100, opacity: 0 }}
@@ -74,7 +66,7 @@ const ProfilePage = () => {
               transition={{ delay: 0.8 }}
             >
               <span className="font-medium text-gray-600">Phone</span>
-              <span className="text-gray-800">{user.phone}</span>
+              <span className="text-gray-800">{user?.phone}</span>
             </motion.div>
             <motion.div
               className="flex items-center justify-between bg-gray-50 p-4 rounded-lg"
@@ -83,7 +75,7 @@ const ProfilePage = () => {
               transition={{ delay: 1 }}
             >
               <span className="font-medium text-gray-600">Address</span>
-              <span className="text-gray-800">{user.address}</span>
+              <span className="text-gray-800">{user?.address}</span>
             </motion.div>
           </div>
 
