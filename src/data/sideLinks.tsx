@@ -3,7 +3,6 @@ import {
   IconHome,
   IconLayoutDashboard,
   IconLibrary,
-  IconSettings,
   IconUsers,
 } from '@tabler/icons-react';
 import { Ticket } from 'lucide-react';
@@ -59,10 +58,10 @@ export const sidelinks: SideLink[] = [
     icon: <IconUsers size={18} />,
   },
 
-  {
-    title: 'Settings',
-    label: '',
-    href: '/admin/dashboard/settings',
-    icon: <IconSettings size={18} />,
-  },
+  // {
+  //   title: 'Settings',
+  //   label: '',
+  //   href: '/admin/dashboard/settings',
+  //   icon: <IconSettings size={18} />,
+  // },
 ];

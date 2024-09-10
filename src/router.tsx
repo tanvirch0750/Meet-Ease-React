@@ -25,6 +25,7 @@ import BookingCancelPage from './pages/booking-cancel/BookingCancelPage';
 import MyBookingsPage from './pages/my-bookings/MyBookingsPage';
 import Bookings from './pages/admin/bookings';
 import ProfilePage from './pages/profile/ProfilePage';
+import Users from './pages/admin/users';
 
 const router = createBrowserRouter([
   // Auth routes
@@ -153,6 +154,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/dashboard/bookings',
         element: <Bookings />,
+      },
+      {
+        path: '/admin/dashboard/users',
+        element: <Users />,
       },
       {
         path: '/admin/dashboard/settings',
