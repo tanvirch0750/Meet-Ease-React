@@ -55,6 +55,7 @@ const userApi = api.injectEndpoints({
       // @ts-ignore
       invalidatesTags: (result, error, arg) => [
         'users',
+        'dashboard',
         { type: 'user', id: arg.id },
       ],
     }),

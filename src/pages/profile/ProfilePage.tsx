@@ -39,7 +39,10 @@ const ProfilePage = () => {
         >
           <div className="flex flex-col items-center text-center">
             <motion.img
-              src={user.image || '/default-profile.png'}
+              src={
+                user.image ||
+                'https://img.freepik.com/premium-vector/man-professional-business-casual-young-avatar-icon-illustration_1277826-628.jpg?size=626&ext=jpg&uid=R15161155&ga=GA1.1.911219905.1717681244&semt=ais_hybrid'
+              }
               alt={user.name}
               className="w-32 h-32 rounded-full object-cover shadow-md"
               initial={{ opacity: 0 }}

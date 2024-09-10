@@ -14,6 +14,7 @@ export const authApi = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['users', 'dashboard'],
     }),
     // login endpoint
     signin: builder.mutation({

@@ -88,7 +88,7 @@ const slotsApi = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['slots'],
+      invalidatesTags: ['slots', 'dashboard'],
     }),
     editSlot: builder.mutation({
       query: ({ id, data }) => ({
@@ -99,6 +99,7 @@ const slotsApi = api.injectEndpoints({
       // @ts-ignore
       invalidatesTags: (result, error, arg) => [
         'slots',
+        'dashboard',
         { type: 'slot', id: arg.id },
       ],
     }),
@@ -107,7 +108,7 @@ const slotsApi = api.injectEndpoints({
         url: `/slots/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['slots'],
+      invalidatesTags: ['slots', 'dashboard'],
     }),
   }),
 });

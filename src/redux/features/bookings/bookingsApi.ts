@@ -39,7 +39,7 @@ const bookingApi = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['bookings', 'slots', 'myBookings'],
+      invalidatesTags: ['bookings', 'slots', 'myBookings', 'dashboard'],
     }),
     cancelBooking: builder.mutation({
       query: (data) => ({
@@ -47,7 +47,13 @@ const bookingApi = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['bookings', 'slots', 'booking', 'myBookings'],
+      invalidatesTags: [
+        'bookings',
+        'slots',
+        'booking',
+        'myBookings',
+        'dashboard',
+      ],
     }),
   }),
 });
