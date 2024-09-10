@@ -18,12 +18,12 @@ import SlotForm from './components/slot-form';
 export default function Slots() {
   const { data: slots, isLoading } = useGetSlotsQuery({
     page: 1,
-    limit: 1000000,
+    limit: 200,
   });
 
   const { data: availableSlots, isError } = useGetAvailableSlotsQuery({
     page: 1,
-    limit: 1000000,
+    limit: 200,
   });
 
   return (
@@ -92,7 +92,9 @@ export default function Slots() {
                 {isError ? (
                   <div>Not slots found</div>
                 ) : (
-                  <DataTable data={availableSlots?.data} columns={columns} />
+                  <>
+                    <DataTable data={availableSlots?.data} columns={columns} />
+                  </>
                 )}
               </div>
             </TabsContent>

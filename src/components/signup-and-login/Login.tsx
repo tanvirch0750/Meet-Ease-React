@@ -105,13 +105,29 @@ export default function Login() {
             </p>
           </div>
           <div>
-            <h4 className="text-white text-2xl font-semibold">
+            {/* <h4 className="text-white text-2xl font-semibold">
               Simple & Secure Login
             </h4>
             <p className="text-base text-gray-300 mt-3 leading-relaxed">
               Our login process is designed to be straightforward and secure. We
               prioritize your privacy and data security.
-            </p>
+            </p> */}
+
+            <h4 className="text-white text-lg font-semibold">
+              For checking purpose use this creadintial:
+            </h4>
+            <div className=" mt-2 flex flex-col gap-3">
+              <div>
+                <h2>Admin Login</h2>
+                <p>Email: nahid@gmail.com</p>
+                <p>Password: 123456</p>
+              </div>
+              <div>
+                <h2>Usre Login</h2>
+                <p>Email: zahid@gmail.com</p>
+                <p>Password: 123456</p>
+              </div>
+            </div>
           </div>
         </div>
 
