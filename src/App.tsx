@@ -4,6 +4,7 @@ import router from './router';
 import useAuthCheck from './hooks/useAuthCheck';
 import Loader from './components/ui/loader';
 import ScrollToTopButton from './components/scroll-to-top-button/scrollToTopButton';
+import { Suspense } from 'react';
 
 function App() {
   const authCheck = useAuthCheck();
@@ -12,7 +13,10 @@ function App() {
     <Loader />
   ) : (
     <>
-      <RouterProvider router={router} />
+      <Suspense fallback={<Loader />}>
+        <RouterProvider router={router} />
+      </Suspense>
+
       <ScrollToTopButton />
     </>
   );

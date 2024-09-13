@@ -22,7 +22,7 @@ export default function AboutHero() {
         <div className="container relative mx-auto">
           <div className="items-center flex flex-wrap">
             <div className="w-full lg:w-8/12 px-4 ml-auto mr-auto text-center">
-              <div className="pr-12">
+              <div className="mt-16 md:mt-0">
                 <h1 className="text-white font-semibold text-4xl">
                   Behind the Spaces: Our Story
                 </h1>

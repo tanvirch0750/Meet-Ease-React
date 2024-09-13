@@ -22,12 +22,12 @@ export default function SectionHeader({
     <header
       ref={ref}
       className={cn(
-        'max-w-2xl mx-auto my-12 text-center px-4 md:px-0',
+        ' max-w-4xl md:max-w-2xl mx-auto my-12 text-center px-2 md:px-0',
         className
       )}
     >
       <motion.h1
-        className="md:text-3xl text-xl mb-4"
+        className="md:text-3xl text-base mb-4"
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, ease: 'easeInOut' }}

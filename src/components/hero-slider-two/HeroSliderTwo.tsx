@@ -92,10 +92,10 @@ const Carousel: React.FC = () => {
                 <h1 className="title text-4xl md:text-6xl font-light max-w-[700px] md:w-[850px] md:max-w-[770px] mt-4">
                   {sliderItem.title}
                 </h1>
-                <h2 className="topic text-2xl md:text-4xl text-emerald-500 my-8">
+                <h2 className="topic text-2xl md:text-4xl text-emerald-500 py-4 md:my-8">
                   {sliderItem.type}
                 </h2>
-                <p className="des text-base text-white font-medium max-w-[500px]">
+                <p className="des text-sm md:text-base text-white font-medium max-w-[500px] ">
                   {sliderItem.description}
                 </p>
                 <div className="buttons">
@@ -109,7 +109,7 @@ const Carousel: React.FC = () => {
         </div>
 
         {/* Thumbnails */}
-        <div className="thumbnail" ref={thumbnailBorderRef}>
+        <div className="thumbnail !hidden md:!flex" ref={thumbnailBorderRef}>
           {sliderItems.map((sliderItem) => (
             <div className="item" key={sliderItem?.type}>
               <img src={sliderItem?.img} alt="Thumbnail 1" />
@@ -123,7 +123,7 @@ const Carousel: React.FC = () => {
         </div>
 
         {/* Arrows */}
-        <div className="arrows">
+        <div className="arrows ">
           <button id="prev" onClick={() => showSlider('prev')}>
             &lt;
           </button>

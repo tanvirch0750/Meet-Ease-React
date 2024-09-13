@@ -1,34 +1,43 @@
 import { createBrowserRouter } from 'react-router-dom';
-import ErrorPage from './pages/error/ErrorPage';
-import HomePage from './pages/home/HomePage';
-import AboutUsPage from './pages/about-us/AboutUs';
-import RoomListPage from './pages/room-list/RoomListPage';
-import RoomDetailPage from './pages/room-details/RoomDetails';
-import ContactUsPage from './pages/contact-us/ContactUs';
-import BookingPage from './pages/booking/BookingPage';
-import SignupPage from './pages/signup/SignupPage';
-import LoginPage from './pages/login/LoginPage';
-import Dashboard from './pages/admin/dashboard';
+
+// import BookingPage from './pages/booking/BookingPage';
 import AppShell from './components/ui/admin/app-shell';
-import Rooms from './pages/admin/rooms';
-import Settings from './pages/admin/settings';
-import SettingsProfile from './pages/admin/settings/profile';
-import SettingsAccount from './pages/admin/settings/account';
 import PublicRoute from './components/ui/publicRoute';
 import PrivateRoute from './components/ui/private-route';
 import PrivateRouteAdmin from './components/ui/private-route-admin';
-import Catgories from './pages/admin/category';
-import EditRoom from './pages/admin/rooms/components/edit-room';
-import Slots from './pages/admin/slots';
-import EditSlot from './pages/admin/slots/components/edit-slot';
-import BookingCancelPage from './pages/booking-cancel/BookingCancelPage';
-import MyBookingsPage from './pages/my-bookings/MyBookingsPage';
-import Bookings from './pages/admin/bookings';
-import ProfilePage from './pages/profile/ProfilePage';
-import Users from './pages/admin/users';
+
+import { lazy } from 'react';
+
+// Lazy load your pages
+const HomePage = lazy(() => import('./pages/home/HomePage'));
+const AboutUsPage = lazy(() => import('./pages/about-us/AboutUs'));
+const RoomListPage = lazy(() => import('./pages/room-list/RoomListPage'));
+const RoomDetailPage = lazy(() => import('./pages/room-details/RoomDetails'));
+const ContactUsPage = lazy(() => import('./pages/contact-us/ContactUs'));
+const BookingPage = lazy(() => import('./pages/booking/BookingPage'));
+const SignupPage = lazy(() => import('./pages/signup/SignupPage'));
+const LoginPage = lazy(() => import('./pages/login/LoginPage'));
+const Dashboard = lazy(() => import('./pages/admin/dashboard'));
+const Rooms = lazy(() => import('./pages/admin/rooms'));
+const Settings = lazy(() => import('./pages/admin/settings'));
+const SettingsProfile = lazy(() => import('./pages/admin/settings/profile'));
+const SettingsAccount = lazy(() => import('./pages/admin/settings/account'));
+const Catgories = lazy(() => import('./pages/admin/category'));
+const EditRoom = lazy(() => import('./pages/admin/rooms/components/edit-room'));
+const Slots = lazy(() => import('./pages/admin/slots'));
+const EditSlot = lazy(() => import('./pages/admin/slots/components/edit-slot'));
+const BookingCancelPage = lazy(
+  () => import('./pages/booking-cancel/BookingCancelPage')
+);
+const MyBookingsPage = lazy(() => import('./pages/my-bookings/MyBookingsPage'));
+const Bookings = lazy(() => import('./pages/admin/bookings'));
+const ProfilePage = lazy(() => import('./pages/profile/ProfilePage'));
+const Users = lazy(() => import('./pages/admin/users'));
+const ErrorPage = lazy(() => import('./pages/error/ErrorPage'));
 
 const router = createBrowserRouter([
   // Auth routes
+
   {
     path: '/',
     element: <HomePage />,
