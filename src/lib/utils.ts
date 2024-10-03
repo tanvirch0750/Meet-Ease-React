@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatDateToYYYYMMDD = (dateString: any): any => {
+export const formatDateToYYYYMMDD = (dateString: string): string | null => {
   if (dateString) {
     const date = new Date(dateString); // Convert string to Date object
     const year = date.getFullYear();
@@ -16,4 +16,13 @@ export const formatDateToYYYYMMDD = (dateString: any): any => {
   } else {
     return null;
   }
+};
+
+export const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 };

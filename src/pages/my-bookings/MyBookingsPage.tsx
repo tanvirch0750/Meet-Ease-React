@@ -1,5 +1,8 @@
 import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
+import { AddaReview } from '@/components/review/AddReview';
+import { EditReview } from '@/components/review/EditReview';
+
 import Loader from '@/components/ui/loader';
 import MaxWidthWrapper from '@/components/ui/max-width-wrapper';
 import {
@@ -12,6 +15,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useGetMyBookingsQuery } from '@/redux/features/bookings/myBookingsApi';
+import { IBooking } from '@/types/bookingType';
 
 export default function MyBookingsPage() {
   const {
@@ -67,11 +71,14 @@ export default function MyBookingsPage() {
                 <TableHead className="text-right text-gray-800 font-semibold">
                   Status
                 </TableHead>
+                <TableHead className="text-right text-gray-800 font-semibold">
+                  Add Review
+                </TableHead>
               </TableRow>
             </TableHeader>
 
             <TableBody>
-              {bookings?.data?.map((booking: any) => (
+              {bookings?.data?.map((booking: IBooking) => (
                 <TableRow
                   key={booking?._id}
                   className=" border-gray-300 hover:bg-gray-200"
@@ -84,7 +91,7 @@ export default function MyBookingsPage() {
 
                   <TableCell>
                     {booking?.slots
-                      ?.map((sl: any) => `${sl?.startTime} - ${sl?.endTime}`)
+                      ?.map((sl) => `${sl?.startTime} - ${sl?.endTime}`)
                       .join(', ')}
                   </TableCell>
                   <TableCell>{booking?.totalAmount}</TableCell>
@@ -99,6 +106,21 @@ export default function MyBookingsPage() {
                     >
                       {booking?.isConfirmed}
                     </span>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    {booking?.isReviewAdded ? (
+                      <>
+                        <EditReview reviewId={booking?.reviewId as string} />
+                      </>
+                    ) : (
+                      <>
+                        <AddaReview
+                          user={booking?.user?._id as string}
+                          room={booking?.room?._id as string}
+                          bookingId={booking?._id as string}
+                        />
+                      </>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}

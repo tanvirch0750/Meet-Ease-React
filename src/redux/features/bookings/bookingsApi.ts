@@ -1,13 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from '../../api/apiSlice';
 
 const bookingApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllBookings: builder.query({
-      query: (options: any) => {
+      query: (options: Record<string, unknown>) => {
         let queryString = '/bookings';
 
         if (options.page || options.limit || options.searchTerm) {
@@ -55,6 +51,14 @@ const bookingApi = api.injectEndpoints({
         'dashboard',
       ],
     }),
+    isReviewAdded: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/bookings/review-added/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['bookings', 'myBookings'],
+    }),
   }),
 });
 
@@ -62,4 +66,5 @@ export const {
   useAddBookingMutation,
   useCancelBookingMutation,
   useGetAllBookingsQuery,
+  useIsReviewAddedMutation,
 } = bookingApi;

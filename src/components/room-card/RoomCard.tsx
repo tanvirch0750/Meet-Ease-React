@@ -1,6 +1,7 @@
+import { IRoom } from '@/types/roomType';
 import { NavLink } from 'react-router-dom';
 
-export default function RoomCard({ room }: { room: any }) {
+export default function RoomCard({ room }: { room: IRoom }) {
   return (
     <div className="relative flex w-full max-w-full flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md group">
       <NavLink
@@ -28,7 +29,7 @@ export default function RoomCard({ room }: { room: any }) {
         <div className="mt-4 mb-5 flex items-center justify-between">
           <p>
             <span className="text-2xl font-bold text-gray-800">
-              ${room?.pricePerSlot}
+              bdt - {room?.pricePerSlot}
             </span>
             <span className="text-[14px] text-gray-800 pl-2 font-medium">
               (Price Per Slot)
