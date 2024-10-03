@@ -13,7 +13,7 @@ const RoomListFilter = () => {
   const filters = useSelector(selectFilters);
 
   // Handle Capacity Change
-  const handleCapacityChange = (e: any) => {
+  const handleCapacityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = e.currentTarget as HTMLInputElement;
     dispatch(
       setCapacity({
@@ -24,7 +24,7 @@ const RoomListFilter = () => {
   };
 
   // Handle Price Change
-  const handlePriceChange = (e: any) => {
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = e.currentTarget as HTMLInputElement;
     dispatch(
       setPrice({

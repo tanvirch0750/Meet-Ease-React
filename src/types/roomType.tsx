@@ -9,6 +9,7 @@ export type IRoom = {
   images: string[];
   category: {
     name: string;
+    _id?: string;
   };
   isFeatured: boolean;
   description: string;

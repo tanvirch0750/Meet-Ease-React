@@ -2,8 +2,9 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableRowActions } from './data-table-row-actions';
+import { IRoom } from '@/types/roomType';
 
-export const columns: ColumnDef<any>[] = [
+export const columns: ColumnDef<IRoom>[] = [
   {
     accessorKey: 'room',
     header: ({ column }) => (
@@ -84,7 +85,7 @@ export const columns: ColumnDef<any>[] = [
             {row
               .getValue('slots')
               // @ts-ignore
-              ?.map((sl: any) => `${sl?.startTime} - ${sl?.endTime}`)
+              ?.map((sl) => `${sl?.startTime} - ${sl?.endTime}`)
               .join(', ')}
           </span>
         </div>

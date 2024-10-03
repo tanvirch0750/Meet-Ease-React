@@ -27,6 +27,7 @@ import { cn } from '@/lib/utils';
 import { Textarea } from '@/components/ui/textarea';
 import { useAddRoomMutation } from '@/redux/features/room/roomApi';
 import { useGetCaegoriesQuery } from '@/redux/features/category/categoryApi';
+import { ICategory } from '@/types/categoryType';
 
 const roomFormSchema = z.object({
   name: z.string({ message: 'Room name is required' }),
@@ -122,10 +123,11 @@ export default function RoomForm({
       Swal.fire({
         title: 'Room Createion Failed',
         // @ts-ignore
-        text: `Reason: ${error?.data?.message!}`,
+        text: `Reason: ${error?.data?.message}`,
         icon: 'error',
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, isError]);
 
   return (
@@ -224,8 +226,11 @@ export default function RoomForm({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {categories?.data?.map((category: any) => (
-                      <SelectItem value={category?._id} key={category?._id}>
+                    {categories?.data?.map((category: ICategory) => (
+                      <SelectItem
+                        value={category?._id as string}
+                        key={category?._id}
+                      >
                         {category?.name}
                       </SelectItem>
                     ))}

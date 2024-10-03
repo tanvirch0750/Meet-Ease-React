@@ -2,8 +2,9 @@ import { ColumnDef } from '@tanstack/react-table';
 
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableRowActions } from './data-table-row-actions';
+import { IRoom } from '@/types/roomType';
 
-export const columns: ColumnDef<any>[] = [
+export const columns: ColumnDef<IRoom>[] = [
   {
     accessorKey: 'roomName',
     header: ({ column }) => (

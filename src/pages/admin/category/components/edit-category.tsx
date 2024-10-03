@@ -10,8 +10,9 @@ import {
 
 import EditCategoryForm from './edit-category-form';
 import { PencilIcon } from 'lucide-react';
+import { ICategory } from '@/types/categoryType';
 
-export function EditCategory({ category }: { category: any }) {
+export function EditCategory({ category }: { category: ICategory }) {
   return (
     <Dialog>
       <DialogTrigger asChild>

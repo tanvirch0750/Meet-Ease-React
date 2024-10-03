@@ -7,6 +7,7 @@ export type IBooking = {
   };
   user?: {
     email: string;
+    name: string;
     _id: string;
   };
   slots: {

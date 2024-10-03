@@ -1,10 +1,5 @@
 import ErrorPage from '@/pages/error/ErrorPage';
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-} from 'react';
+import { ReactNode, ReactPortal } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
 export default function ReactErrorBoundary(props: {
@@ -12,7 +7,6 @@ export default function ReactErrorBoundary(props: {
     | string
     | number
     | boolean
-    | ReactElement<any, string | JSXElementConstructor<any>>
     | Iterable<ReactNode>
     | ReactPortal
     | null

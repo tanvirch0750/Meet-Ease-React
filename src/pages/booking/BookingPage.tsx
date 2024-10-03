@@ -16,14 +16,12 @@ import { useGetProfileDataQuery } from '@/redux/features/user/userApi';
 export default function BookingPage() {
   const [date, setDate] = useState<Date>();
   const [isProccedToCheckout, setIsProccedToCheckout] = useState(false);
-  const [selectedSlots, setSelectedSlots] = useState<any[]>([]);
+  const [selectedSlots, setSelectedSlots] = useState([]);
   const { id } = useParams();
   const { data: room } = useGetRoomQuery(id!);
   const { data: user } = useGetProfileDataQuery('');
 
-  console.log(user);
-
-  const updatedDate = formatDateToYYYYMMDD(date);
+  const updatedDate = formatDateToYYYYMMDD(date as unknown as string);
 
   const {
     data: availableSlots,
@@ -39,7 +37,7 @@ export default function BookingPage() {
   console.log('available slots', availableSlots);
 
   // Handle slot selection
-  const handleSlotClick = (slot: any) => {
+  const handleSlotClick = (slot) => {
     if (selectedSlots.includes(slot)) {
       // Remove slot if it's already selected
       setSelectedSlots(selectedSlots.filter((s) => s._id !== slot._id));
@@ -49,7 +47,7 @@ export default function BookingPage() {
     }
   };
 
-  const isSlotSelected = (slot: any) => selectedSlots.includes(slot);
+  const isSlotSelected = (slot) => selectedSlots.includes(slot);
 
   return (
     <>
@@ -73,7 +71,7 @@ export default function BookingPage() {
                     Select a Date
                   </h2>
                   <DatePicker
-                    date={date}
+                    date={date as Date}
                     setDate={setDate}
                     isSelected={selectedSlots?.length > 0}
                   />
@@ -95,7 +93,7 @@ export default function BookingPage() {
                             Please select slots according to your need{' '}
                           </p>
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {availableSlots?.data?.map((slot: any) => (
+                            {availableSlots?.data?.map((slot) => (
                               <div
                                 key={slot?._id}
                                 onClick={() => handleSlotClick(slot)}

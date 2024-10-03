@@ -1,6 +1,6 @@
 type PrimaryButtonProps = {
   text: string;
-  handleOnClick?: any;
+  handleOnClick?: () => void;
 };
 
 export default function PrimaryButton({

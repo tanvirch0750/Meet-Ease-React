@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useEffect, useState } from 'react';
 import { userLoggedIn } from '../redux/features/auth/authSlice';
 import { useAppDispatch } from '../redux/hooks';

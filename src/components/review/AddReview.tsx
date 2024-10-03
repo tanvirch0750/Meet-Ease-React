@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Star } from 'lucide-react';
-import { IReview } from '@/types/reviewType';
 import { useAddReviewMutation } from '@/redux/features/reviews/reviewsApi';
 import Swal from 'sweetalert2';
 import { DialogClose } from '@radix-ui/react-dialog';
@@ -47,7 +46,7 @@ export function AddaReview({
       return;
     }
 
-    const reviewData: IReview = {
+    const reviewData = {
       review: comment,
       room: room,
       user: user,

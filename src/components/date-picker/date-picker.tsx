@@ -14,9 +14,9 @@ export function DatePicker({
   setDate,
   isSelected,
 }: {
-  date: any;
-  setDate: any;
-  isSelected: any;
+  date: Date;
+  setDate: (date: Date | undefined) => void;
+  isSelected: boolean;
 }) {
   return (
     <Popover>

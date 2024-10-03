@@ -100,10 +100,11 @@ export default function SlotForm({
       Swal.fire({
         title: 'Slot Createion Failed',
         // @ts-ignore
-        text: `Reason: ${error?.data?.message!}`,
+        text: `Reason: ${error?.data?.message}`,
         icon: 'error',
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, isError]);
 
   console.log(error);
@@ -147,7 +148,7 @@ export default function SlotForm({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {rooms?.data?.map((room: any) => (
+                    {rooms?.data?.map((room: IRoom) => (
                       <SelectItem value={room?._id} key={room?._id}>
                         {room?.name} - {room?.roomNo}
                       </SelectItem>

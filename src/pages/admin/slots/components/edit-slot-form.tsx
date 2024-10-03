@@ -26,6 +26,8 @@ import {
 
 import { useGetRoomsQuery } from '@/redux/features/room/roomApi';
 import { useEditSlotMutation } from '@/redux/features/slots/slotsApi';
+import { ISlot } from '@/types/slotType';
+import { IRoom } from '@/types/roomType';
 
 const timeStringSchema = z.string().refine(
   (time) => {
@@ -53,7 +55,7 @@ const slotFormSchema = z.object({
 
 type SlotFormValues = z.infer<typeof slotFormSchema>;
 
-export default function EditSlotForm({ slot }: { slot: any }) {
+export default function EditSlotForm({ slot }: { slot: ISlot }) {
   const { data: rooms } = useGetRoomsQuery({
     page: 1,
     limit: 100,
@@ -94,11 +96,12 @@ export default function EditSlotForm({ slot }: { slot: any }) {
       Swal.fire({
         title: 'Slot Update Failed',
         // @ts-ignore
-        text: `Reason: ${error?.data?.message!}`,
+        text: `Reason: ${error?.data?.message}`,
         icon: 'error',
         showConfirmButton: true,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, isError]);
 
   return (
@@ -140,7 +143,7 @@ export default function EditSlotForm({ slot }: { slot: any }) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {rooms?.data?.map((room: any) => (
+                    {rooms?.data?.map((room: IRoom) => (
                       <SelectItem value={room?._id} key={room?._id}>
                         {room?.name} - {room?.roomNo}
                       </SelectItem>

@@ -1,4 +1,3 @@
-'use client';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
@@ -61,11 +60,12 @@ function Form() {
       Swal.fire({
         title: 'Message Send Failed',
         // @ts-ignore
-        text: `Reason: ${error?.data?.message!}`,
+        text: `Reason: ${error?.data?.message}`,
         icon: 'error',
       });
     }
-  }, [isSuccess, isError]);
+    // @ts-ignore
+  }, [isSuccess, isError, error?.data?.message]);
 
   // console.log(formik.values.email);
 

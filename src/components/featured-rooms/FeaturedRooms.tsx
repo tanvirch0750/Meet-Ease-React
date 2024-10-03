@@ -14,11 +14,11 @@ import SeeMoreButton from '../ui/see-more-button';
 import PrimaryButton from '../ui/primary-button';
 import { useGetRoomsQuery } from '@/redux/features/room/roomApi';
 import { Link } from 'react-router-dom';
+import { IRoom } from '@/types/roomType';
 
 export function FeaturedRooms() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
-  // @ts-ignore
   const [count, setCount] = React.useState(0);
 
   const { data: rooms } = useGetRoomsQuery({
@@ -26,7 +26,7 @@ export function FeaturedRooms() {
     limit: 100,
   });
 
-  const filteredData = rooms?.data?.filter((room: any) => room?.isFeatured);
+  const filteredData = rooms?.data?.filter((room: IRoom) => room?.isFeatured);
 
   console.log('filtered data', filteredData);
 
@@ -54,7 +54,7 @@ export function FeaturedRooms() {
       <MaxWidthWrapper className="pb-10 md:pb-0 pt-0 max-w-6xl">
         <Carousel setApi={setApi} className="w-full">
           <CarouselContent>
-            {filteredData?.map((room: any) => (
+            {filteredData?.map((room: IRoom) => (
               <CarouselItem key={room?._id}>
                 <section className="pb-14 md:pb-24 pt-0 md:pt-8 bg-white text-zinc-900 relative overflow-hidden z-10">
                   <div className="container px-4 mx-auto">

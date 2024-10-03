@@ -1,9 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { IBooking } from '@/types/bookingType';
 
-export function RecentSales({ bookings }: { bookings: any }) {
+export function RecentSales({ bookings }: { bookings: IBooking[] }) {
   return (
     <div className="space-y-8">
-      {bookings?.map((data: any) => (
+      {bookings?.map((data) => (
         <div key={data?._id} className="flex items-center">
           <Avatar className="h-9 w-9">
             <AvatarImage

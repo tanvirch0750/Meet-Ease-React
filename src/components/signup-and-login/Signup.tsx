@@ -95,6 +95,7 @@ export default function Signup() {
       });
       navigate('/login');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error, navigate]);
 
   console.log(errorMsg);

@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { useGetCaegoriesQuery } from '@/redux/features/category/categoryApi';
 import { selectFilters } from '@/redux/features/room/roomsSelector';
 import { setCategory, setSearchQuery } from '@/redux/features/room/roomsSlice';
+import { ICategory } from '@/types/categoryType';
 import { SearchIcon } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -38,14 +39,11 @@ export default function SearchCategoryFilter() {
             className="w-[344px] md:w-72 p-2 border border-gray-300 rounded bg-gray-50 text-gray-800"
           >
             <option value="">All Categories</option>
-            {categories?.data?.map((category: any) => (
+            {categories?.data?.map((category: ICategory) => (
               <option key={category?._id} value={category?._id}>
                 {category?.name}
               </option>
             ))}
-
-            {/* <option value="meeting">Meeting</option>
-            <option value="workshop">Workshop</option> */}
           </select>
         </div>
       </div>

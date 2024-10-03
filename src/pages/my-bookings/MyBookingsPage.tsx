@@ -35,7 +35,7 @@ export default function MyBookingsPage() {
   return (
     <>
       <Header pageType="normal" />
-      <MaxWidthWrapper className=" pb-24 pt-10 text-gray-900">
+      <MaxWidthWrapper className=" max-w-full pb-24 pt-10 text-gray-900">
         <h2 className=" mb-12 text-center font-bold text-3xl">My Bookings</h2>
         {isError || bookings?.data?.length < 0 ? (
           <div>
@@ -78,52 +78,55 @@ export default function MyBookingsPage() {
             </TableHeader>
 
             <TableBody>
-              {bookings?.data?.map((booking: IBooking) => (
-                <TableRow
-                  key={booking?._id}
-                  className=" border-gray-300 hover:bg-gray-200"
-                >
-                  <TableCell className="font-medium">
-                    {booking?.room?.name}
-                  </TableCell>
-                  <TableCell>{booking?.room?.roomNo}</TableCell>
-                  <TableCell>{booking?.date}</TableCell>
+              {bookings.data
+                .slice()
+                .reverse()
+                .map((booking: IBooking) => (
+                  <TableRow
+                    key={booking?._id}
+                    className=" border-gray-300 hover:bg-gray-200"
+                  >
+                    <TableCell className="font-medium">
+                      {booking?.room?.name}
+                    </TableCell>
+                    <TableCell>{booking?.room?.roomNo}</TableCell>
+                    <TableCell>{booking?.date}</TableCell>
 
-                  <TableCell>
-                    {booking?.slots
-                      ?.map((sl) => `${sl?.startTime} - ${sl?.endTime}`)
-                      .join(', ')}
-                  </TableCell>
-                  <TableCell>{booking?.totalAmount}</TableCell>
-                  <TableCell>{booking?.trxId}</TableCell>
-                  <TableCell className="text-right">
-                    <span
-                      className={
-                        booking?.isConfirmed === 'confirmed'
-                          ? 'bg-green-200 text-green-950 font-semibold px-2 py-1 rounded-lg'
-                          : 'bg-red-200 text-red-950 font-semibold px-2 py-1 rounded-lg'
-                      }
-                    >
-                      {booking?.isConfirmed}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {booking?.isReviewAdded ? (
-                      <>
-                        <EditReview reviewId={booking?.reviewId as string} />
-                      </>
-                    ) : (
-                      <>
-                        <AddaReview
-                          user={booking?.user?._id as string}
-                          room={booking?.room?._id as string}
-                          bookingId={booking?._id as string}
-                        />
-                      </>
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
+                    <TableCell>
+                      {booking?.slots
+                        ?.map((sl) => `${sl?.startTime} - ${sl?.endTime}`)
+                        .join(', ')}
+                    </TableCell>
+                    <TableCell>{booking?.totalAmount}</TableCell>
+                    <TableCell>{booking?.trxId}</TableCell>
+                    <TableCell className="text-right">
+                      <span
+                        className={
+                          booking?.isConfirmed === 'confirmed'
+                            ? 'bg-green-200 text-green-950 font-semibold px-2 py-1 rounded-lg'
+                            : 'bg-red-200 text-red-950 font-semibold px-2 py-1 rounded-lg'
+                        }
+                      >
+                        {booking?.isConfirmed}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {booking?.isReviewAdded ? (
+                        <>
+                          <EditReview reviewId={booking?.reviewId as string} />
+                        </>
+                      ) : (
+                        <>
+                          <AddaReview
+                            user={booking?.user?._id as string}
+                            room={booking?.room?._id as string}
+                            bookingId={booking?._id as string}
+                          />
+                        </>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         )}

@@ -27,6 +27,8 @@ import { cn } from '@/lib/utils';
 import { Textarea } from '@/components/ui/textarea';
 import { useEditRoomMutation } from '@/redux/features/room/roomApi';
 import { useGetCaegoriesQuery } from '@/redux/features/category/categoryApi';
+import { IRoom } from '@/types/roomType';
+import { ICategory } from '@/types/categoryType';
 
 const roomFormSchema = z.object({
   name: z.string({ message: 'Room name is required' }),
@@ -50,7 +52,7 @@ const roomFormSchema = z.object({
 
 type RoomFormValues = z.infer<typeof roomFormSchema>;
 
-export default function EditRoomForm({ room }: { room: any }) {
+export default function EditRoomForm({ room }: { room: IRoom }) {
   const { data: categories } = useGetCaegoriesQuery({
     page: 1,
     limit: 100,
@@ -120,11 +122,12 @@ export default function EditRoomForm({ room }: { room: any }) {
       Swal.fire({
         title: 'Room Update Failed',
         // @ts-ignore
-        text: `Reason: ${error?.data?.message!}`,
+        text: `Reason: ${error?.data?.message}`,
         icon: 'error',
         showConfirmButton: true,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, isError]);
 
   return (
@@ -223,7 +226,7 @@ export default function EditRoomForm({ room }: { room: any }) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="">
-                    {categories?.data?.map((category: any) => (
+                    {categories?.data?.map((category: ICategory) => (
                       <SelectItem value={category?._id} key={category?._id}>
                         {category?.name}
                       </SelectItem>

@@ -1,17 +1,10 @@
 import { useState } from 'react';
 
-const ImageGallery = ({ images }: { images: any }) => {
-  // const images = [
-  //   'https://pagedone.io/asset/uploads/1700471851.png',
-  //   'https://pagedone.io/asset/uploads/1711514857.png',
-  //   'https://pagedone.io/asset/uploads/1711514875.png',
-  //   'https://pagedone.io/asset/uploads/1711514892.png',
-  // ];
-
+const ImageGallery = ({ images }: { images: string[] }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [isFading, setIsFading] = useState(false); // State to handle animation
 
-  const handleThumbnailClick = (image: any) => {
+  const handleThumbnailClick = (image: string) => {
     if (image !== selectedImage) {
       setIsFading(true); // Trigger fade out
       setTimeout(() => {
@@ -36,7 +29,7 @@ const ImageGallery = ({ images }: { images: any }) => {
 
       {/* Thumbnail Section */}
       <div className="grid grid-cols-4 gap-3">
-        {images.map((image: any, index: any) => (
+        {images.map((image: string, index: number) => (
           <div
             key={index}
             className={`cursor-pointer border-2 rounded-lg overflow-hidden ${

@@ -4,6 +4,7 @@ import Loader from '@/components/ui/loader';
 import MaxWidthWrapper from '@/components/ui/max-width-wrapper';
 import { useAddBookingMutation } from '@/redux/features/bookings/bookingsApi';
 import ErrorPage from '../error/ErrorPage';
+import { ISlot } from '@/types/slotType';
 
 export default function CheckoutPage({
   selectedSlots,
@@ -11,7 +12,7 @@ export default function CheckoutPage({
   setIsProccedToCheckout,
   date,
 }: {
-  selectedSlots: any;
+  selectedSlots: ISlot;
   user: any;
   setIsProccedToCheckout: any;
   date: any;

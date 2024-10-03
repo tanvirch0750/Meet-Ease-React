@@ -10,7 +10,7 @@ import SectionHeader from '../section-header/SectionHeader';
 import MaxWidthWrapper from '../ui/max-width-wrapper';
 
 const OurMission = () => {
-  const [activeTab, setActiveTab] = useState<any>(0);
+  const [activeTab, setActiveTab] = useState<number>(0);
   const [prevTab, setPrevTab] = useState(null);
 
   const tabs = [
@@ -44,7 +44,8 @@ const OurMission = () => {
     },
   ];
 
-  const handleTabHover = (index: any) => {
+  const handleTabHover = (index: number) => {
+    // @ts-ignore
     setPrevTab(activeTab);
     setActiveTab(index);
   };

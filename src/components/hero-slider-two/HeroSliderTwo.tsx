@@ -99,7 +99,7 @@ const Carousel: React.FC = () => {
                   {sliderItem.description}
                 </p>
                 <div className="buttons">
-                  <Link to={sliderItem?.link!}>
+                  <Link to={sliderItem?.link}>
                     <PrimaryButton text="Book Now" />
                   </Link>
                 </div>
