@@ -6,6 +6,7 @@ import Carousel from '@/components/hero-slider-two/HeroSliderTwo';
 import HowDoesItWork from '@/components/how-does-it-work/HowDoesItWork';
 import ServiceSection from '@/components/services/Services';
 import TestimonialsSection from '@/components/testimonials/Testimonials';
+import UserStoriesSection from '@/components/user-stories/user-stories';
 import WhyChooseUs from '@/components/why-choose-us/WhyChooseUs';
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <ServiceSection />
       <FeaturedRooms />
       <WhyChooseUs />
+      <UserStoriesSection />
       <HowDoesItWork />
       <TestimonialsSection />
       <Footer />

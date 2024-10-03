@@ -15,7 +15,9 @@ export default function AboutUsPage() {
         <AboutUsBanner />
 
         <OurMission />
-        <OurTeam />
+        <div id="our-team">
+          <OurTeam />
+        </div>
       </main>
 
       <Footer />

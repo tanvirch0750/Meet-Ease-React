@@ -8,6 +8,9 @@ import PrivateRoute from './components/ui/private-route';
 import PrivateRouteAdmin from './components/ui/private-route-admin';
 
 import { lazy } from 'react';
+import PrivacyPage from './pages/privacy-terms/PrivacyPage';
+import CareerPage from './pages/career/CareersPage';
+import BusinessPage from './pages/for-business/BusinessPage';
 
 // Lazy load your pages
 const HomePage = lazy(() => import('./pages/home/HomePage'));
@@ -62,7 +65,18 @@ const router = createBrowserRouter([
     path: '/about-us',
     element: <AboutUsPage />,
   },
-
+  {
+    path: '/privacy-policy',
+    element: <PrivacyPage />,
+  },
+  {
+    path: '/careers',
+    element: <CareerPage />,
+  },
+  {
+    path: '/for-business',
+    element: <BusinessPage />,
+  },
   {
     path: '/rooms',
     element: <RoomListPage />,
