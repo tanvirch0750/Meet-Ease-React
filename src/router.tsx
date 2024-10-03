@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter } from 'react-router-dom';
 
 // import BookingPage from './pages/booking/BookingPage';
@@ -19,9 +20,7 @@ const SignupPage = lazy(() => import('./pages/signup/SignupPage'));
 const LoginPage = lazy(() => import('./pages/login/LoginPage'));
 const Dashboard = lazy(() => import('./pages/admin/dashboard'));
 const Rooms = lazy(() => import('./pages/admin/rooms'));
-const Settings = lazy(() => import('./pages/admin/settings'));
-const SettingsProfile = lazy(() => import('./pages/admin/settings/profile'));
-const SettingsAccount = lazy(() => import('./pages/admin/settings/account'));
+const Profile = lazy(() => import('./pages/admin/profile'));
 const Catgories = lazy(() => import('./pages/admin/category'));
 const EditRoom = lazy(() => import('./pages/admin/rooms/components/edit-room'));
 const Slots = lazy(() => import('./pages/admin/slots'));
@@ -169,18 +168,8 @@ const router = createBrowserRouter([
         element: <Users />,
       },
       {
-        path: '/admin/dashboard/settings',
-        element: <Settings />,
-        children: [
-          {
-            index: true,
-            element: <SettingsProfile />,
-          },
-          {
-            path: 'account',
-            element: <SettingsAccount />,
-          },
-        ],
+        path: '/admin/dashboard/profile',
+        element: <Profile />,
       },
     ],
   },

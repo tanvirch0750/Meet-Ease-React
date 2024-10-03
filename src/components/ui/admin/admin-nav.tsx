@@ -57,7 +57,7 @@ export function AdminNav() {
         <DropdownMenuGroup>
           <DropdownMenuItem
             className="cursor-pointer"
-            onClick={() => navigate('/my-profile')}
+            onClick={() => navigate('/admin/dashboard/profile')}
           >
             Profile
           </DropdownMenuItem>

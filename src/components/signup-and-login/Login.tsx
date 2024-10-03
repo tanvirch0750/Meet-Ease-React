@@ -46,7 +46,7 @@ export default function Login() {
 
   const validateForm = (): boolean => {
     let valid = true;
-    let newErrors: FormErrors = { email: '', password: '' };
+    const newErrors: FormErrors = { email: '', password: '' };
 
     if (!formData.email) {
       newErrors.email = 'Email is required';
@@ -92,6 +92,7 @@ export default function Login() {
       });
       navigate('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, error, navigate]);
 
   return (

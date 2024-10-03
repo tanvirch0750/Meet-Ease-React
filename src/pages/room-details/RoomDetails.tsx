@@ -56,17 +56,26 @@ const RoomDetailPage = () => {
                       (Price Per Slot)
                     </span>
                   </h6>
-                  <StarRating
-                    averageRating={reviewStat?.data?.averageRating}
-                    totalReviews={reviewStat?.data?.totalReviews}
-                  />
-                  {/* Clickable reviews count */}
-                  <span
-                    className="text-gray-500 text-sm cursor-pointer hover:underline  pl-4"
-                    onClick={scrollToComments} // Scroll to comments on click
-                  >
-                    See all the reviews ({reviewStat?.data?.totalReviews})
-                  </span>
+                  {reviewStat?.data?.totalReviews > 0 ? (
+                    <>
+                      {' '}
+                      <StarRating
+                        averageRating={reviewStat?.data?.averageRating}
+                        totalReviews={reviewStat?.data?.totalReviews}
+                      />
+                      {/* Clickable reviews count */}
+                      <span
+                        className="text-gray-500 text-sm cursor-pointer hover:underline  pl-4"
+                        onClick={scrollToComments} // Scroll to comments on click
+                      >
+                        See all the reviews ({reviewStat?.data?.totalReviews})
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-gray-500 text-sm cursor-pointer hover:underline  pl-4">
+                      This room hasn't received any reviews yet
+                    </span>
+                  )}
                 </div>
                 <p className="text-gray-800 text-base font-normal mb-4">
                   {room?.data?.description
