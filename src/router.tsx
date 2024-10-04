@@ -44,6 +44,10 @@ const GlobalMarketingFirmCaseStudyPage = lazy(
   () => import('./pages/case-studies/GlobalMarketinFarm')
 );
 
+const BlogPost1 = lazy(() => import('./pages/blogs/BlogPostOnePage'));
+const BlogPost2 = lazy(() => import('./pages/blogs/BlogPostTwoPage'));
+const BlogPost3 = lazy(() => import('./pages/blogs/BlogPostThreePage'));
+
 const router = createBrowserRouter([
   // Auth routes
 
@@ -126,7 +130,33 @@ const router = createBrowserRouter([
       </>
     ),
   },
-
+  {
+    path: '/blog/5-tips-for-effective-meeting-room-booking',
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <BlogPost1 />
+      </>
+    ),
+  },
+  {
+    path: '/blog/benefits-of-co-working-spaces',
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <BlogPost2 />
+      </>
+    ),
+  },
+  {
+    path: '/blog/creating-a-productive-meeting-environment',
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <BlogPost3 />
+      </>
+    ),
+  },
   {
     path: '/rooms',
     element: (

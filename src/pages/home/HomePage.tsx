@@ -1,3 +1,4 @@
+import BlogSection from '@/components/blog-section/BlogSection';
 import FeaturedIn from '@/components/featured-in/FeaturedIn';
 import { FeaturedRooms } from '@/components/featured-rooms/FeaturedRooms';
 import Footer from '@/components/footer/footer';
@@ -16,10 +17,10 @@ export default function HomePage() {
 
   useEffect(() => {
     // Check if the URL contains a hash and scroll to the respective section
-    if (location.hash === '#user-stories') {
-      const element = document.getElementById('user-stories');
+    if (location.hash === '#user-stories' || location.hash === '#blogs') {
+      const element = document.getElementById(location.hash.replace('#', ''));
       if (element) {
-        // Scroll to the UserStoriesSection
+        // Scroll to the respective section
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
@@ -33,6 +34,7 @@ export default function HomePage() {
       <ServiceSection />
       <FeaturedRooms />
       <WhyChooseUs />
+      <BlogSection />
       <UserStoriesSection />
       <HowDoesItWork />
       <TestimonialsSection />

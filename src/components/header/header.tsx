@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import MaxWidthWrapper from '../ui/max-width-wrapper';
 import PrimaryButton from '../ui/primary-button';
 import { MobileHeader } from './mobile-header';
@@ -8,11 +8,7 @@ import { UserNav } from '../ui/user-nav';
 export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
   const auth = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
-
-  const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `px-2 py-1 ${
-      isActive ? 'text-emerald-500 font-semibold' : 'hover:text-emerald-500'
-    }`;
+  const location = useLocation(); // Get current location
 
   return (
     <header
@@ -34,16 +30,64 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
         </div>
 
         <nav className="hidden md:flex items-center gap-4 text-[16px] font-medium">
-          <NavLink to="/" className={getNavLinkClass}>
+          <NavLink
+            to="/"
+            className={`px-2 py-1 ${
+              location.pathname === '/' && !location.hash
+                ? 'text-emerald-500 font-semibold'
+                : 'hover:text-emerald-500'
+            }`}
+          >
             Home
           </NavLink>
-          <NavLink to="/about-us" className={getNavLinkClass}>
+          <NavLink
+            to="/about-us"
+            className={`px-2 py-1 ${
+              location.pathname === '/about-us'
+                ? 'text-emerald-500 font-semibold'
+                : 'hover:text-emerald-500'
+            }`}
+          >
             About Us
           </NavLink>
-          <NavLink to="/rooms" className={getNavLinkClass}>
+          <NavLink
+            to="/rooms"
+            className={`px-2 py-1 ${
+              location.pathname === '/rooms'
+                ? 'text-emerald-500 font-semibold'
+                : 'hover:text-emerald-500'
+            }`}
+          >
             Rooms
           </NavLink>
-          <NavLink to="/contact-us" className={getNavLinkClass}>
+          <NavLink
+            to="/#user-stories"
+            className={`px-2 py-1 ${
+              location.hash === '#user-stories'
+                ? ' font-semibold'
+                : 'hover:text-emerald-500'
+            }`}
+          >
+            Success Stories
+          </NavLink>
+          <NavLink
+            to="/#blogs"
+            className={`px-2 py-1 ${
+              location.hash === '#user-stories'
+                ? ' font-semibold'
+                : 'hover:text-emerald-500'
+            }`}
+          >
+            Blogs
+          </NavLink>
+          <NavLink
+            to="/contact-us"
+            className={`px-2 py-1 ${
+              location.pathname === '/contact-us'
+                ? 'text-emerald-500 font-semibold'
+                : 'hover:text-emerald-500'
+            }`}
+          >
             Contact Us
           </NavLink>
 
