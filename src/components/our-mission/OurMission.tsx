@@ -56,7 +56,7 @@ const OurMission = () => {
   };
 
   return (
-    <section className="relative pt-10 pb-40">
+    <section className="relative pt-10 pb-40" id="our-mission">
       <div
         className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
         style={{ height: '80px' }}

@@ -53,7 +53,7 @@ const teamMembers = [
 
 export default function OurTeam() {
   return (
-    <div className=" bg-gray-100 py-12">
+    <div className=" bg-gray-100 py-12" id="our-team">
       <SectionHeader
         className=" max-w-5xl"
         headingSpanOne="Meet the Dream Team"

@@ -80,6 +80,30 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           >
             Blogs
           </NavLink>
+          {location?.pathname.includes('/about-us') && (
+            <>
+              <NavLink
+                to="/about-us/#our-mission"
+                className={`px-2 py-1 ${
+                  location.hash === '#our-mission'
+                    ? ' font-semibold'
+                    : 'hover:text-emerald-500'
+                }`}
+              >
+                Our Mission
+              </NavLink>
+              <NavLink
+                to="/about-us/#our-team"
+                className={`px-2 py-1 ${
+                  location.hash === '#our-team'
+                    ? ' font-semibold'
+                    : 'hover:text-emerald-500'
+                }`}
+              >
+                Our Team
+              </NavLink>
+            </>
+          )}
           <NavLink
             to="/contact-us"
             className={`px-2 py-1 ${
