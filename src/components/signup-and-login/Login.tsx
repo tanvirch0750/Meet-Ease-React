@@ -2,6 +2,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useSigninMutation } from '@/redux/features/auth/authApi';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import GoogleSignIn from '../google-sign-in/GoogleSignIn';
 
 interface FormData {
   email: string;
@@ -131,74 +132,79 @@ export default function Login() {
             </div>
           </div>
         </div>
-
-        <form
-          className="md:col-span-2 w-full py-6 px-6 sm:px-16"
-          onSubmit={handleSubmit}
-        >
-          <div className="mb-6">
-            <h3 className="text-gray-800 text-3xl font-bold">Login</h3>
-          </div>
-
-          <div className="space-y-4">
-            <div>
-              <label className="text-gray-800 text-base block">Email Id</label>
-              <div className="relative flex items-center">
-                <input
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                  placeholder="Enter email"
-                />
-              </div>
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-              )}
+        <div className="md:col-span-2 w-full py-6 px-6 sm:px-16">
+          <form className="" onSubmit={handleSubmit}>
+            <div className="mb-6">
+              <h3 className="text-gray-800 text-3xl font-bold">Login</h3>
             </div>
 
-            <div>
-              <label className="text-gray-800 text-base mb-1 block">
-                Password
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  name="password"
-                  type="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                  placeholder="Enter password"
-                />
+            <div className="space-y-4">
+              <div>
+                <label className="text-gray-800 text-base block">
+                  Email Id
+                </label>
+                <div className="relative flex items-center">
+                  <input
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                    placeholder="Enter email"
+                  />
+                </div>
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-              )}
+
+              <div>
+                <label className="text-gray-800 text-base mb-1 block">
+                  Password
+                </label>
+                <div className="relative flex items-center">
+                  <input
+                    name="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                    placeholder="Enter password"
+                  />
+                </div>
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                )}
+              </div>
             </div>
-          </div>
 
-          {errorMsg && <div className="mt-2 text-red-600">{errorMsg}</div>}
+            {errorMsg && <div className="mt-2 text-red-600">{errorMsg}</div>}
 
-          <div className="!mt-6">
-            <button
-              type="submit"
-              className="w-full py-2 px-4 tracking-wider text-lg font-bold rounded-md text-white bg-emerald-500 hover:bg-emerald-700 focus:outline-none disabled:opacity-50"
-              disabled={isLoading}
-            >
-              Login
-            </button>
+            <div className="!mt-6">
+              <button
+                type="submit"
+                className="w-full py-2 px-4 tracking-wider text-lg font-bold rounded-md text-white bg-emerald-500 hover:bg-emerald-700 focus:outline-none disabled:opacity-50"
+                disabled={isLoading}
+              >
+                Login
+              </button>
+            </div>
+            <p className="text-gray-800 text-base mt-6 text-center">
+              Don&apos;t have an account?{' '}
+              <Link
+                to="/sign-up"
+                className="text-emerald-500 font-semibold hover:underline ml-1"
+              >
+                Register here
+              </Link>
+            </p>
+          </form>
+          <div>
+            <p className=" text-gray-900 py-4 text-center">or</p>
+
+            <GoogleSignIn />
           </div>
-          <p className="text-gray-800 text-base mt-6 text-center">
-            Don&apos;t have an account?{' '}
-            <Link
-              to="/sign-up"
-              className="text-emerald-500 font-semibold hover:underline ml-1"
-            >
-              Register here
-            </Link>
-          </p>
-        </form>
+        </div>
       </div>
     </div>
   );

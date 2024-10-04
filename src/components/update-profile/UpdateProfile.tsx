@@ -28,6 +28,7 @@ export default function UpdateProfile({ userData }: { userData: IUser }) {
     email: userData?.email || '',
     phone: userData?.phone || '',
     address: userData?.address || '',
+    company: userData?.company || '',
     role: userData?.role || 'user',
     bio: userData?.bio || '',
     socialMedia: {
@@ -184,7 +185,28 @@ export default function UpdateProfile({ userData }: { userData: IUser }) {
                   className=" border-gray-400 font-semibold text-gray-900 disabled:opacity-70 bg-white w-full border px-2 py-2 rounded-md"
                 />
               </div>
-
+              <div className="space-y-2">
+                <Label htmlFor="address">Company</Label>
+                <input
+                  id="company"
+                  name="company"
+                  value={user.company}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className=" border-gray-400 font-semibold text-gray-900 disabled:opacity-70 bg-white w-full border px-2 py-2 rounded-md"
+                />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="bio">Bio</Label>
+                <textarea
+                  id="bio"
+                  name="bio"
+                  value={user.bio}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="min-h-[100px]  font-semibold border-gray-400 text-gray-900 disabled:opacity-70 bg-white w-full border px-2 py-2 rounded-md"
+                />
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="twitter">Twitter</Label>
                 <input
@@ -216,17 +238,6 @@ export default function UpdateProfile({ userData }: { userData: IUser }) {
                   onChange={handleSocialMediaChange}
                   disabled={!isEditing}
                   className=" border-gray-400 font-semibold text-gray-900 disabled:opacity-70 bg-white w-full border px-2 py-2 rounded-md"
-                />
-              </div>
-              <div className="space-y-2 sm:col-span-2">
-                <Label htmlFor="bio">Bio</Label>
-                <textarea
-                  id="bio"
-                  name="bio"
-                  value={user.bio}
-                  onChange={handleInputChange}
-                  disabled={!isEditing}
-                  className="min-h-[100px]  font-semibold border-gray-400 text-gray-900 disabled:opacity-70 bg-white w-full border px-2 py-2 rounded-md"
                 />
               </div>
             </div>

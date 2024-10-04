@@ -146,13 +146,15 @@ export default function BookingPage() {
                             className="py-2 placeholder:text-base font-semibold placeholder:text-gray-950 bg-white border-gray-300"
                           />
                         </div>
-                        <div className="flex flex-col space-y-1.5">
-                          <Input
-                            id="phone"
-                            placeholder={user?.data?.phone}
-                            className="py-2 placeholder:text-base bg-white border-gray-300 font-semibold placeholder:text-gray-950"
-                          />
-                        </div>
+                        {user?.data?.phone && (
+                          <div className="flex flex-col space-y-1.5">
+                            <Input
+                              id="phone"
+                              placeholder={user?.data?.phone}
+                              className="py-2 placeholder:text-base bg-white border-gray-300 font-semibold placeholder:text-gray-950"
+                            />
+                          </div>
+                        )}
 
                         {selectedSlots?.length > 0 ? (
                           <Card className="bg-white text-gray-900 border-gray-300">

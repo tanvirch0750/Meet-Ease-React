@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
-import { IAuthLogin } from '@/types/authType';
+import { IAuthGoogleLogin, IAuthLogin } from '@/types/authType';
 import { api } from '../../api/apiSlice';
 import { userLoggedIn } from './authSlice';
 
@@ -23,7 +20,7 @@ export const authApi = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
       // @ts-ignore
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
@@ -53,7 +50,47 @@ export const authApi = api.injectEndpoints({
         }
       },
     }),
+
+    googleSignIn: builder.mutation({
+      query: (data: IAuthGoogleLogin) => ({
+        url: '/auth/google-login',
+        method: 'POST',
+        body: data,
+      }),
+
+      // @ts-ignore
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const result = await queryFulfilled;
+
+          console.log('inside google login redux', result);
+
+          localStorage.setItem(
+            'auth',
+            JSON.stringify({
+              accessToken: result.data.token,
+              email: result.data.data.email,
+              role: result.data.data.role,
+              name: result.data.data.name,
+              image: result.data.data.image,
+            })
+          );
+          dispatch(
+            userLoggedIn({
+              accessToken: result.data.token,
+              email: result.data.data.email,
+              role: result.data.data.role,
+              name: result.data.data.name,
+              image: result.data.data.image,
+            })
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
   }),
 });
 
-export const { useSignupMutation, useSigninMutation } = authApi;
+export const { useSignupMutation, useSigninMutation, useGoogleSignInMutation } =
+  authApi;

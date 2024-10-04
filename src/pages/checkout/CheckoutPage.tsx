@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { useNavigate } from 'react-router-dom';
 
 export default function CheckoutPage({
   selectedSlots,
@@ -26,11 +27,11 @@ export default function CheckoutPage({
   setIsProccedToCheckout: any;
   date: any;
 }) {
+  const navigate = useNavigate();
   const [addBooking, { isLoading, isError, isSuccess, data }] =
     useAddBookingMutation();
 
   const room = selectedSlots[0].room;
-  console.log(selectedSlots);
 
   const handleAddBooking = () => {
     const slots = selectedSlots?.map((slot: any) => slot?._id);
@@ -133,6 +134,24 @@ export default function CheckoutPage({
                       disabled
                     />
                   </div>
+                  {user?.company && (
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="company"
+                        className="text-lg font-medium text-gray-700 flex items-center gap-2"
+                      >
+                        <MapPinIcon className="w-5 h-5 text-emerald-500" />
+                        Comapany
+                      </Label>
+                      <Input
+                        id="comapamu"
+                        value={user?.company}
+                        className="bg-white border-gray-300 text-gray-900 disabled:opacity-95 disabled:font-semibold"
+                        readOnly
+                        disabled
+                      />
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <Label
                       htmlFor="address"
@@ -225,13 +244,28 @@ export default function CheckoutPage({
                       </div>
                     </CardContent>
                   </Card>
-                  <Button
-                    className="w-full py-6 text-xl font-semibold bg-emerald-500 hover:bg-emerald-600 text-white transition-colors flex items-center justify-center gap-2"
-                    onClick={handleAddBooking}
-                  >
-                    <CreditCard className="w-6 h-6" />
-                    Pay now
-                  </Button>
+
+                  {!user?.phone || !user.address ? (
+                    <>
+                      <Button
+                        className="w-full py-6 text-xl font-semibold bg-rose-600 hover:bg-rose-500 text-white transition-colors flex items-center justify-center gap-2"
+                        onClick={() => navigate('/my-profile')}
+                      >
+                        <UserIcon className="w-6 h-6" />
+                        You need to update your profile
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        className="w-full py-6 text-xl font-semibold bg-emerald-500 hover:bg-emerald-600 text-white transition-colors flex items-center justify-center gap-2"
+                        onClick={handleAddBooking}
+                      >
+                        <CreditCard className="w-6 h-6" />
+                        Pay now
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </CardContent>

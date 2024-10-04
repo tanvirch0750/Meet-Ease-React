@@ -9,6 +9,7 @@ export type IUser = {
   image?: string;
   createdAt?: string;
   updatedAt?: string;
+  company?: string;
   bio?: string;
   socialMedia?: Record<string, string>;
   _id?: string;

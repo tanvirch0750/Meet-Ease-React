@@ -2,6 +2,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useSignupMutation } from '@/redux/features/auth/authApi';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import GoogleSignIn from '../google-sign-in/GoogleSignIn';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -123,137 +124,140 @@ export default function Signup() {
             </p>
           </div>
         </div>
+        <div className="md:col-span-2 w-full py-6 px-6 sm:px-16">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <h3 className="text-gray-800 text-2xl font-bold">
+                Create an account
+              </h3>
+            </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="md:col-span-2 w-full py-6 px-6 sm:px-16"
-        >
-          <div className="mb-4">
-            <h3 className="text-gray-800 text-2xl font-bold">
-              Create an account
-            </h3>
-          </div>
+            <div className="space-y-3">
+              <div className="md:flex gap-3">
+                <div className="mb-2 md:mb-0">
+                  <label className="text-gray-800 text-base mb-1 block">
+                    Name
+                  </label>
+                  <div className="relative flex items-center">
+                    <input
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                      placeholder="Enter name"
+                    />
+                  </div>
+                  {errors.name && (
+                    <p className="text-red-600 text-sm">{errors.name}</p>
+                  )}
+                </div>
 
-          <div className="space-y-3">
-            <div className="md:flex gap-3">
-              <div className="mb-2 md:mb-0">
+                <div>
+                  <label className="text-gray-800 text-base mb-1 block">
+                    Email Id
+                  </label>
+                  <div className="relative flex items-center">
+                    <input
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                      placeholder="Enter email"
+                    />
+                  </div>
+                  {errors.email && (
+                    <p className="text-red-600 text-sm">{errors.email}</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
                 <label className="text-gray-800 text-base mb-1 block">
-                  Name
+                  Phone
                 </label>
                 <div className="relative flex items-center">
                   <input
-                    name="name"
+                    name="phone"
                     type="text"
-                    value={formData.name}
+                    value={formData.phone}
                     onChange={handleChange}
                     className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                    placeholder="Enter name"
+                    placeholder="Enter phone number"
                   />
                 </div>
-                {errors.name && (
-                  <p className="text-red-600 text-sm">{errors.name}</p>
+                {errors.phone && (
+                  <p className="text-red-600 text-sm">{errors.phone}</p>
                 )}
               </div>
 
               <div>
                 <label className="text-gray-800 text-base mb-1 block">
-                  Email Id
+                  Password
                 </label>
                 <div className="relative flex items-center">
                   <input
-                    name="email"
-                    type="email"
-                    value={formData.email}
+                    name="password"
+                    type="password"
+                    value={formData.password}
                     onChange={handleChange}
                     className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                    placeholder="Enter email"
+                    placeholder="Enter password"
                   />
                 </div>
-                {errors.email && (
-                  <p className="text-red-600 text-sm">{errors.email}</p>
+                {errors.password && (
+                  <p className="text-red-600 text-sm">{errors.password}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="text-gray-800 text-base mb-1 block">
+                  Address
+                </label>
+                <div className="relative flex items-center">
+                  <input
+                    name="address"
+                    type="text"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                    placeholder="Enter address"
+                  />
+                </div>
+                {errors.address && (
+                  <p className="text-red-600 text-sm">{errors.address}</p>
                 )}
               </div>
             </div>
 
-            <div>
-              <label className="text-gray-800 text-base mb-1 block">
-                Phone
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  name="phone"
-                  type="text"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                  placeholder="Enter phone number"
-                />
-              </div>
-              {errors.phone && (
-                <p className="text-red-600 text-sm">{errors.phone}</p>
-              )}
-            </div>
+            {errorMsg && <div className="mt-2 text-red-600">{errorMsg}</div>}
 
-            <div>
-              <label className="text-gray-800 text-base mb-1 block">
-                Password
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  name="password"
-                  type="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                  placeholder="Enter password"
-                />
-              </div>
-              {errors.password && (
-                <p className="text-red-600 text-sm">{errors.password}</p>
-              )}
+            <div className="!mt-6">
+              <button
+                type="submit"
+                className="w-full py-2 px-4 tracking-wider text-lg font-bold rounded-md text-white bg-emerald-500 hover:bg-emerald-700 focus:outline-none"
+                disabled={isLoading}
+              >
+                Create an account
+              </button>
             </div>
+            <p className="text-gray-800 text-base mt-2 text-center">
+              Already have an account?{' '}
+              <Link
+                to="/login"
+                className="text-emerald-500 font-semibold hover:underline ml-1"
+              >
+                Login here
+              </Link>
+            </p>
+          </form>
+          <div>
+            <p className=" text-gray-900 py-4 text-center">or</p>
 
-            <div>
-              <label className="text-gray-800 text-base mb-1 block">
-                Address
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  name="address"
-                  type="text"
-                  value={formData.address}
-                  onChange={handleChange}
-                  className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                  placeholder="Enter address"
-                />
-              </div>
-              {errors.address && (
-                <p className="text-red-600 text-sm">{errors.address}</p>
-              )}
-            </div>
+            <GoogleSignIn />
           </div>
-
-          {errorMsg && <div className="mt-2 text-red-600">{errorMsg}</div>}
-
-          <div className="!mt-6">
-            <button
-              type="submit"
-              className="w-full py-2 px-4 tracking-wider text-lg font-bold rounded-md text-white bg-emerald-500 hover:bg-emerald-700 focus:outline-none"
-              disabled={isLoading}
-            >
-              Create an account
-            </button>
-          </div>
-          <p className="text-gray-800 text-base mt-6 text-center">
-            Already have an account?{' '}
-            <Link
-              to="/login"
-              className="text-emerald-500 font-semibold hover:underline ml-1"
-            >
-              Login here
-            </Link>
-          </p>
-        </form>
+        </div>
       </div>
     </div>
   );
