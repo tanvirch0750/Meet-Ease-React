@@ -8,11 +8,9 @@ import PrivateRoute from './components/ui/private-route';
 import PrivateRouteAdmin from './components/ui/private-route-admin';
 
 import { lazy } from 'react';
-import PrivacyPage from './pages/privacy-terms/PrivacyPage';
-import CareerPage from './pages/career/CareersPage';
-import BusinessPage from './pages/for-business/BusinessPage';
+import ScrollToTop from './components/ui/ScrollToTop';
 
-// Lazy load your pages
+// Lazy load pages
 const HomePage = lazy(() => import('./pages/home/HomePage'));
 const AboutUsPage = lazy(() => import('./pages/about-us/AboutUs'));
 const RoomListPage = lazy(() => import('./pages/room-list/RoomListPage'));
@@ -36,13 +34,26 @@ const Bookings = lazy(() => import('./pages/admin/bookings'));
 const ProfilePage = lazy(() => import('./pages/profile/ProfilePage'));
 const Users = lazy(() => import('./pages/admin/users'));
 const ErrorPage = lazy(() => import('./pages/error/ErrorPage'));
+const PrivacyPage = lazy(() => import('./pages/privacy-terms/PrivacyPage'));
+const CareerPage = lazy(() => import('./pages/career/CareersPage'));
+const BusinessPage = lazy(() => import('./pages/for-business/BusinessPage'));
+const AbcCorpCaseStudyDetailPage = lazy(
+  () => import('./pages/case-studies/AbcCorp')
+);
+const GlobalMarketingFirmCaseStudyPage = lazy(
+  () => import('./pages/case-studies/GlobalMarketinFarm')
+);
 
 const router = createBrowserRouter([
   // Auth routes
 
   {
     path: '/',
-    element: <HomePage />,
+    element: (
+      <>
+        <ScrollToTop /> <HomePage />
+      </>
+    ),
   },
   {
     path: '/sign-up',
@@ -63,29 +74,74 @@ const router = createBrowserRouter([
   },
   {
     path: '/about-us',
-    element: <AboutUsPage />,
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <AboutUsPage />
+      </>
+    ),
   },
   {
     path: '/privacy-policy',
-    element: <PrivacyPage />,
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <PrivacyPage />
+      </>
+    ),
   },
   {
     path: '/careers',
-    element: <CareerPage />,
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <CareerPage />
+      </>
+    ),
   },
   {
     path: '/for-business',
-    element: <BusinessPage />,
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <BusinessPage />
+      </>
+    ),
   },
   {
+    path: '/case-studies/abc-corp',
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <AbcCorpCaseStudyDetailPage />
+      </>
+    ),
+  },
+  {
+    path: '/case-studies/global-marketing-firm',
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <GlobalMarketingFirmCaseStudyPage />
+      </>
+    ),
+  },
+
+  {
     path: '/rooms',
-    element: <RoomListPage />,
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <RoomListPage />
+      </>
+    ),
   },
 
   {
     path: '/rooms/:id',
     element: (
       <PrivateRoute>
+        <ScrollToTop />
         <RoomDetailPage />
       </PrivateRoute>
     ),
@@ -93,7 +149,12 @@ const router = createBrowserRouter([
 
   {
     path: '/contact-us',
-    element: <ContactUsPage />,
+    element: (
+      <>
+        {' '}
+        <ScrollToTop /> <ContactUsPage />
+      </>
+    ),
   },
 
   // {
@@ -109,6 +170,7 @@ const router = createBrowserRouter([
     path: '/booking/:id',
     element: (
       <PrivateRoute>
+        <ScrollToTop />
         <BookingPage />
       </PrivateRoute>
     ),
@@ -118,6 +180,7 @@ const router = createBrowserRouter([
     path: '/booking/cancel/:transactionId',
     element: (
       <PrivateRoute>
+        <ScrollToTop />
         <BookingCancelPage />
       </PrivateRoute>
     ),
@@ -127,6 +190,7 @@ const router = createBrowserRouter([
     path: '/my-bookings',
     element: (
       <PrivateRoute>
+        <ScrollToTop />
         <MyBookingsPage />
       </PrivateRoute>
     ),
@@ -136,6 +200,7 @@ const router = createBrowserRouter([
     path: '/my-profile',
     element: (
       <PrivateRoute>
+        <ScrollToTop />
         <ProfilePage />
       </PrivateRoute>
     ),

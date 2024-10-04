@@ -7,8 +7,12 @@ import { UserNav } from '../ui/user-nav';
 
 export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
   const auth = useAppSelector((state) => state.auth);
-
   const navigate = useNavigate();
+
+  const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `px-2 py-1 ${
+      isActive ? 'text-emerald-500 font-semibold' : 'hover:text-emerald-500'
+    }`;
 
   return (
     <header
@@ -16,50 +20,35 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
         pageType === 'home' ? '' : ' bg-[#011611] text-white'
       }`}
     >
-      <MaxWidthWrapper className=" flex justify-between items-center max-w-full">
+      <MaxWidthWrapper className="flex justify-between items-center max-w-full">
         <div>
-          <NavLink to="/" className=" text-xl font-bold">
-            <span className=" uppercase">Meet</span>{' '}
-            <span className=" inline-block px-2 bg-emerald-500 rounded-md">
+          <NavLink to="/" className="text-xl font-bold">
+            <span className="uppercase">Meet</span>{' '}
+            <span className="inline-block px-2 bg-emerald-500 rounded-md">
               Ease
             </span>
           </NavLink>
         </div>
         <div className="md:hidden block">
-          {' '}
           <MobileHeader />
         </div>
 
         <nav className="hidden md:flex items-center gap-4 text-[16px] font-medium">
-          <NavLink
-            to="/"
-            className="px-2 py-1 hover:text-emerald-500 active:text-emerald-500"
-          >
+          <NavLink to="/" className={getNavLinkClass}>
             Home
           </NavLink>
-          <NavLink
-            to="/about-us"
-            className="px-2 py-1 hover:text-emerald-500 active:text-emerald-500"
-          >
+          <NavLink to="/about-us" className={getNavLinkClass}>
             About Us
           </NavLink>
-          <NavLink
-            to="/rooms"
-            className="px-2 py-1 hover:text-emerald-500 active:text-emerald-500"
-          >
+          <NavLink to="/rooms" className={getNavLinkClass}>
             Rooms
           </NavLink>
-          <NavLink
-            to="/contact-us"
-            className="px-2 py-1 hover:text-emerald-500 active:text-emerald-500"
-          >
+          <NavLink to="/contact-us" className={getNavLinkClass}>
             Contact Us
           </NavLink>
 
           {auth.accessToken && auth.email ? (
-            <>
-              <UserNav />
-            </>
+            <UserNav />
           ) : (
             <PrimaryButton
               text="Signin"

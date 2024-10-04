@@ -28,8 +28,6 @@ export function FeaturedRooms() {
 
   const filteredData = rooms?.data?.filter((room: IRoom) => room?.isFeatured);
 
-  console.log('filtered data', filteredData);
-
   React.useEffect(() => {
     if (!api) {
       return;

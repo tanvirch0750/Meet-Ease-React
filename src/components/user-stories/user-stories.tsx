@@ -14,23 +14,27 @@ import MaxWidthWrapper from '../ui/max-width-wrapper';
 export default function UserStoriesSection() {
   const stories = [
     {
-      title: 'ABC Corp Increases Productivity by 30%',
+      title: 'ABC Ideal Corp  Increases Productivity by 30%',
       description:
-        'After switching to Meet Ease, ABC Corp noticed a significant boost in productivity among teams due to streamlined booking processes...',
+        'After switching to Meet Ease, ABC Corp noticed a significant boost in productivity among teams due to streamlined booking processe and  various  amenities for each rooms.',
       link: '/case-studies/abc-corp',
       icon: TrendingUp,
     },
+
     {
-      title: 'XYZ Inc Saves Time with Real-Time Booking',
+      title: 'Global Marketing Firm Enhances Client Meetings',
       description:
-        'XYZ Inc reduced the time spent on booking rooms by using our real-time availability feature...',
-      link: '/case-studies/xyz-inc',
+        'A global marketing firm turned to Meet Ease to improve their client meeting experiences. By utilizing our platform, they were able to create a more professional atmosphere.',
+      link: '/case-studies/global-marketing-firm',
       icon: Clock,
     },
   ];
 
   return (
-    <section className="py-20 relative  bg-gradient-to-br from-emerald-500 via-teal-400 to-cyan-500">
+    <section
+      className="py-20 relative  bg-gradient-to-br from-emerald-500 via-teal-400 to-cyan-500"
+      id="user-stories"
+    >
       {/* Content */}
       <MaxWidthWrapper className="pb-10 md:pb-0 pt-0 max-w-6xl">
         <div className="mb-16 max-w-4xl mx-auto text-center">
