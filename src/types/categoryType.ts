@@ -1,5 +1,5 @@
 export type ICategory = {
-  name: string;
-  isDeleted: boolean;
+  name?: string;
+  isDeleted?: boolean;
   _id?: string;
 };

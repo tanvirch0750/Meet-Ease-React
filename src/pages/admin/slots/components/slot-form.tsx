@@ -26,6 +26,7 @@ import {
 import { useGetRoomsQuery } from '@/redux/features/room/roomApi';
 
 import { useAddSlotMutation } from '@/redux/features/slots/slotsApi';
+import { IRoom } from '@/types/roomType';
 
 const timeStringSchema = z.string().refine(
   (time) => {

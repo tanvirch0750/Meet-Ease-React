@@ -227,6 +227,7 @@ export default function EditRoomForm({ room }: { room: IRoom }) {
                   </FormControl>
                   <SelectContent className="">
                     {categories?.data?.map((category: ICategory) => (
+                      // @ts-ignore
                       <SelectItem value={category?._id} key={category?._id}>
                         {category?.name}
                       </SelectItem>

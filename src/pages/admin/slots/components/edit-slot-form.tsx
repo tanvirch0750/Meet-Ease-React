@@ -67,6 +67,7 @@ export default function EditSlotForm({ slot }: { slot: ISlot }) {
       date: slot?.date,
       startTime: slot?.startTime,
       endTime: slot?.endTime,
+      // @ts-ignore
       room: slot?.room?._id,
     },
     mode: 'onChange',

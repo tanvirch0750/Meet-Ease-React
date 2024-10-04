@@ -116,85 +116,121 @@ export default function BookingPage() {
                     </CardContent>
                   </Card>
                 </div>
-                <div>
-                  <div className=" flex justify-between gap-3 mb-8">
-                    <p className=" text-xl font-bold text-gray-900">
-                      {room?.data?.name}
-                    </p>
-                    <p className=" text-xl font-bold text-gray-900">
-                      Room No: {room?.data?.roomNo}
-                    </p>
-                    <p className=" text-xl font-bold text-gray-900">
-                      Floor No: {room?.data?.floorNo}
-                    </p>
-                  </div>
+                <div className="space-y-6">
+                  {/* Form and Slot Information */}
+                  <Card className="w-full bg-white border-gray-200 shadow-md">
+                    <CardContent className=" pt-6">
+                      {/* Room Info Section with Enhanced Visuals */}
+                      <div className="w-full p-4 bg-gradient-to-r from-emerald-500 to-emerald-700 text-white rounded-lg shadow-lg mb-6">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h1 className="text-2xl font-bold mb-2">
+                              {room?.data?.name}
+                            </h1>
+                          </div>
 
-                  <Card className="w-full bg-white border-gray-300">
-                    <CardContent className="">
-                      <div className="grid w-full items-center gap-4">
-                        <div className="flex flex-col space-y-1.5 mt-8">
+                          {/* Room No */}
+                          <div className="flex items-center space-x-2">
+                            <p className="text-base font-semibold">Room No:</p>
+                            <p className="text-2xl font-bold">
+                              {room?.data?.roomNo}
+                            </p>
+                          </div>
+
+                          {/* Floor No */}
+                          <div className="flex items-center space-x-2">
+                            <p className="text-base font-semibold">Floor No:</p>
+                            <p className="text-2xl font-bold">
+                              {room?.data?.floorNo}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="grid gap-6">
+                        {/* User Info Input Fields */}
+                        <div className="flex flex-col space-y-3">
+                          <label
+                            htmlFor="name"
+                            className="text-sm font-medium text-gray-700"
+                          >
+                            Your Name
+                          </label>
                           <Input
                             id="name"
-                            placeholder={user?.data?.name}
-                            className="py-2 placeholder:text-base bg-white border-gray-300 font-semibold placeholder:text-gray-950"
+                            value={user?.data?.name}
+                            className="py-3 px-4 bg-white border-gray-300 rounded-md text-base font-medium text-black disabled:opacity-90"
+                            disabled
                           />
                         </div>
-                        <div className="flex flex-col space-y-1.5">
+
+                        <div className="flex flex-col space-y-3">
+                          <label
+                            htmlFor="email"
+                            className="text-sm font-medium text-gray-700"
+                          >
+                            Email Address
+                          </label>
                           <Input
                             id="email"
-                            placeholder={user?.data?.email}
-                            className="py-2 placeholder:text-base font-semibold placeholder:text-gray-950 bg-white border-gray-300"
+                            value={user?.data?.email}
+                            className="py-3 px-4 bg-white border-gray-300 rounded-md text-base font-medium text-black disabled:opacity-90"
+                            disabled
                           />
                         </div>
+
                         {user?.data?.phone && (
-                          <div className="flex flex-col space-y-1.5">
+                          <div className="flex flex-col space-y-3">
+                            <label
+                              htmlFor="phone"
+                              className="text-sm font-medium text-gray-700"
+                            >
+                              Phone Number
+                            </label>
                             <Input
                               id="phone"
-                              placeholder={user?.data?.phone}
-                              className="py-2 placeholder:text-base bg-white border-gray-300 font-semibold placeholder:text-gray-950"
+                              value={user?.data?.phone}
+                              className="py-3 px-4 bg-white border-gray-300 rounded-md text-base font-medium text-black disabled:opacity-90"
+                              disabled
                             />
                           </div>
                         )}
 
+                        {/* Selected Slots Information */}
                         {selectedSlots?.length > 0 ? (
-                          <Card className="bg-white text-gray-900 border-gray-300">
-                            <CardContent className=" pb-0">
-                              <div className=" py-2">
-                                <p className="text-base font-semibold text-gray-950">
-                                  Slots Selected: {selectedSlots.length}
-                                </p>
-                                <p className="text-base font-semibold text-gray-950 mt-1">
-                                  Total Price:{' '}
-                                  <span className="text-emerald-500 text-xl">
-                                    {selectedSlots.length *
-                                      // @ts-ignore
-                                      selectedSlots[0].room?.pricePerSlot}
-                                  </span>
-                                  <span className="text-base text-gray-700 pl-2">
-                                    (Price Per Slot: {/* @ts-ignore */}
-                                    {selectedSlots[0].room?.pricePerSlot})
-                                  </span>
-                                </p>
-                              </div>
+                          <Card className="bg-white border border-gray-200 shadow-sm mt-4">
+                            <CardContent className="py-4">
+                              <p className="text-base font-semibold text-gray-800">
+                                Slots Selected: {selectedSlots.length}
+                              </p>
+                              <p className="text-base text-gray-700 mt-2">
+                                Total Price:{' '}
+                                <span className="text-emerald-600 text-xl font-bold">
+                                  {selectedSlots.length *
+                                    // @ts-ignore
+                                    selectedSlots[0]?.room?.pricePerSlot}
+                                </span>
+                                <span className="text-sm text-gray-500 pl-2">
+                                  (Price Per Slot: {/* @ts-ignore */}
+                                  {selectedSlots[0]?.room?.pricePerSlot})
+                                </span>
+                              </p>
                             </CardContent>
                           </Card>
-                        ) : null}
-
-                        {selectedSlots?.length === 0 ? (
-                          <Card className="bg-white border-gray-300">
-                            <CardContent className="p-0">
-                              <div className=" py-3 px-4">
-                                <p className="text-base font-semibold text-emerald-600">
-                                  You haven't selected any slots yet. Please
-                                  select a slot to proceed to checkout.
-                                </p>
-                              </div>
+                        ) : (
+                          <Card className="bg-gray-50 border border-gray-200 mt-4">
+                            <CardContent className="py-4">
+                              <p className="text-base font-medium text-gray-500">
+                                You haven't selected any slots yet. Please
+                                select a slot to proceed to checkout.
+                              </p>
                             </CardContent>
                           </Card>
-                        ) : null}
+                        )}
                       </div>
+
+                      {/* Proceed to Checkout Button */}
                       <button
-                        className="group py-2 px-6 bg-emerald-600 border border-transparent rounded-md w-full text-lg font-semibold text-white transition-all duration-300 hover:bg-emerald-700 mt-6 disabled:opacity-50"
+                        className="mt-8 w-full py-3 px-6 bg-emerald-600 text-white text-lg font-semibold rounded-md transition hover:bg-emerald-700 disabled:opacity-50"
                         disabled={selectedSlots.length === 0}
                         onClick={() => setIsProccedToCheckout(true)}
                       >

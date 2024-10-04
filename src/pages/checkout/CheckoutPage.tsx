@@ -6,6 +6,7 @@ import ErrorPage from '../error/ErrorPage';
 import { ISlot } from '@/types/slotType';
 import { Label } from '@/components/ui/label';
 import {
+  Building2Icon,
   Clock,
   CreditCard,
   MapPinIcon,
@@ -14,7 +15,6 @@ import {
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { useNavigate } from 'react-router-dom';
 
 export default function CheckoutPage({
   selectedSlots,
@@ -27,7 +27,6 @@ export default function CheckoutPage({
   setIsProccedToCheckout: any;
   date: any;
 }) {
-  const navigate = useNavigate();
   const [addBooking, { isLoading, isError, isSuccess, data }] =
     useAddBookingMutation();
 
@@ -61,8 +60,8 @@ export default function CheckoutPage({
         <Loader />
       ) : (
         <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 py-12 px-4 sm:px-6 lg:px-8">
-          <Card className="max-w-5xl mx-auto overflow-hidden shadow-lg bg-white border-gray-200">
-            <CardHeader className="bg-gradient-to-r from-emerald-400 to-teal-500 p-6">
+          <Card className="max-w-6xl mx-auto overflow-hidden shadow-lg bg-white border-gray-200">
+            <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-500 p-6">
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                 <CardTitle className="text-3xl font-bold text-white text-center sm:text-left">
                   Pay with Amar Pay
@@ -118,29 +117,32 @@ export default function CheckoutPage({
                       disabled
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="phone"
-                      className="text-lg font-medium text-gray-700 flex items-center gap-2"
-                    >
-                      <PhoneIcon className="w-5 h-5 text-emerald-500" />
-                      Phone
-                    </Label>
-                    <Input
-                      id="phone"
-                      value={user?.phone}
-                      className="bg-white border-gray-300 text-gray-900 disabled:opacity-95 disabled:font-semibold"
-                      readOnly
-                      disabled
-                    />
-                  </div>
+                  {user?.phone && (
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="phone"
+                        className="text-lg font-medium text-gray-700 flex items-center gap-2"
+                      >
+                        <PhoneIcon className="w-5 h-5 text-emerald-500" />
+                        Phone
+                      </Label>
+                      <Input
+                        id="phone"
+                        value={user?.phone}
+                        className="bg-white border-gray-300 text-gray-900 disabled:opacity-95 disabled:font-semibold"
+                        readOnly
+                        disabled
+                      />
+                    </div>
+                  )}
+
                   {user?.company && (
                     <div className="space-y-2">
                       <Label
                         htmlFor="company"
                         className="text-lg font-medium text-gray-700 flex items-center gap-2"
                       >
-                        <MapPinIcon className="w-5 h-5 text-emerald-500" />
+                        <Building2Icon className="w-5 h-5 text-emerald-500" />
                         Comapany
                       </Label>
                       <Input
@@ -152,22 +154,24 @@ export default function CheckoutPage({
                       />
                     </div>
                   )}
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="address"
-                      className="text-lg font-medium text-gray-700 flex items-center gap-2"
-                    >
-                      <MapPinIcon className="w-5 h-5 text-emerald-500" />
-                      Address
-                    </Label>
-                    <Input
-                      id="address"
-                      value={user?.address}
-                      className="bg-white border-gray-300 text-gray-900 disabled:opacity-95 disabled:font-semibold"
-                      readOnly
-                      disabled
-                    />
-                  </div>
+                  {user?.address && (
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="address"
+                        className="text-lg font-medium text-gray-700 flex items-center gap-2"
+                      >
+                        <MapPinIcon className="w-5 h-5 text-emerald-500" />
+                        Address
+                      </Label>
+                      <Input
+                        id="address"
+                        value={user?.address}
+                        className="bg-white border-gray-300 text-gray-900 disabled:opacity-95 disabled:font-semibold"
+                        readOnly
+                        disabled
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="space-y-6">
                   <Card className="bg-white shadow border-gray-100">
@@ -245,27 +249,13 @@ export default function CheckoutPage({
                     </CardContent>
                   </Card>
 
-                  {!user?.phone || !user.address ? (
-                    <>
-                      <Button
-                        className="w-full py-6 text-xl font-semibold bg-rose-600 hover:bg-rose-500 text-white transition-colors flex items-center justify-center gap-2"
-                        onClick={() => navigate('/my-profile')}
-                      >
-                        <UserIcon className="w-6 h-6" />
-                        You need to update your profile
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        className="w-full py-6 text-xl font-semibold bg-emerald-500 hover:bg-emerald-600 text-white transition-colors flex items-center justify-center gap-2"
-                        onClick={handleAddBooking}
-                      >
-                        <CreditCard className="w-6 h-6" />
-                        Pay now
-                      </Button>
-                    </>
-                  )}
+                  <Button
+                    className="w-full py-6 text-xl font-semibold bg-emerald-500 hover:bg-emerald-600 text-white transition-colors flex items-center justify-center gap-2"
+                    onClick={handleAddBooking}
+                  >
+                    <CreditCard className="w-6 h-6" />
+                    Pay now
+                  </Button>
                 </div>
               </div>
             </CardContent>

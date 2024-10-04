@@ -22,7 +22,7 @@ export default function RoomListPage() {
   return (
     <>
       <Header pageType="normal" />
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen py-12">
         <SearchCategoryFilter />
         <main className="flex flex-col lg:flex-row gap-4 lg:gap-0 ">
           <RoomListFilter />

@@ -3,7 +3,7 @@ import { userLoggedOut } from '../features/auth/authSlice';
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:5000/api',
+  baseUrl: ' http://localhost:5000/api',
   prepareHeaders: async (headers, { getState }) => {
     const token: string | undefined = (getState() as RootState).auth
       .accessToken;
@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-//  http://localhost:5000
+//  http://localhost:5000/api
 // 'https://room-booking-node.vercel.app/api'
 
 export const api = createApi({

@@ -19,6 +19,7 @@ import { IRoom } from '@/types/roomType';
 export function FeaturedRooms() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
+  // @ts-ignore
   const [count, setCount] = React.useState(0);
 
   const { data: rooms } = useGetRoomsQuery({

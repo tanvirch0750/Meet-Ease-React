@@ -8,31 +8,37 @@ import { UserNav } from '../ui/user-nav';
 export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
   const auth = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
-  const location = useLocation(); // Get current location
+  const location = useLocation();
 
   return (
     <header
-      className={`h-[70px] z-50 relative text-white flex items-center ${
-        pageType === 'home' ? '' : ' bg-[#011611] text-white'
+      className={` z-50 relative flex items-center transition-colors duration-300 ${
+        pageType === 'home'
+          ? 'h-[70px]' // Gradient for home page
+          : 'bg-gradient-to-r from-[#011611] to-[#004d40] shadow-lg text-white h-[85px]' // Gradient for other pages
       }`}
     >
-      <MaxWidthWrapper className="flex justify-between items-center max-w-full">
+      <MaxWidthWrapper className="flex justify-between items-center max-w-full px-6">
+        {/* Logo */}
         <div>
-          <NavLink to="/" className="text-xl font-bold">
-            <span className="uppercase">Meet</span>{' '}
-            <span className="inline-block px-2 bg-emerald-500 rounded-md">
+          <NavLink to="/" className="text-2xl font-bold flex items-center">
+            <span className="uppercase tracking-wider">Meet</span>
+            <span className="ml-1 px-2 py-1 bg-emerald-500 text-white rounded-md">
               Ease
             </span>
           </NavLink>
         </div>
+
+        {/* Mobile Menu */}
         <div className="md:hidden block">
           <MobileHeader />
         </div>
 
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-4 text-[16px] font-medium">
           <NavLink
             to="/"
-            className={`px-2 py-1 ${
+            className={`px-3 py-1 transition-colors ${
               location.pathname === '/' && !location.hash
                 ? 'text-emerald-500 font-semibold'
                 : 'hover:text-emerald-500'
@@ -42,7 +48,7 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           </NavLink>
           <NavLink
             to="/about-us"
-            className={`px-2 py-1 ${
+            className={`px-3 py-1 transition-colors ${
               location.pathname === '/about-us'
                 ? 'text-emerald-500 font-semibold'
                 : 'hover:text-emerald-500'
@@ -52,7 +58,7 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           </NavLink>
           <NavLink
             to="/rooms"
-            className={`px-2 py-1 ${
+            className={`px-3 py-1 transition-colors ${
               location.pathname === '/rooms'
                 ? 'text-emerald-500 font-semibold'
                 : 'hover:text-emerald-500'
@@ -62,9 +68,9 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           </NavLink>
           <NavLink
             to="/#user-stories"
-            className={`px-2 py-1 ${
+            className={`px-3 py-1 transition-colors ${
               location.hash === '#user-stories'
-                ? ' font-semibold'
+                ? 'font-semibold text-emerald-500'
                 : 'hover:text-emerald-500'
             }`}
           >
@@ -72,21 +78,22 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
           </NavLink>
           <NavLink
             to="/#blogs"
-            className={`px-2 py-1 ${
-              location.hash === '#user-stories'
-                ? ' font-semibold'
+            className={`px-3 py-1 transition-colors ${
+              location.hash === '#blogs'
+                ? 'font-semibold text-emerald-500'
                 : 'hover:text-emerald-500'
             }`}
           >
             Blogs
           </NavLink>
+
           {location?.pathname.includes('/about-us') && (
             <>
               <NavLink
                 to="/about-us/#our-mission"
-                className={`px-2 py-1 ${
+                className={`px-3 py-1 transition-colors ${
                   location.hash === '#our-mission'
-                    ? ' font-semibold'
+                    ? 'font-semibold text-emerald-500'
                     : 'hover:text-emerald-500'
                 }`}
               >
@@ -94,9 +101,9 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
               </NavLink>
               <NavLink
                 to="/about-us/#our-team"
-                className={`px-2 py-1 ${
+                className={`px-3 py-1 transition-colors ${
                   location.hash === '#our-team'
-                    ? ' font-semibold'
+                    ? 'font-semibold text-emerald-500'
                     : 'hover:text-emerald-500'
                 }`}
               >
@@ -104,11 +111,12 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
               </NavLink>
             </>
           )}
+
           <NavLink
             to="/contact-us"
-            className={`px-2 py-1 ${
+            className={`px-3 py-1 transition-colors ${
               location.pathname === '/contact-us'
-                ? 'text-emerald-500 font-semibold'
+                ? ' text-emerald-500'
                 : 'hover:text-emerald-500'
             }`}
           >
