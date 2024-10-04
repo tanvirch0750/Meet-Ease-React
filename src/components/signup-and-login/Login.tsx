@@ -3,6 +3,8 @@ import { useSigninMutation } from '@/redux/features/auth/authApi';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleSignIn from '../google-sign-in/GoogleSignIn';
+import { EyeClosedIcon } from '@radix-ui/react-icons';
+import { EyeIcon } from 'lucide-react';
 
 interface FormData {
   email: string;
@@ -26,6 +28,7 @@ export default function Login() {
   });
 
   const [errorMsg, setErrorMsg] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [signin, { data, isLoading, error }] = useSigninMutation();
 
@@ -71,6 +74,10 @@ export default function Login() {
 
       signin(formData);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -162,15 +169,28 @@ export default function Login() {
                 <label className="text-gray-800 text-base mb-1 block">
                   Password
                 </label>
-                <div className="relative flex items-center">
+                <div className="relative">
+                  {/* Password input field */}
                   <input
                     name="password"
-                    type="password"
-                    value={formData.password}
+                    value={formData?.password}
                     onChange={handleChange}
+                    type={showPassword ? 'text' : 'password'}
                     className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                    placeholder="Enter password"
+                    placeholder="Enter your password"
                   />
+
+                  {/* Eye icon to toggle password visibility */}
+                  <span
+                    onClick={togglePasswordVisibility}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                  >
+                    {showPassword ? (
+                      <EyeClosedIcon className=" text-gray-900" />
+                    ) : (
+                      <EyeIcon className=" text-gray-400" />
+                    )}
+                  </span>
                 </div>
                 {errors.password && (
                   <p className="text-red-500 text-sm mt-1">{errors.password}</p>

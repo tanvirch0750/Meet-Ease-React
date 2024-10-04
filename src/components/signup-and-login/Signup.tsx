@@ -3,6 +3,8 @@ import { useSignupMutation } from '@/redux/features/auth/authApi';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleSignIn from '../google-sign-in/GoogleSignIn';
+import { EyeClosedIcon } from '@radix-ui/react-icons';
+import { EyeIcon } from 'lucide-react';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -22,6 +24,7 @@ export default function Signup() {
   });
 
   const [errorMsg, setErrorMsg] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [signup, { data, isLoading, error }] = useSignupMutation();
 
@@ -68,6 +71,10 @@ export default function Signup() {
 
       signup(formData);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -172,43 +179,57 @@ export default function Signup() {
                   )}
                 </div>
               </div>
-
-              <div>
-                <label className="text-gray-800 text-base mb-1 block">
-                  Phone
-                </label>
-                <div className="relative flex items-center">
-                  <input
-                    name="phone"
-                    type="text"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                    placeholder="Enter phone number"
-                  />
+              <div className="md:flex gap-3">
+                {' '}
+                <div>
+                  <label className="text-gray-800 text-base mb-1 block">
+                    Phone
+                  </label>
+                  <div className="relative flex items-center">
+                    <input
+                      name="phone"
+                      type="text"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                      placeholder="Enter phone number"
+                    />
+                  </div>
+                  {errors.phone && (
+                    <p className="text-red-600 text-sm">{errors.phone}</p>
+                  )}
                 </div>
-                {errors.phone && (
-                  <p className="text-red-600 text-sm">{errors.phone}</p>
-                )}
-              </div>
+                <div>
+                  <label className="text-gray-800 text-base mb-1 block">
+                    Password
+                  </label>
+                  <div className="relative flex items-center">
+                    {/* Password input field */}
+                    <input
+                      name="password"
+                      value={formData?.password}
+                      onChange={handleChange}
+                      type={showPassword ? 'text' : 'password'}
+                      className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
+                      placeholder="Enter your password"
+                    />
 
-              <div>
-                <label className="text-gray-800 text-base mb-1 block">
-                  Password
-                </label>
-                <div className="relative flex items-center">
-                  <input
-                    name="password"
-                    type="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="text-gray-800 bg-white border border-gray-300 w-full text-lg px-4 py-1.5 rounded-md outline-emerald-500"
-                    placeholder="Enter password"
-                  />
+                    {/* Eye icon to toggle password visibility */}
+                    <span
+                      onClick={togglePasswordVisibility}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                    >
+                      {showPassword ? (
+                        <EyeClosedIcon className=" text-gray-900" />
+                      ) : (
+                        <EyeIcon className=" text-gray-400" />
+                      )}
+                    </span>
+                  </div>
+                  {errors.password && (
+                    <p className="text-red-600 text-sm">{errors.password}</p>
+                  )}
                 </div>
-                {errors.password && (
-                  <p className="text-red-600 text-sm">{errors.password}</p>
-                )}
               </div>
 
               <div>
