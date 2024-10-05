@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
 import { IUser } from '@/types/userType';
 import { useEditUserMutation } from '@/redux/features/user/userApi';
 import Swal from 'sweetalert2';
+import { Edit2Icon, XIcon } from 'lucide-react';
 
 export default function UpdateProfile({ userData }: { userData: IUser }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -94,37 +95,44 @@ export default function UpdateProfile({ userData }: { userData: IUser }) {
   return (
     <div className="mx-auto p-6">
       <Card className="max-w-5xl mx-auto bg-white text-gray-800 border-gray-300">
-        <CardHeader className="flex flex-col sm:flex-row items-center gap-4">
-          <Avatar className="w-24 h-24">
-            <AvatarImage
-              src={userData?.image || 'https://github.com/shadcn.png'}
-              alt={user.name}
-            />
-            <AvatarFallback>
-              {user.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')}
-            </AvatarFallback>
-          </Avatar>
-
-          <div className="text-center sm:text-left">
-            <CardTitle className="text-2xl font-bold">{user.name}</CardTitle>
-            <CardDescription className="text-gray-800">
-              {user.role}
-            </CardDescription>
+        <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-6">
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
+              <AvatarImage src={user.image} alt={user.name} />
+              <AvatarFallback className="text-3xl font-bold">
+                {user.name
+                  .split(' ')
+                  .map((n) => n[0])
+                  .join('')}
+              </AvatarFallback>
+            </Avatar>
+            <div className="text-center sm:text-left flex-1">
+              <CardTitle className="text-3xl font-bold mb-1">
+                {user.name}
+              </CardTitle>
+              <CardDescription className="text-emerald-100 text-lg">
+                {user.role}
+              </CardDescription>
+            </div>
+            <Button
+              className={`${
+                isEditing
+                  ? 'bg-red-500 hover:bg-red-600'
+                  : 'bg-emerald-700 hover:bg-emerald-800'
+              } text-white transition-colors duration-200`}
+              onClick={() => setIsEditing(!isEditing)}
+            >
+              {isEditing ? (
+                <>
+                  <XIcon className="w-4 h-4 mr-2" /> Cancel
+                </>
+              ) : (
+                <>
+                  <Edit2Icon className="w-4 h-4 mr-2" /> Edit Profile
+                </>
+              )}
+            </Button>
           </div>
-          <Button
-            className={`${
-              !isEditing
-                ? 'bg-emerald-600 hover:bg-emerald-500  text-white'
-                : 'bg-red-500 hover:bg-red-600'
-            } ml-auto`}
-            variant={isEditing ? 'destructive' : 'default'}
-            onClick={() => setIsEditing(!isEditing)}
-          >
-            {isEditing ? 'Cancel' : 'Edit Profile'}
-          </Button>
         </CardHeader>
         <CardContent className=" mt-5">
           <form onSubmit={handleSubmit}>

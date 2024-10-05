@@ -21,7 +21,7 @@ export default function Header({ pageType }: { pageType: 'normal' | 'home' }) {
       <MaxWidthWrapper className="flex justify-between items-center max-w-full px-6">
         {/* Logo */}
         <div>
-          <NavLink to="/" className="text-2xl font-bold flex items-center">
+          <NavLink to="/" className="text-xl font-bold flex items-center">
             <span className="uppercase tracking-wider">Meet</span>
             <span className="ml-1 px-2 py-1 bg-emerald-500 text-white rounded-md">
               Ease
