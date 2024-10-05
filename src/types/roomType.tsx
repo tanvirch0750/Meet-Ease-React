@@ -7,6 +7,7 @@ export type IRoom = {
   amenities: string[];
   isDeleted: boolean;
   images: string[];
+  averageRating?: string | number;
   category: {
     name: string;
     _id?: string;

@@ -35,7 +35,7 @@ const RoomDetailPage = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <section className="py-10 lg:py-24 relative ">
+        <section className="py-10 lg:pb-24 lg:pt-12 relative ">
           <MaxWidthWrapper className=" max-w-[1600px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 pb-12">
               <ImageGallery images={room?.data?.images} />

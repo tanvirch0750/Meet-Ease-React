@@ -22,13 +22,13 @@ export default function RoomListPage() {
   return (
     <>
       <Header pageType="normal" />
-      <div className="flex flex-col min-h-screen py-12">
+      <div className="flex flex-col min-h-screen pb-12 pt-6">
         <SearchCategoryFilter />
         <main className="flex flex-col lg:flex-row gap-4 lg:gap-0 ">
           <RoomListFilter />
 
           {filteredRooms?.length > 0 ? (
-            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 p-4 lg:p-6 ">
+            <div className="flex-1 p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredRooms?.map((room: any) => (
                 <RoomCard key={room?._id} room={room} />
               ))}

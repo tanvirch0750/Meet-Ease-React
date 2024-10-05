@@ -1,79 +1,107 @@
-import SectionHeader from '../section-header/SectionHeader';
+'use client';
+
+import { motion, useScroll } from 'framer-motion';
+import { CalendarDays, CheckCircle, Search } from 'lucide-react';
+import { useRef } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
 import MaxWidthWrapper from '../ui/max-width-wrapper';
-import HowDoesItWorkSvg from '../../assets/curved-dotted-line.svg';
+import SectionHeader from '../section-header/SectionHeader';
+
+const steps = [
+  {
+    number: 1,
+    title: 'Select a Room',
+    description:
+      'Browse through our diverse selection of meeting rooms and find the perfect space that suits your needs.',
+    icon: Search,
+    color: 'from-pink-500 to-rose-500',
+  },
+  {
+    number: 2,
+    title: 'Choose Date & Time',
+    description:
+      'Pick the date and time that works best for you, with real-time availability to ensure your slot is secure.',
+    icon: CalendarDays,
+    color: 'from-purple-500 to-indigo-500',
+  },
+  {
+    number: 3,
+    title: 'Confirm Booking',
+    description:
+      "Review your selection and confirm your booking instantly. You're all set for a productive meeting!",
+    icon: CheckCircle,
+    color: 'from-emerald-500 to-teal-500',
+  },
+];
 
 export default function HowDoesItWork() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
   return (
-    <MaxWidthWrapper className="pb-20 md:pb-28">
+    <section ref={containerRef} className="pb-0 pt-0 bg-white overflow-hidden">
+      <MaxWidthWrapper className="pb-20 md:pb-28">
+        <SectionHeader
+          className=" max-w-5xl pt-0 md:pt-12 pb-12"
+          headingSpanOne="How It Works"
+          headingSpanTwo="Simple Steps to Book Your Meeting Room"
+          description="Booking your ideal meeting room has never been easier. With just three simple steps, you can secure the perfect space for your needs. Select your room, choose your date and time, and confirm your booking—it's that straightforward!"
+        />
+
+        <div className="relative">
+          <motion.div
+            className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-emerald-300 via-cyan-300 to-blue-300"
+            style={{ scaleX: scrollYProgress }}
+          />
+          <div className="grid md:grid-cols-3 gap-8 relative z-10">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
+                <Card className="relative bg-white border-gray-200 shadow-lg overflow-hidden group">
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+                  />
+                  <CardContent className="p-6">
+                    <motion.div
+                      className={`absolute -top-8 -left-8 w-24 h-24 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center text-white font-bold text-3xl shadow-lg`}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      {step.number}
+                    </motion.div>
+                    <div className="mt-12 text-center">
+                      <step.icon
+                        className={`mx-auto h-16 w-16 mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br ${step.color} text-white p-3 rounded-full shadow-md`}
+                      />
+                      <h4 className="text-2xl font-semibold text-gray-800 mb-4">
+                        {step.title}
+                      </h4>
+                      <p className="text-gray-600 mb-6">{step.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </MaxWidthWrapper>
+    </section>
+  );
+}
+
+{
+  /* <MaxWidthWrapper className="pb-20 md:pb-28">
       <SectionHeader
         className=" max-w-5xl pt-0 md:pt-12"
         headingSpanOne="How It Works"
         headingSpanTwo="Simple Steps to Book Your Meeting Room"
         description="Booking your ideal meeting room has never been easier. With just three simple steps, you can secure the perfect space for your needs. Select your room, choose your date and time, and confirm your booking—it's that straightforward!"
-      />
-      <section id="works" className="relative pt-2">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="relative mt-12 lg:mt-20">
-            <div className="absolute inset-x-0 hidden xl:px-44 top-2 md:block md:px-20 lg:px-28">
-              <img
-                alt=""
-                loading="lazy"
-                width="1000"
-                height="500"
-                decoding="async"
-                data-nimg="1"
-                className="w-full"
-                // style="color:transparent"
-                src={HowDoesItWorkSvg}
-              />
-            </div>
-            <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
-              <div>
-                <div className="flex items-center justify-center w-14 h-14 mx-auto bg-emerald-100 border-2 border-emerald-500 rounded-full shadow">
-                  <span className="text-3xl font-semibold text-gray-700">
-                    1
-                  </span>
-                </div>
-                <h3 className="mt-4 text-2xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-body font-bold leading-tight md:mt-6">
-                  Select a Room
-                </h3>
-                <p className="mt-2 text-base text-gray-800 md:text-lg bg-gray-50 p-3 rounded-lg">
-                  Browse through our diverse selection of meeting rooms and find
-                  the perfect space that suits your needs.
-                </p>
-              </div>
-              <div>
-                <div className="flex items-center justify-center w-14 h-14 mx-auto bg-emerald-100 border-2 border-emerald-500 rounded-full shadow">
-                  <span className="text-3xl font-semibold text-gray-700">
-                    2
-                  </span>
-                </div>
-                <h3 className="mt-4 text-2xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-body font-bold leading-tight md:mt-6">
-                  Choose Date & Time
-                </h3>
-                <p className="mt-2 text-base text-gray-800 md:text-base bg-gray-50 p-3 rounded-lg">
-                  Pick the date and time that works best for you, with real-time
-                  availability to ensure your slot is secure.
-                </p>
-              </div>
-              <div>
-                <div className="flex items-center justify-center w-14 h-14 mx-auto bg-emerald-100 border-2 border-emerald-500 rounded-full shadow">
-                  <span className="text-3xl font-semibold text-gray-700">
-                    3
-                  </span>
-                </div>
-                <h3 className="mt-4 text-2xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent font-body font-bold leading-tight md:mt-6">
-                  Confirm Booking
-                </h3>
-                <p className="mt-2 text-base text-gray-800 md:text-base bg-gray-50 p-3 rounded-lg">
-                  Review your selection and confirm your booking instantly.
-                  You’re all set for a productive meeting!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </MaxWidthWrapper>
-  );
+      /> */
 }
