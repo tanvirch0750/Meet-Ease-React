@@ -170,10 +170,10 @@ const router = createBrowserRouter([
   {
     path: '/rooms/:id',
     element: (
-      <PrivateRoute>
-        <ScrollToTop />
-        <RoomDetailPage />
-      </PrivateRoute>
+      <>
+        {' '}
+        <ScrollToTop /> <RoomDetailPage />
+      </>
     ),
   },
 
